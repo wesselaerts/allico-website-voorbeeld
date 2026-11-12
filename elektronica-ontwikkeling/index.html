@@ -1,0 +1,4469 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektronica-ontwikkeling en PCB-ontwerp op maat | Allico Systems</title>
+    <meta name="description" content="Elektronica laten ontwikkelen: van idee en schema tot printplaat, prototype en kleine serie. PCB-ontwerp, firmware en testen in één hand.">
+    <meta name="theme-color" content="#0c1d45">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../favicon-96.png" type="image/png" sizes="96x96">
+    <link rel="icon" href="../favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:site_name" content="Allico Systems">
+    <meta property="og:title" content="Elektronica-ontwikkeling en PCB-ontwerp op maat | Allico Systems">
+    <meta property="og:description" content="Elektronica laten ontwikkelen: van idee en schema tot printplaat, prototype en kleine serie. PCB-ontwerp, firmware en testen in één hand.">
+    <meta property="og:url" content="https://allicosystems.nl/elektronica-ontwikkeling/">
+    <meta property="og:image" content="https://allicosystems.nl/deelbeeld.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Printplaten van Allico Systems: een besturingsprint en een bodemsensor">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://allicosystems.nl/#website",
+      "url": "https://allicosystems.nl/",
+      "name": "Allico Systems",
+      "inLanguage": "nl-NL",
+      "publisher": {
+        "@id": "https://allicosystems.nl/#bedrijf"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://allicosystems.nl/#bedrijf",
+      "name": "Allico Systems",
+      "legalName": "Allico Systems B.V.",
+      "url": "https://allicosystems.nl/",
+      "logo": "https://allicosystems.nl/allico-logo-512.png",
+      "image": "https://allicosystems.nl/deelbeeld.jpg",
+      "description": "Allico Systems is gespecialiseerd in de ontwikkeling en het combineren van sensortechniek, IoT-systemen en industriële besturingstechniek.",
+      "telephone": "+31611671719",
+      "email": "info@allico.nl",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Expeditiestraat 11",
+        "postalCode": "5961 PX",
+        "addressLocality": "Horst",
+        "addressRegion": "Limburg",
+        "addressCountry": "NL"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Nederland"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/allico-systems/"
+      ],
+      "knowsAbout": [
+        "PCB-ontwerp",
+        "Embedded systemen",
+        "Firmware",
+        "PLCnext",
+        "PLC-besturing",
+        "LoRa",
+        "Dashboards",
+        "App-ontwikkeling",
+        "IEC 62443",
+        "NIS2",
+        "OT-beveiliging"
+      ]
+    }
+  ]
+}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ─── BASIS STYLING VAN DE SCHIL (Blijft staan) ─── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fb;
+            color: #0c1d45;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        /* ── Header ─────────────────────────────────────── */
+        .header-logo {
+            height: 38px;
+            width: 38px;
+            display: block;
+            object-fit: cover;
+            object-position: center 18%;
+            border-radius: 50%;
+            filter: invert(1);
+            flex-shrink: 0;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 3.5rem;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+            z-index: 9999;
+        }
+
+        /* Logo: tekst */
+        .logo {
+            position: absolute;
+            left: 3.5rem;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .logo-naam {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0c1d45;
+        }
+
+        .logo-subtitel {
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* Nav: centered pill */
+        nav {
+            display: flex;
+            gap: 0;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.18s;
+            padding: 0.45rem 1.1rem;
+            border-radius: 5px;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #0c1d45;
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        nav a.active {
+            color: #fff;
+            background: #0c1d45;
+        }
+
+        /* Page router */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ── Home intro sectie ───────────────────────────── */
+        .home-intro {
+            position: relative;
+            min-height: calc(90vh - 80px);
+            padding: 0 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #fff;
+            margin-top: 80px;
+        }
+
+        .home-intro-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .home-intro-text .intro-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #0280fd;
+            background: rgba(0, 86, 179, 0.08);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            margin-bottom: 1.6rem;
+        }
+
+        .home-intro-text h1 {
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            font-weight: 800;
+            color: #0c1d45;
+            line-height: 1.1;
+            margin: 0 0 1.4rem;
+        }
+
+        .home-intro-text p {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.75;
+            margin: 0 0 2.2rem;
+            max-width: 480px;
+        }
+
+        .home-intro-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #0c1d45;
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.85rem 1.8rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+
+        .home-intro-cta:hover {
+            background: #0280fd;
+        }
+
+        .home-intro-photo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 360px;
+        }
+
+        .home-intro-photo svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.08));
+        }
+
+        .home-intro-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .home-intro-photo-placeholder {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #ccc;
+            font-family: monospace;
+        }
+
+        .home-scroll-divider {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .home-scroll-divider span {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #bbb;
+        }
+
+        .home-scroll-divider svg {
+            color: #ccc;
+            animation: bounce 1.8s ease infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .home-intro-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .home-intro {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Specialisatie sectie */
+        /* ── Specialisatie overzicht ─────────────────────── */
+        .specialisatie-section {
+            padding: 5rem 0 6rem;
+            background: #fff;
+            min-height: calc(100vh - 80px);
+        }
+
+        .spec-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        .section-head {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.8rem;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .section-head h1 {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 800;
+            color: #0c1d45;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .section-head p {
+            max-width: 560px;
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0.2rem 0 0;
+            text-align: center;
+        }
+
+        .spec-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #0280fd;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .spec-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e4e4e4;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            cursor: pointer;
+            transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+        }
+
+        .spec-item:hover {
+            border-color: #0c1d45;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .spec-thumb {
+            width: 100%;
+            height: 240px;
+            background: #f2f2f2;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .spec-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            display: block;
+        }
+
+        .spec-thumb img[src$="Versleutelde beveiliging.webp"] {
+            object-position: center 60%;
+        }
+
+        .spec-thumb img[src$="header van hardware.jpeg"] {
+            object-position: center 48%;
+        }
+
+        .spec-thumb img[src=""] {
+            display: none;
+        }
+
+        .spec-thumb-placeholder {
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #ccc;
+            font-family: monospace;
+        }
+
+        .spec-item-body {
+            padding: 1.6rem 1.8rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .spec-item-num {
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-family: monospace;
+            color: #ccc;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.6rem;
+        }
+
+        .spec-item-text h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0c1d45;
+            margin: 0 0 0.55rem;
+            line-height: 1.25;
+        }
+
+        .spec-item-text p {
+            font-size: 0.88rem;
+            color: #666;
+            margin: 0;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .spec-arrow {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1.4rem;
+            color: #bbb;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: color 0.2s, gap 0.2s;
+        }
+
+        .spec-item:hover .spec-arrow {
+            color: #0c1d45;
+            gap: 0.7rem;
+        }
+
+        @media (max-width: 760px) {
+            .spec-list {
+                grid-template-columns: 1fr;
+            }
+
+            .section-head {
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .section-head p {
+                text-align: left;
+            }
+        }
+
+        /* ── Projecten overzicht ─────────────────────────── */
+        .projecten-section {
+            padding: 5rem 0 6rem;
+            background: #f5f5f5;
+            min-height: calc(100vh - 80px);
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 3rem;
+            padding: 2.2rem 2.5rem;
+            cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #0280fd;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.25s ease;
+        }
+
+        .project-card:hover {
+            border-color: #ccc;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .project-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .project-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-num {
+            font-family: monospace;
+            font-size: 0.72rem;
+            color: #bbb;
+            letter-spacing: 0.05em;
+        }
+
+        .project-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #0280fd;
+            background: rgba(0, 86, 179, 0.08);
+            padding: 0.22rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0c1d45;
+            margin: 0 0 0.5rem;
+        }
+
+        .project-card>div>p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .project-card-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-shrink: 0;
+        }
+
+        .project-thumb {
+            width: 180px;
+            height: 120px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-thumb img[src=""] {
+            display: none;
+        }
+
+        .project-card-arrow {
+            color: #ccc;
+            flex-shrink: 0;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .project-card:hover .project-card-arrow {
+            color: #0c1d45;
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 680px) {
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card-right {
+                display: none;
+            }
+        }
+
+        /* Nieuws sectie */
+        .nieuws-section {
+            padding: 8rem 4rem 6rem;
+            background: #fff;
+            min-height: calc(100vh - 80px);
+        }
+
+        .placeholder-tekst {
+            color: #aaa;
+            font-size: 1rem;
+            margin-top: 3rem;
+        }
+
+        /* Contact sectie */
+        .contact-logo {
+            height: 220px;
+            width: 220px;
+            display: block;
+            margin-bottom: 2rem;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        .contact-section {
+            padding: 8rem 4rem 6rem;
+            background: #f4f7fb;
+            min-height: calc(100vh - 80px);
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .contact-gegevens h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0c1d45;
+            margin: 1rem 0 2.5rem 0;
+        }
+
+        .gegevens-lijst {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gegevens-lijst li {
+            font-size: 0.95rem;
+            color: #444;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .gegeven-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #0c1d45;
+            background: #fff;
+            outline: none;
+            transition: border-color 0.2s;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #0280fd;
+        }
+
+        .btn-verstuur {
+            align-self: flex-start;
+            background: #0c1d45;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-verstuur:hover {
+            background: #0280fd;
+        }
+
+        @media (max-width: 768px) {
+            .contact-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .specialisatie-section,
+            .projecten-section,
+            .nieuws-section,
+            .contact-section {
+                padding: 5rem 1.5rem;
+            }
+        }
+
+        /* Expertises */
+        .expertises {
+            padding: 8rem 4rem;
+            background-color: #ffffff;
+            border-top: 1px solid #eaeaea;
+            position: relative;
+        }
+
+        .expertises::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 0% 0%, rgba(0, 86, 179, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(0, 86, 179, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .section-header .mono {
+            color: #0280fd;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            background: rgba(0, 86, 179, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin: 1.5rem 0 0 0;
+            color: #0c1d45;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            border-color: #d0d0d0;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 2.5rem 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content .mono-num {
+            font-family: monospace;
+            font-size: 1rem;
+            color: #0280fd;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            color: #0c1d45;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            color: #0c1d45;
+            font-size: 0.95rem;
+            margin-top: auto;
+            transition: color 0.2s;
+        }
+
+        .card-link svg {
+            width: 18px;
+            height: 18px;
+            margin-left: 8px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover .card-link {
+            color: #0280fd;
+        }
+
+        .card:hover .card-link svg {
+            transform: translateX(4px);
+        }
+
+
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            background: #f4f7fb;
+            font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* ─── Het verhaal op de home ─────────────────────────────────────────────────────────────
+           De pagina scrolt gewoon. Links schuiven de vijf stappen een voor een door het scherm: elke
+           stap komt van onder in beeld, blijft staan zolang zijn beeld speelt en schuift dan door naar
+           boven. Rechts blijft het beeld in zicht en volgt het scrollen. */
+        .scroll-track {
+            --stap-top: 30vh;
+            /* op deze hoogte blijft de tekst van een stap staan */
+            --uitloop: 70vh;
+            /* zo lang blijft de laatste stap nog staan nadat het verhaal af is: tot het beeld uit zicht scrolt */
+            --tussen: 24vh;
+            /* lucht tussen twee stappen: de oude tekst is weg voordat de nieuwe op zijn plek komt */
+            display: grid;
+            grid-template-columns: minmax(0, 36fr) minmax(0, 52fr);
+            column-gap: 5vw;
+            padding: 0 5vw;
+            align-items: start;
+        }
+
+        .verhaal-tekst {
+            grid-column: 1;
+            grid-row: 1;
+            padding-top: var(--stap-top);
+        }
+
+        /* Elke stap is zo hoog als zijn deel van het verhaal (in procenten: samen 100 = 700vh scrollen) */
+        .stap {
+            height: calc(var(--deel) * 7vh);
+        }
+
+        .stap:last-child {
+            height: calc(var(--deel) * 7vh + var(--uitloop));
+        }
+
+        .home-step {
+            position: sticky;
+            top: var(--stap-top);
+            margin-bottom: var(--tussen);
+            will-change: opacity, transform;
+        }
+
+        .fixed-canvas {
+            grid-column: 2;
+            grid-row: 1;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        .home-anim-panel {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 68vh;
+        }
+
+        .home-step .step-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #0280fd;
+            background: rgba(0, 86, 179, 0.08);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .home-step h1,
+        .home-step h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            color: #0c1d45;
+            line-height: 1.15;
+            margin: 0 0 1.2rem;
+        }
+
+        .home-step p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.7;
+            margin: 0;
+            max-width: 420px;
+        }
+
+        /* Waar je bent in het verhaal: vijf puntjes naast het beeld, de huidige stap is een streepje */
+        .home-step-dots {
+            position: absolute;
+            left: -2.7vw;
+            top: 50%;
+            margin-top: 40px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .home-step-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background: #d3d9e4;
+            transition: background 0.35s ease, height 0.35s ease;
+        }
+
+        .home-step-dots span.active {
+            height: 24px;
+            background: #0280fd;
+        }
+
+        /* Bij de eerste stap: laat zien dat scrollen het verhaal vertelt */
+        .fixed-canvas .scroll-hint {
+            position: absolute;
+            left: 50%;
+            bottom: 4.4vh;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #0280fd;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .fixed-canvas.bij-start .scroll-hint {
+            opacity: 1;
+        }
+
+        /* Onderaan het eerste scherm. Twee dingen laten zien dat er meer komt, ook als je er niet op let:
+           het eerste scherm is iets korter dan het venster, zodat het volgende blok er al onder uitkomt,
+           en precies op die naad staat een knop met een muisje dat scrolt. */
+        .scroll-cue {
+            position: absolute;
+            left: 50%;
+            bottom: -24px;
+            z-index: 3;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            height: 48px;
+            padding: 0 1.15rem 0 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(12, 29, 69, 0.12);
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(12, 29, 69, 0.08);
+            cursor: pointer;
+            color: #0c1d45;
+            font-family: inherit;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            transition: opacity 0.4s ease, box-shadow 0.25s ease;
+        }
+
+        .scroll-cue:hover {
+            box-shadow: 0 12px 34px rgba(2, 128, 253, 0.26);
+        }
+
+        .scroll-cue.weg {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scroll-cue .muis {
+            position: relative;
+            width: 17px;
+            height: 27px;
+            border: 2px solid currentColor;
+            border-radius: 12px;
+        }
+
+        .scroll-cue .muis::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 5px;
+            width: 3px;
+            height: 6px;
+            margin-left: -1.5px;
+            border-radius: 2px;
+            background: #0280fd;
+        }
+
+        /* Aan het eind van de animatie: er komt nog meer (de apps) */
+        .verder-cue {
+            position: absolute;
+            left: 50%;
+            bottom: 3.2vh;
+            transform: translate(-50%, 10px);
+            z-index: 20;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.72rem 1.2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(12, 29, 69, 0.14);
+            background: rgba(255, 255, 255, 0.88);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 6px 24px rgba(12, 29, 69, 0.08);
+            color: #0c1d45;
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+
+        .verder-cue.zichtbaar {
+            opacity: 1;
+            transform: translate(-50%, 0);
+            pointer-events: auto;
+        }
+
+        .verder-cue svg {
+            color: #0280fd;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            #idee-layer .idee-ring {
+                animation: none;
+            }
+        }
+
+        #scene {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border-radius: 8px;
+        }
+
+        .layer {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* De vier lagen van de animatie liggen op elkaar; het script regelt per stukje scroll wat je ziet */
+        #idee-layer,
+        #blueprint-layer,
+        #pcb-layer,
+        #real-photo-layer {
+            will-change: opacity;
+            pointer-events: none;
+        }
+
+        /* De tekening zoomt uit vanaf de processor: wat buiten het vak valt, loopt zacht uit in de pagina */
+        #idee-layer,
+        #blueprint-layer {
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%),
+                linear-gradient(to bottom, transparent 0, #000 8%, #000 92%, transparent 100%);
+            -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%),
+                linear-gradient(to bottom, transparent 0, #000 8%, #000 92%, transparent 100%);
+            mask-composite: intersect;
+        }
+
+        /* ─── Het idee: een oplichtend punt met kringen, op de plek van de processor ─── */
+        #idee-layer {
+            z-index: 3;
+        }
+
+        #idee-layer svg {
+            width: 100%;
+            height: 100%;
+            max-height: 72vh;
+        }
+
+        #idee-layer .idee-kern {
+            fill: #0280fd;
+        }
+
+        #idee-layer .idee-gloed {
+            fill: url(#ideeGloed);
+        }
+
+        #idee-layer .idee-ring {
+            fill: none;
+            stroke: #0280fd;
+            stroke-width: 1;
+            transform-box: fill-box;
+            transform-origin: center;
+            opacity: 0;
+            animation: ideeRing 3s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+        }
+
+        #idee-layer .idee-ring:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        #idee-layer .idee-ring:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes ideeRing {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(8);
+                opacity: 0;
+            }
+        }
+
+        /* ─── Foto van de print (PCB.webp) ───────────────── */
+        /* Ligt onder de tekening en is even groot: de print vult 70% van de hoogte van het vak.
+           Schuift de foto niet meer over de tekening, pas dan --print-schaal en --print-schuif aan. */
+        #pcb-layer {
+            z-index: 1;
+            opacity: 0;
+            --print-schaal: 0.746;
+            --print-schuif: 1.4%, 0%;
+        }
+
+        #pcb-layer img {
+            width: 100%;
+            height: 100%;
+            max-height: 72vh;
+            object-fit: contain;
+            transform-origin: center center;
+            transform: translate(var(--print-schuif)) scale(var(--print-schaal));
+            mix-blend-mode: multiply;
+        }
+
+        /* ─── Foto van de schakelkast (schakelkast.webp) ─── */
+        /* Komt bij de laatste stap over de print heen. Groter of kleiner: --kast-schaal. */
+        #real-photo-layer {
+            z-index: 4;
+            opacity: 0;
+            --kast-schaal: 1.3;
+        }
+
+        #real-photo-layer img {
+            width: 100%;
+            height: 100%;
+            max-height: 72vh;
+            object-fit: contain;
+            transform-origin: center center;
+            transform: translate(-0.5%, -1%) scale(var(--kast-schaal));
+        }
+
+        /* Staand scherm (telefoon): de foto is daar even breed als zijn vak, dus niet verder vergroten */
+        @media (orientation: portrait) {
+            #real-photo-layer {
+                --kast-schaal: 1;
+            }
+        }
+
+        /* ─── Blueprint laag ─────────────────────────────── */
+        #blueprint-layer {
+            z-index: 2;
+            color: #0c1d45;
+        }
+
+        #blueprint-layer svg {
+            width: 100%;
+            height: 100%;
+            max-height: 72vh;
+            overflow: visible;
+            shape-rendering: geometricPrecision;
+        }
+
+        #blueprint-layer svg * {
+            fill: none !important;
+            stroke: none !important;
+        }
+
+        #blueprint-layer svg path,
+        #blueprint-layer svg polyline,
+        #blueprint-layer svg line {
+            fill: none !important;
+            stroke: currentColor !important;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            shape-rendering: crispEdges;
+            will-change: stroke-dashoffset;
+        }
+
+        #blueprint-layer svg [stroke-width="3.937"],
+        #blueprint-layer svg [stroke-width="7.874"],
+        #blueprint-layer svg [stroke-width="15.748"],
+        #blueprint-layer svg [stroke-width="5.9055"] {
+            stroke-width: 2.5px !important;
+        }
+
+        #blueprint-layer svg [stroke-width="1.5748"],
+        #blueprint-layer svg [stroke-width="1.9685"],
+        #blueprint-layer svg [stroke-width="1.063"],
+        #blueprint-layer svg [stroke-width="2.4803"],
+        #blueprint-layer svg [stroke-width="1.1811"],
+        #blueprint-layer svg [stroke-width="0.7874"] {
+            stroke-width: 1px !important;
+        }
+
+        #blueprint-layer svg [stroke-width^="0."],
+        #blueprint-layer svg [stroke-width="1"],
+        #blueprint-layer svg [stroke-width="0.8"],
+        #blueprint-layer svg [stroke-width="0.6"] {
+            stroke-width: 0.5px !important;
+        }
+
+        #blueprint-layer svg [stroke-width="0"] {
+            stroke: none !important;
+        }
+
+        #blueprint-layer svg rect,
+        #blueprint-layer svg circle,
+        #blueprint-layer svg polygon,
+        #blueprint-layer svg ellipse {
+            fill: none !important;
+            stroke: currentColor !important;
+            stroke-width: 0.8px !important;
+            opacity: 0;
+        }
+
+
+        /* ─── Het verhaal op een staand scherm (telefoon) ───
+           Het beeld blijft boven in het scherm staan; de tekst scrolt eronder door. */
+        @media (max-width: 900px) and (orientation: portrait) {
+            .scroll-track {
+                --stap-top: calc(80px + 46vh + 2.4vh);
+                --uitloop: 6vh;
+                --tussen: 11vh;
+                display: block;
+                padding: 0;
+            }
+
+            .fixed-canvas {
+                top: 80px;
+                z-index: 2;
+                height: 46vh;
+                padding: 1vh 5vw 0;
+                background: #f4f7fb;
+            }
+
+            /* zachte rand: de tekst schuift onder het beeld door */
+            .fixed-canvas::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 100%;
+                height: 2.4vh;
+                background: linear-gradient(#f4f7fb, rgba(244, 247, 251, 0));
+                pointer-events: none;
+            }
+
+            .home-anim-panel {
+                height: 100%;
+            }
+
+            .verhaal-tekst {
+                padding: 2.4vh 6vw 0;
+            }
+
+            .home-step .step-tag {
+                margin-bottom: 0.9rem;
+            }
+
+            .home-step h1,
+            .home-step h2 {
+                font-size: 1.55rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .home-step p {
+                max-width: none;
+                line-height: 1.6;
+            }
+
+            .home-step-dots {
+                left: auto;
+                right: 3.2vw;
+                margin-top: 0;
+            }
+
+            .fixed-canvas .scroll-hint {
+                bottom: 0.4vh;
+            }
+
+            .verder-cue {
+                bottom: 0.8vh;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 900px) and (orientation: portrait) and (max-height: 620px) {
+
+            .home-step h1,
+            .home-step h2 {
+                font-size: 1.3rem;
+            }
+
+            .home-step p {
+                font-size: 0.92rem;
+                line-height: 1.5;
+            }
+        }
+
+
+
+        /* ─── UI ─────────────────────────────────────────── */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #07e8fd, #0280fd);
+            z-index: 1000;
+        }
+
+        #company-name {
+            position: fixed;
+            top: 1.8rem;
+            left: 2.2rem;
+            z-index: 500;
+            pointer-events: none;
+        }
+
+        #company-name .name {
+            display: block;
+            font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #0c1d45;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #company-name .sub {
+            display: block;
+            font-size: clamp(0.48rem, 0.6vw, 0.58rem);
+            font-weight: 400;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #888;
+            margin-top: 0.28rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #fase-label {
+            display: none;
+        }
+
+        /* ── Detail pagina's ─────────────────────────────── */
+        .detail-page {
+            padding: 0;
+            background: #fff;
+            min-height: calc(100vh - 80px);
+            margin-top: 80px;
+        }
+
+        .detail-topbar {
+            padding: 1.8rem 4rem;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #555;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: color 0.15s;
+            font-family: inherit;
+        }
+
+        .back-btn:hover {
+            color: #0c1d45;
+        }
+
+        .back-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .detail-topbar-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+
+        .detail-sidebar-photo {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            background: #f0f0f0;
+            cursor: zoom-in;
+        }
+
+        .detail-sidebar-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.2s;
+        }
+
+        .detail-sidebar-photo:hover img {
+            transform: scale(1.03);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.88);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.7;
+            transition: opacity 0.15s;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .detail-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 4rem 6rem;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .detail-main h1 {
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            color: #0c1d45;
+            margin: 0 0 1.5rem;
+            line-height: 1.1;
+        }
+
+        .detail-lead {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+            border-left: 3px solid #0280fd;
+            padding-left: 1.4rem;
+        }
+
+        .detail-main h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #0c1d45;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .detail-main p {
+            font-size: 0.97rem;
+            color: #555;
+            line-height: 1.8;
+            margin: 0 0 1rem;
+        }
+
+        .detail-main ul {
+            padding: 0;
+            list-style: none;
+            margin: 0 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .detail-main li {
+            font-size: 0.97rem;
+            color: #555;
+            padding-left: 1.4rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .detail-main li::before {
+            content: '';
+            position: absolute;
+            left: 0.15rem;
+            top: 0.62em;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0280fd;
+        }
+
+        /* ─── BLOKKEN op een detailpagina ─────────────────────────────────
+           Tekstblok, praktijkvoorbeeld, vragen en "zie ook". De inhoud staat in data/siteData.js
+           (velden secties, praktijk, vragen, verwant); de opbouw staat in het script bij "BLOKKEN". */
+        .detail-main h3 {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: #0c1d45;
+            line-height: 1.4;
+            margin: 1.6rem 0 0.4rem;
+        }
+
+        .praktijk-blok {
+            margin: 2.5rem 0 0;
+            padding: 1.5rem 1.6rem 0.6rem;
+            background: rgba(2, 128, 253, 0.06);
+            border-left: 3px solid #0280fd;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .detail-main .praktijk-blok h2 {
+            margin-top: 0;
+        }
+
+        .tekst-link {
+            color: #0280fd;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .tekst-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Tussenkoppen in een nieuwsbericht zijn gewone zinnen, vaak een vraag: geen hoofdletters */
+        .artikel-wrap .detail-main h2 {
+            font-size: 1.25rem;
+            letter-spacing: 0;
+            text-transform: none;
+            line-height: 1.3;
+        }
+
+        /* Werkgebied onder de contactgegevens (siteData.contact.werkgebied) */
+        .contact-werkgebied {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+            margin: 1.2rem 0 0;
+        }
+
+        .detail-sidebar {
+            position: sticky;
+            top: calc(80px + 2rem);
+        }
+
+        .detail-sidebar-block {
+            background: #f7f7f7;
+            border-radius: 10px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .detail-sidebar-block h3 {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #aaa;
+            margin: 0 0 1rem;
+        }
+
+        .detail-sidebar-block p {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: #444;
+            background: #eee;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 860px) {
+            .detail-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .detail-sidebar {
+                position: static;
+            }
+
+            .detail-sidebar-photo {
+                aspect-ratio: 16 / 9;
+            }
+        }
+
+        /* ─── Nieuws scroll-feed ─────────────────────────── */
+        .nieuws-feed {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .nieuws-item {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid #eaeaea;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .nieuws-meta {
+            color: #aaa;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            padding-top: 0.3rem;
+        }
+
+        .nieuws-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0c1d45;
+            margin: 0 0 0.6rem;
+        }
+
+        .nieuws-item p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .nieuws-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+
+        /* ── Footer ─────────────────────────────────────── */
+        footer {
+            background: #060f27;
+            color: #fff;
+            padding: 5rem 3.5rem 0;
+            margin-top: 0;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand .footer-logo {
+            height: 200px;
+            width: 200px;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 1.6rem;
+            border-radius: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 0.88rem;
+            color: #999;
+            line-height: 1.7;
+            margin: 0 0 1.6rem;
+            max-width: 260px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            background: #0280fd;
+            color: #fff;
+        }
+
+        .footer-col h4 {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #fff;
+            margin: 0 0 1.4rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-col ul li a {
+            font-size: 0.88rem;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.15s;
+            cursor: pointer;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-col address {
+            font-style: normal;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-col address span {
+            font-size: 0.88rem;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        .footer-col address a {
+            font-size: 0.88rem;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-col address a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.4rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.78rem;
+            color: #555;
+            margin: 0;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom-links a {
+            font-size: 0.78rem;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #aaa;
+        }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 4rem 1.5rem 0;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* ─── Huisstijl: logo-mark implementatie ─────────── */
+        .brand-mark {
+            display: inline-flex;
+            width: 38px;
+            height: 43px;
+            margin-right: .68rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 600px) {
+            .brand-mark {
+                width: 34px;
+                height: 39px;
+                margin-right: .58rem;
+            }
+        }
+
+        .brand-mark svg,
+        .hero-mark svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .home-intro-photo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-mark {
+            width: min(300px, 64%);
+            max-width: 300px;
+            filter: drop-shadow(0 24px 48px rgba(12, 29, 69, .20));
+        }
+
+        .hero-mark-name {
+            font-weight: 800;
+            font-size: 1.7rem;
+            letter-spacing: -.02em;
+            color: #0c1d45;
+            margin-top: 1.5rem;
+        }
+
+        .hero-mark-name sup {
+            font-size: .46em;
+            font-weight: 600;
+            color: #6b7b94;
+            top: -.9em;
+        }
+
+        .hero-mark-sub {
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .24em;
+            color: #8a97ab;
+            margin-top: .25rem;
+        }
+
+        .footer-brand .footer-logo {
+            height: 120px;
+            width: 120px;
+            border-radius: 0;
+        }
+
+        .contact-gegevens .contact-logo {
+            height: 76px;
+            width: 76px;
+            object-fit: contain;
+        }
+
+        /* ─── Nieuws: klikbaar item + artikel ────────────── */
+        .nieuws-link {
+            cursor: pointer;
+        }
+
+        .nieuws-link:hover h3 {
+            color: #0280fd;
+        }
+
+        .nieuws-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.9rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #0280fd;
+        }
+
+        .nieuws-arrow svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .artikel-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 3.5rem 4rem 6rem;
+        }
+
+        .artikel-wrap .detail-main>p:first-of-type {
+            font-size: 1.05rem;
+            color: #333;
+        }
+
+        .artikel-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2.5rem;
+            background: #0c1d45;
+            color: #fff;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .artikel-cta:hover {
+            background: #0280fd;
+        }
+
+        .artikel-cta svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .artikel-wrap {
+                padding: 2.5rem 1.5rem 4rem;
+            }
+        }
+
+        /* ─── Prototyping-kadering + specialismen-brug ───── */
+        .proto-intro {
+            padding: clamp(3rem, 6vw, 4.5rem) 0 0.5rem;
+        }
+
+        .proto-intro-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        .proto-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #0280fd;
+        }
+
+        .proto-kicker::before {
+            content: "";
+            width: 26px;
+            height: 2px;
+            background: #0280fd;
+            border-radius: 2px;
+        }
+
+        .proto-lead {
+            margin: 1.1rem 0 0;
+            font-size: 1.15rem;
+            line-height: 1.65;
+            color: #0c1d45;
+            max-width: 640px;
+            font-weight: 500;
+        }
+
+        .proto-cue {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 1.5rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+
+        .proto-cue svg {
+            color: #cbd5e1;
+        }
+
+        .home-breed {
+            background: #f4f7fb;
+            padding: clamp(3.5rem, 7vw, 6rem) 0;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .home-breed-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        .home-breed-head {
+            max-width: 640px;
+            margin-bottom: 3rem;
+        }
+
+        .home-breed-head .proto-eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #0280fd;
+            background: rgba(2, 128, 253, 0.08);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            margin-bottom: 1.2rem;
+        }
+
+        .home-breed-head h2 {
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            font-weight: 800;
+            color: #0c1d45;
+            letter-spacing: -0.02em;
+            margin: 0 0 1rem;
+        }
+
+        .home-breed-head p {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .home-breed-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .home-breed-card {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+        }
+
+        .home-breed-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(12, 29, 69, 0.09);
+            border-color: transparent;
+        }
+
+        .home-breed-card .hb-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(2, 128, 253, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.3rem;
+        }
+
+        .home-breed-card .hb-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #0280fd;
+        }
+
+        .home-breed-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0c1d45;
+            margin: 0 0 0.5rem;
+        }
+
+        .home-breed-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .home-breed-card .hb-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 1.1rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #0280fd;
+        }
+
+        .home-breed-card .hb-arrow svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .home-breed-cta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 900px) {
+            .home-breed-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .home-breed-inner {
+                padding: 0 1.5rem;
+            }
+
+            .proto-intro-inner {
+                padding: 0 1.5rem;
+            }
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* ─── Header: logo | nav | knop, met menu op smalle schermen ─── */
+        header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+        }
+
+        .logo {
+            position: static;
+            justify-self: start;
+        }
+
+        nav {
+            justify-self: center;
+        }
+
+        .header-cta {
+            justify-self: end;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: #0280fd;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.7rem 1.1rem;
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .header-cta:hover {
+            background: #0c1d45;
+        }
+
+        .header-cta svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .header-rechts {
+            justify-self: end;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            background: #fff;
+            color: #0c1d45;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .menu-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        nav .nav-cta {
+            display: none;
+        }
+
+        @media (max-width: 1080px) {
+            header {
+                grid-template-columns: 1fr auto;
+                padding: 0 1.5rem;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                justify-self: stretch;
+                flex-direction: column;
+                border: 0;
+                border-bottom: 1px solid #e8e8e8;
+                border-radius: 0;
+                padding: 0.6rem 1rem 1rem;
+                box-shadow: 0 16px 32px rgba(12, 29, 69, 0.08);
+            }
+
+            header.nav-open nav {
+                display: flex;
+            }
+
+            nav a {
+                padding: 0.85rem 1rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 560px) {
+            header {
+                padding: 0 1rem;
+            }
+
+            .header-cta {
+                display: none;
+            }
+
+            nav .nav-cta {
+                display: block;
+                margin-top: 0.4rem;
+                text-align: center;
+                background: #0280fd;
+                color: #fff;
+            }
+
+            nav .nav-cta:hover {
+                background: #0c1d45;
+                color: #fff;
+            }
+        }
+
+        /* ─── Vervolgstap-blokken (home, cases, specialisaties) ─── */
+        .cta-knoppen {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .cta-knop {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.85rem 1.4rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .cta-knop svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .cta-knop-wit {
+            background: #fff;
+            color: #0c1d45;
+        }
+
+        .cta-knop-wit:hover {
+            background: #07e8fd;
+        }
+
+        .cta-knop-lijn {
+            background: transparent;
+            color: #fff;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-knop-lijn:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .home-cta {
+            background: #0c1d45;
+            color: #fff;
+            padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+        }
+
+        .home-cta-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .home-cta .step-tag {
+            justify-self: start;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #07e8fd;
+            background: rgba(7, 232, 253, 0.12);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .home-cta h2 {
+            margin: 0;
+            font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            max-width: 720px;
+        }
+
+        .home-cta p {
+            margin: 0 0 0.8rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #c3cce0;
+            max-width: 600px;
+        }
+
+        @media (max-width: 800px) {
+            .home-cta-inner {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .detail-cta {
+            margin-top: 3rem;
+            background: #0c1d45;
+            color: #fff;
+            border-radius: 12px;
+            padding: 2rem 2.2rem;
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .detail-cta .detail-cta-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #07e8fd;
+        }
+
+        .detail-main .detail-cta h2 {
+            margin: 0;
+            font-size: 1.35rem;
+            letter-spacing: -0.01em;
+            text-transform: none;
+            color: #fff;
+            line-height: 1.25;
+        }
+
+        .detail-main .detail-cta p {
+            margin: 0 0 0.4rem;
+            color: #c3cce0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ─── Contactpagina: projectcheck + terugbelverzoek ─── */
+        .contact-gegevens h2 {
+            margin-bottom: 2rem;
+        }
+
+        .gegevens-lijst a {
+            color: #0c1d45;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .gegevens-lijst a:hover {
+            color: #0280fd;
+        }
+
+        #projectcheck,
+        #terugbel {
+            scroll-margin-top: 110px;
+        }
+
+        .terugbel {
+            margin-top: 2.5rem;
+            background: #fff;
+            border: 1px solid #e2e7ef;
+            border-radius: 12px;
+            padding: 1.8rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .terugbel h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0c1d45;
+        }
+
+        .terugbel>p {
+            margin: 0;
+            font-size: 0.93rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .terugbel form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #0c1d45;
+            text-decoration: none;
+        }
+
+        .whatsapp-link:hover {
+            color: #0280fd;
+        }
+
+        .whatsapp-link svg {
+            width: 18px;
+            height: 18px;
+            color: #25a244;
+        }
+
+        .pc {
+            background: #fff;
+            border: 1px solid #e2e7ef;
+            border-radius: 14px;
+            padding: clamp(1.4rem, 3vw, 2.2rem);
+            display: grid;
+            gap: 1.4rem;
+        }
+
+        .pc-kop {
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .pc-kop h2 {
+            margin: 0;
+            font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+            font-weight: 800;
+            color: #0c1d45;
+            line-height: 1.15;
+        }
+
+        .pc-kop p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .pc-stappen {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            counter-reset: pcst;
+        }
+
+        .pc-stappen li {
+            counter-increment: pcst;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #8a94a8;
+            padding-top: 0.6rem;
+            border-top: 3px solid #e2e7ef;
+        }
+
+        .pc-stappen li::before {
+            content: counter(pcst) ". ";
+        }
+
+        .pc-stappen li.actief {
+            color: #0c1d45;
+            border-color: #0280fd;
+        }
+
+        .pc-stap {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .pc-vraag {
+            margin: 0;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #0c1d45;
+        }
+
+        .pc-tegels {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 0.6rem;
+        }
+
+        .pc-tegel {
+            font-family: inherit;
+            text-align: left;
+            background: #fff;
+            border: 1px solid #e2e7ef;
+            border-radius: 10px;
+            padding: 0.9rem;
+            display: grid;
+            gap: 0.2rem;
+            align-content: start;
+            cursor: pointer;
+            color: #0c1d45;
+            transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+        }
+
+        .pc-tegel svg {
+            width: 22px;
+            height: 22px;
+            color: #0280fd;
+            margin-bottom: 0.35rem;
+        }
+
+        .pc-tegel b {
+            font-size: 0.9rem;
+        }
+
+        .pc-tegel span {
+            font-size: 0.8rem;
+            color: #667085;
+            line-height: 1.45;
+        }
+
+        .pc-tegel:hover {
+            border-color: #b9c3d3;
+        }
+
+        .pc-tegel[aria-checked="true"] {
+            border-color: #0c1d45;
+            box-shadow: inset 0 0 0 1px #0c1d45;
+            background: #f4f7fb;
+        }
+
+        .pc-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .pc-chip {
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid #cfd6e2;
+            background: #fff;
+            color: #0c1d45;
+            cursor: pointer;
+        }
+
+        .pc-chip:hover {
+            border-color: #a9b4c6;
+        }
+
+        .pc-chip[aria-checked="true"] {
+            background: #0c1d45;
+            border-color: #0c1d45;
+            color: #fff;
+        }
+
+        .pc-velden {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .pc-velden .breed {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label em {
+            font-style: normal;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            color: #8a94a8;
+        }
+
+        .pc-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2e7ef;
+        }
+
+        .pc-teller {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #8a94a8;
+        }
+
+        .btn-terug {
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: #fff;
+            color: #0c1d45;
+            border: none;
+            box-shadow: inset 0 0 0 1px #cfd6e2;
+            border-radius: 6px;
+            padding: 0.8rem 1.3rem;
+            cursor: pointer;
+        }
+
+        .btn-terug:disabled {
+            color: #b3bccb;
+            box-shadow: inset 0 0 0 1px #e6eaf0;
+            cursor: default;
+        }
+
+        .btn-verstuur:disabled {
+            background: #8a94a8;
+            cursor: wait;
+        }
+
+        .form-melding {
+            margin: 0;
+            font-size: 0.88rem;
+            line-height: 1.55;
+        }
+
+        .form-melding.fout {
+            color: #c62828;
+        }
+
+        .form-melding.goed {
+            color: #1b7a4b;
+        }
+
+        .pc-klaar {
+            display: grid;
+            gap: 0.9rem;
+            justify-items: start;
+        }
+
+        .pc-klaar h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0c1d45;
+        }
+
+        .pc-klaar p {
+            margin: 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .pc-vinkje {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(27, 122, 75, 0.12);
+            color: #1b7a4b;
+            display: grid;
+            place-items: center;
+        }
+
+        .pc-vinkje svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .honing {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 560px) {
+            .pc-velden {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ─── Nieuws: foto's en logo's ─── */
+        .nieuws-item.met-foto {
+            grid-template-columns: 180px 1fr 240px;
+        }
+
+        .nieuws-foto {
+            aspect-ratio: 3 / 2;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .nieuws-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .nieuws-link:hover .nieuws-foto img {
+            transform: scale(1.04);
+        }
+
+        .nieuws-foto.logo {
+            background: #fff;
+            border: 1px solid #e4e8ef;
+            display: grid;
+            place-items: center;
+            padding: 1.4rem;
+        }
+
+        .nieuws-foto.logo img {
+            object-fit: contain;
+        }
+
+        .nieuws-link:hover .nieuws-foto.logo img {
+            transform: none;
+        }
+
+        .artikel-foto {
+            margin: 0 0 2.2rem;
+        }
+
+        .artikel-foto img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .artikel-foto.logo {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #e4e8ef;
+            border-radius: 12px;
+            padding: 2.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .artikel-foto.logo img {
+            aspect-ratio: auto;
+            width: 320px;
+            max-width: 70%;
+            height: auto;
+            border-radius: 0;
+        }
+
+        .artikel-foto figcaption {
+            margin-top: 0.55rem;
+            font-size: 0.78rem;
+            color: #8a94a8;
+        }
+
+        .artikel-foto.logo figcaption {
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 1000px) {
+            .nieuws-item.met-foto {
+                grid-template-columns: 120px 1fr 200px;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nieuws-item.met-foto {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .nieuws-foto {
+                order: -1;
+            }
+
+            .nieuws-foto.logo {
+                aspect-ratio: 3 / 1;
+            }
+        }
+
+        /* Mobiel: secties hebben al zijpadding, de binnenste container niet nog eens 4rem */
+        @media (max-width: 768px) {
+
+            .section-inner,
+            .spec-inner {
+                padding: 0;
+            }
+
+            .contact-inner>* {
+                min-width: 0;
+            }
+
+            .home-intro {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+        }
+
+        /* ─── Specialisaties: een losse laatste kaart (nu 05) over de volle breedte, foto links en tekst rechts ─── */
+        @media (min-width: 761px) {
+            .spec-item:last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                flex-direction: row;
+            }
+
+            .spec-item:last-child:nth-child(odd) .spec-thumb {
+                width: calc(50% - 0.9rem);
+                height: auto;
+                min-height: 240px;
+            }
+        }
+
+        /* ─── Apps: alleen beeld. Strook op de home en een rij iPhones op de pagina van specialisatie 05 ─── */
+        .home-apps {
+            background: #f5f7fb;
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            overflow: hidden;
+        }
+
+        .home-apps-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .home-apps h2 {
+            margin: 0.9rem 0 0.7rem;
+            font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: #0c1d45;
+            letter-spacing: -0.02em;
+        }
+
+        .home-apps p {
+            margin: 0 0 2rem;
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.75;
+            max-width: 480px;
+        }
+
+        .home-apps .home-intro-cta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .home-apps-beelden {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-apps-beelden img {
+            display: block;
+            width: 32%;
+            max-width: 230px;
+            height: auto;
+            filter: drop-shadow(0 22px 30px rgba(12, 29, 69, 0.18));
+        }
+
+        .home-apps-beelden img:nth-child(2) {
+            position: relative;
+            z-index: 1;
+            width: 38%;
+            max-width: 270px;
+            margin: 0 -3%;
+        }
+
+        @media (max-width: 860px) {
+            .home-apps-inner {
+                grid-template-columns: 1fr;
+                padding: 0 1.5rem;
+                gap: 2.5rem;
+            }
+        }
+
+        .app-beelden {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.8rem 0 0.5rem;
+        }
+
+        .app-beeld {
+            margin: 0;
+            text-align: center;
+        }
+
+        .app-beeld img {
+            display: block;
+            width: 100%;
+            max-width: 210px;
+            height: auto;
+            margin: 0 auto;
+            filter: drop-shadow(0 18px 26px rgba(12, 29, 69, 0.16));
+        }
+
+        .app-beeld figcaption {
+            margin-top: 1rem;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: #555;
+        }
+
+        .app-beeld figcaption strong {
+            display: block;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+            color: #0c1d45;
+        }
+
+        /* Op een telefoon: de iPhones naast elkaar om doorheen te vegen (min-width 0: anders wordt de pagina breder dan het scherm) */
+        .detail-main {
+            min-width: 0;
+        }
+
+        @media (max-width: 560px) {
+            .app-beelden {
+                grid-template-columns: none;
+                grid-auto-flow: column;
+                grid-auto-columns: 64%;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 0.5rem;
+            }
+
+            .app-beeld {
+                scroll-snap-align: center;
+            }
+        }
+
+        /* Titels in de lijsten zijn echte links (voor zoekmachines), zonder dat het er anders uitziet */
+        .spec-item-text h2 a,
+        .project-card h3 a,
+        .nieuws-item h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+    window.ALLICO_GEBOUWD = true;
+    window.ALLICO_ROUTES = {"home":"../","specialisatie":"../specialisaties/","projecten":"../projecten/","nieuws":"../nieuws/","contact":"../contact/","spec-1":"../elektronica-ontwikkeling/","spec-2":"../plc-besturing-embedded-software/","spec-3":"../dashboards/","spec-4":"../ot-beveiliging-iec-62443/","spec-5":"../app-ontwikkeling/","project-1":"../projecten/brandbeveiliging-op-afstand-testen-kemkens/","project-2":"../projecten/lmra-app-veiligheidsregistratie/","nieuws-3":"../nieuws/cyberbeveiligingswet-nis2/","nieuws-1":"../nieuws/plcnext-certificering-phoenix-contact/"};
+    (function () {
+        if (location.protocol !== 'file:') return;
+        var metIndex = function (h) { return h.replace(/^([^#?]*\/)([?#].*)?$/, function (m, pad, rest) { return pad + 'index.html' + (rest || ''); }); };
+        var r = window.ALLICO_ROUTES;
+        for (var k in r) r[k] = metIndex(r[k]);
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('a[href]').forEach(function (a) {
+                var h = a.getAttribute('href');
+                if (!/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(h)) a.setAttribute('href', metIndex(h));
+            });
+        });
+    })();
+    </script>
+</head>
+
+<body>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&#x2715;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <g id="asMark">
+                <path fill="rgb(0%, 36.499023%, 44.699097%)"
+                    d="M 142.429688 131.511719 L 91.765625 131.511719 L 91.765625 91.507812 L 142.429688 91.507812 Z M 142.429688 131.511719 " />
+                <path fill="rgb(2.69928%, 90.99884%, 99.198914%)"
+                    d="M 96.433594 111.839844 L 53.070312 112.421875 L 151.5 54.234375 L 130.300781 91.792969 C 123.390625 104.03125 110.488281 111.667969 96.433594 111.839844 " />
+                <path fill="rgb(4.699707%, 11.399841%, 27.099609%)"
+                    d="M 130.730469 131.375 L 152.402344 168.398438 L 53.070312 112.421875 L 96.1875 111.863281 C 110.375 111.675781 123.566406 119.128906 130.730469 131.375 " />
+                <path fill="rgb(0.799561%, 50.19989%, 99.198914%)"
+                    d="M 130.28125 91.824219 L 151.5 54.234375 L 152.402344 168.398438 L 130.589844 131.128906 C 123.5 119.015625 123.382812 104.046875 130.28125 91.824219 " />
+            </g>
+        </defs>
+    </svg>
+    <header>
+        <div class="logo" data-page="home">
+            <span class="brand-mark"><svg viewBox="49 50 108 123" aria-hidden="true">
+                    <use href="#asMark" />
+                </svg></span>
+            <div class="logo-text">
+                <span class="logo-naam">Allico Systems</span>
+                <span class="logo-subtitel">Engineering &amp; Control</span>
+            </div>
+        </div>
+        <nav id="hoofdnav">
+            <a href="../" data-page="home">Home</a>
+            <a href="../specialisaties/" data-page="specialisatie" class="active">Specialisatie</a>
+            <a href="../projecten/" data-page="projecten">Projecten</a>
+            <a href="../nieuws/" data-page="nieuws">Nieuws</a>
+            <a href="../contact/" data-page="contact">Contact</a>
+            <a href="../contact/#projectcheck" class="nav-cta" data-cta="projectcheck">Project bespreken</a>
+        </nav>
+        <div class="header-rechts">
+            <button type="button" class="header-cta" data-cta="projectcheck">Project bespreken
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                </svg>
+            </button>
+            <button type="button" class="menu-toggle" aria-controls="hoofdnav" aria-expanded="false"
+                aria-label="Menu openen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    aria-hidden="true">
+                    <line x1="4" y1="7" x2="20" y2="7" />
+                    <line x1="4" y1="12" x2="20" y2="12" />
+                    <line x1="4" y1="17" x2="20" y2="17" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- ── Specialisatie detail pagina's ─────────────────────── -->
+    <div class="page active" id="page-spec-1">
+      <section class="detail-page">
+        <div class="detail-topbar">
+          <button class="back-btn" data-page="specialisatie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Specialisaties</button>
+          <span class="detail-topbar-tag">01 | Hardware</span>
+        </div>
+        <div class="detail-content">
+          <div class="detail-main">
+            <h1>Elektronica laten ontwikkelen: printplaat, prototype en kleine serie</h1>
+            <p class="detail-lead">Heb je een product, machine of meetopstelling waar geen standaard elektronica voor bestaat? Allico Systems ontwikkelt maatwerk elektronica: van idee en schema tot een printplaat (PCB) die werkt, een getest prototype en de stap naar een kleine serie. Hardware en firmware maken we in eigen huis, zodat ze vanaf de eerste versie bij elkaar passen.</p>
+            <h2>Aanpak</h2>
+            <p>Elk traject begint bij het einddoel: waar dient het product voor en welk probleem lost het op? Vanuit die functionele eisen maken we een concreet concept en toetsen we of het technisch haalbaar is. Daarna werken we het uit tot een schema en een PCB-ontwerp dat direct bij onze productiepartners gemaakt kan worden. Na assemblage ligt het eerste prototype op tafel en zie je het concept voor het eerst in de praktijk werken.</p><p>Het eerste prototype zetten we op met een duidelijk plan; de stappen daarna zijn bewust iteratief. Met praktijktesten verzamelen we inzichten die we in de volgende versie verwerken. Zodra de hardware stabiel is, begeleiden we de stap naar productie in kleine of middelgrote serie.</p>
+            <h2>Wat wij doen</h2>
+            <ul><li>Vertaling van idee naar een technisch haalbaar plan</li><li>Schema-ontwerp en onderbouwde componentkeuze</li><li>PCB-ontwerp (printplaat) met aandacht voor EMC en warmte</li><li>Prototype bouwen en functioneel testen in de praktijk</li><li>Begeleiding naar productie in kleine en middelgrote serie</li></ul>
+            
+            
+            <h2>Printplaat laten ontwerpen</h2>
+            <p>Een printplaat ontwerpen is meer dan lijnen trekken tussen onderdelen. We kiezen onderdelen die over een paar jaar nog leverbaar zijn, houden rekening met storing (EMC) en warmte, en ontwerpen zo dat de print goed te maken en te testen is. Dat voorkomt verrassingen bij de eerste serie.</p>
+            
+            <h2>Elektronica met firmware, zuinig en draadloos</h2>
+            <p>Veel ontwerpen krijgen een eigen processor en firmware. Die schrijven we zelf, in C en C++. Dat maakt keuzes mogelijk die je alleen goed maakt als hardware en software uit één hand komen: een sensor die zuinig genoeg is voor een batterij, of een print die draadloos meetwaarden verstuurt via LoRa, Bluetooth, wifi of het mobiele netwerk.</p>
+            
+            <h2>Van prototype naar kleine serie</h2>
+            <p>Een prototype dat werkt is nog geen product. We maken het ontwerp geschikt voor productie, laten de printen assembleren bij onze productiepartners en leveren ze getest en gedocumenteerd op. Een voorbeeld is de ARK-i, een print die we zelf hebben ontworpen en die je op de home in een schakelkast ziet.</p>
+            
+            <h2>Veelgestelde vragen</h2>
+            <h3>Ik heb alleen een idee. Is dat genoeg om te beginnen?</h3><p>Ja. We beginnen bij wat het product moet doen en voor wie. Daaruit volgt een concept en een inschatting of het technisch haalbaar is. De projectcheck op de contactpagina is daarvoor de snelste start.</p><h3>Ontwerpen jullie alleen de printplaat, of ook de software erop?</h3><p>Allebei. Schema, printplaat en firmware ontwikkelen we in eigen huis. Wil je er ook een dashboard of een app bij, dan bouwen we die ook.</p><h3>Kunnen jullie ook een kleine serie leveren?</h3><p>Ja. Na het prototype begeleiden we de productie bij onze productiepartners, van enkele stuks tot een middelgrote serie.</p><h3>Waar let je op bij een printplaat voor een machine of installatie?</h3><p>Op de omgeving waarin de print moet werken: storing van motoren en frequentieregelaars, temperatuur, vocht en trillingen. Die eisen bepalen de keuze van onderdelen, de indeling van de print en de manier van testen.</p>
+            <h2>Zie ook</h2>
+            <ul class="verwant-lijst"><li><a class="tekst-link" href="../plc-besturing-embedded-software/" data-page="spec-2">PLC-besturing en embedded software</a></li><li><a class="tekst-link" href="../dashboards/" data-page="spec-3">Dashboard voor machines en sensordata</a></li><li><a class="tekst-link" href="../app-ontwikkeling/" data-page="spec-5">App laten maken voor machines en installaties</a></li></ul>
+            
+    <div class="detail-cta">
+      <span class="detail-cta-label">Vergelijkbare vraag?</span>
+      <h2>Een idee dat een eigen print nodig heeft?</h2>
+      <p>Van schets tot werkend prototype: we denken mee over wat haalbaar is en wat het ongeveer kost.</p>
+      <div class="cta-knoppen">
+        <button type="button" class="cta-knop cta-knop-wit" data-cta="projectcheck">Start de projectcheck <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        <button type="button" class="cta-knop cta-knop-lijn" data-cta="terugbel">Bel me terug</button>
+      </div>
+    </div>
+          </div>
+          <aside class="detail-sidebar">
+            <div class="detail-sidebar-photo"><img src="../Hardware compositie.jpeg" alt="Hardware ontwikkeling"></div>
+            <div class="detail-sidebar-block">
+              <h3>Toepassingen</h3>
+              <p>Meetapparatuur, embedded systemen, sensortechnologie en op maat gemaakte modules.</p>
+            </div>
+            <div class="detail-sidebar-block">
+              <h3>Technologieën</h3>
+              <div class="tech-tags"><span class="tech-tag">KiCad</span><span class="tech-tag">EMC-ontwerp</span><span class="tech-tag">IPC-2221</span><span class="tech-tag">SMD/THT</span></div>
+            </div>
+            <div class="detail-sidebar-block">
+              <h3>Meer weten?</h3>
+              <p>Neem contact op om te bespreken wat je project nodig heeft.</p>
+            </div>
+          </aside>
+        </div>
+      </section></div><!-- /page-spec-1 -->
+
+    
+
+    
+
+    
+
+    
+
+    <!-- ── Project detail pagina's ───────────────────────────── -->
+    
+
+    
+
+    
+
+    <!-- ── Nieuws detail pagina's ── -->
+    
+    
+
+    <script>
+        (function () {
+            // Alleen op de home. Op een pagina zonder scrollanimatie (gebouwde site) is hier niets te doen.
+            const scene = document.getElementById('scene');
+            if (!scene) return;
+
+            /* ── Het verhaal, in voortgang p (0 tot 1) door het scrollvak ─────────────────────────
+               Elke tekststap heeft zijn eigen stuk beeld:
+                 0  idee        een oplichtend punt, op de plek van de processor
+                 1  concept     de printtekening groeit uit dat punt, van binnen naar buiten
+                 2  hardware    de tekening wordt de print: de foto komt op als zwart silhouet
+                 3  software    de print komt tot leven: het silhouet krijgt zijn kleuren
+                 4  oplevering  de print zit in de schakelkast
+               De pagina scrolt gewoon; het beeld volgt het scrollen.
+               De 3D-film uit Blender (tak scroll-3d) komt later op de plek van de twee foto's. */
+            // TIJDEN: wanneer wat gebeurt, in voortgang p. stap1 tot en met stap4 horen bij de hoogtes
+            // van de tekstblokken (--deel bij elke .stap in de opbouw): 10 + 22 + 22 + 22 + 24 = 100.
+            const T = {
+                tekenStart: 0.012,   // meteen bij het eerste beetje scrollen groeien de eerste lijnen uit het idee
+                stap1: 0.100,        // tekst: Schematisch uitwerken
+                tekenKlaar: 0.300,
+                stap2: 0.320,        // tekst: Hardware ontwerp & productie
+                printEcht: 0.500,    // het silhouet van de print staat er, de lijnen zijn weg
+                stap3: 0.540,        // tekst: Firmware & besturing
+                kleurKlaar: 0.740,   // de print heeft zijn kleuren
+                stap4: 0.760,        // tekst: Getest, gedocumenteerd, klaar
+                kastKlaar: 0.930,    // de foto van de schakelkast staat scherp in beeld
+                verder: 0.957        // de aanwijzing dat er meer komt
+            };
+            // De tekening: vierkant rond het midden van de print, de print vult 70% van de hoogte.
+            // De foto van de print is op dezelfde maat gezet (--print-schaal in de opmaak).
+            // PROCESSOR is de plek van de RP2040 in de tekening.
+            const VOL = [4583.95, 2848.45, 1040.5, 1040.5];
+            const PROCESSOR = [5096.7, 3345.5];
+            const ZOOM_START = 2.4;  // stap 0: ingezoomd op het punt waar alles uit groeit
+
+            const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+            const norm = (v, lo, hi) => clamp((v - lo) / (hi - lo), 0, 1);
+            const mix = (a, b, t) => a + (b - a) * t;
+            const zacht = t => t * t * (3 - 2 * t);
+            const uit = t => 1 - Math.pow(1 - t, 3);
+
+            const track = document.querySelector('.scroll-track');
+            const progressBar = document.getElementById('progress-bar');
+            const podium = document.querySelector('.fixed-canvas');
+            // De tekst: vijf blokken die gewoon meescrollen. Hun hoogtes (--deel) bepalen de voortgang.
+            const secties = Array.from(document.querySelectorAll('.verhaal-tekst .stap'));
+            const stappen = secties.map(sec => sec.querySelector('.home-step'));
+            const puntjes = Array.from(document.querySelectorAll('.home-step-dots span'));
+            const verderKnop = document.getElementById('verder-cue');
+            const heroKnop = document.getElementById('hero-scroll-cue');
+
+            /* ── Laag 1: het idee en de printtekening ──────────────────────────────────────────── */
+            const bpLaag = document.getElementById('blueprint-layer');
+            const bpSvg = bpLaag.querySelector('svg');
+            const ideeLaag = document.getElementById('idee-layer');
+            const ideeSvg = ideeLaag.querySelector('svg');
+            const padEls = Array.from(bpSvg.querySelectorAll('path, polyline, line'));
+            const vormEls = Array.from(bpSvg.querySelectorAll('rect, circle, polygon, ellipse'));
+
+            // Elk lijntje begint te tekenen zodra de "golf" vanuit de processor het bereikt.
+            function afstanden(els) {
+                const r = els.map(el => {
+                    try {
+                        const b = el.getBBox();
+                        return Math.hypot(b.x + b.width / 2 - PROCESSOR[0], b.y + b.height / 2 - PROCESSOR[1]);
+                    } catch (e) { return 0; }
+                });
+                const ver = Math.max.apply(null, r) || 1;
+                return r.map(v => v / ver);
+            }
+            const pStart = Float32Array.from(afstanden(padEls), r => r * 0.62);
+            const vStart = Float32Array.from(afstanden(vormEls), r => r * 0.62 + 0.16);
+            const pLen = new Float32Array(padEls.length);
+            padEls.forEach((el, i) => {
+                let len = 0;
+                try { len = el.getTotalLength(); } catch (e) { }
+                pLen[i] = len;
+                if (len > 0) {
+                    el.style.strokeDasharray = len;
+                    el.style.strokeDashoffset = len;
+                }
+                el.style.opacity = 0;
+            });
+            let tekenStand = -1, zoomStand = -1;
+
+            function tekenLayout(d) {
+                if (Math.abs(d - tekenStand) < 0.0004) return;
+                tekenStand = d;
+                for (let i = 0; i < padEls.length; i++) {
+                    const len = pLen[i];
+                    if (len <= 0) continue;
+                    const t = clamp((d - pStart[i]) / 0.38, 0, 1);
+                    const st = padEls[i].style;
+                    st.strokeDashoffset = len * (1 - uit(t));
+                    st.opacity = t > 0 ? 1 : 0;
+                }
+                for (let i = 0; i < vormEls.length; i++) vormEls[i].style.opacity = norm(d, vStart[i], vStart[i] + 0.10);
+                ideeLaag.style.opacity = 1 - norm(d, 0.06, 0.30);
+            }
+
+            function zoomLayout(z) {
+                // van ingezoomd op de processor naar de hele print; eindigt op de maat van de foto van de print
+                if (Math.abs(z - zoomStand) < 0.0004) return;
+                zoomStand = z;
+                const k = Math.pow(ZOOM_START, 1 - z);
+                const s = (k - 1) / (ZOOM_START - 1);
+                const cx = mix(VOL[0] + VOL[2] / 2, PROCESSOR[0], s), cy = mix(VOL[1] + VOL[3] / 2, PROCESSOR[1], s);
+                const w = VOL[2] / k;
+                const vb = (cx - w / 2).toFixed(2) + ' ' + (cy - w / 2).toFixed(2) + ' ' + w.toFixed(2) + ' ' + w.toFixed(2);
+                bpSvg.setAttribute('viewBox', vb);
+                ideeSvg.setAttribute('viewBox', vb);
+            }
+
+            /* ── Laag 2: de foto's (de print en de schakelkast) ────────────────────────────────── */
+            const printLaag = document.getElementById('pcb-layer');
+            const printFoto = printLaag.querySelector('img');
+            const kastLaag = document.getElementById('real-photo-layer');
+            let fotoStand = '';
+
+            function toonFotos(p) {
+                // de print: komt op als zwart silhouet terwijl de tekening oplost, en krijgt daarna zijn kleuren
+                const print = zacht(norm(p, T.stap2, T.printEcht - 0.01));
+                const kleur = zacht(norm(p, T.stap3, T.kleurKlaar));
+                // de schakelkast: komt van wazig naar scherp over de print heen
+                const kast = zacht(norm(p, T.stap4, T.kastKlaar));
+                const stand = print.toFixed(3) + '/' + kleur.toFixed(3) + '/' + kast.toFixed(3);
+                if (stand === fotoStand) return;
+                fotoStand = stand;
+                printLaag.style.visibility = print > 0 ? 'visible' : 'hidden';
+                printLaag.style.opacity = print.toFixed(3);
+                printFoto.style.filter = 'brightness(' + kleur.toFixed(3) + ')';
+                kastLaag.style.visibility = kast > 0 ? 'visible' : 'hidden';
+                kastLaag.style.opacity = kast.toFixed(3);
+                kastLaag.style.filter = kast < 1 ? 'blur(' + ((1 - kast) * 15).toFixed(1) + 'px)' : 'none';
+            }
+
+            /* ── Alles bij elkaar ──────────────────────────────────────────────────────────────── */
+            let stapNu = -1;
+
+            function toon(p) {
+                if (progressBar) progressBar.style.width = (p * 100) + '%';
+
+                // waar we zijn: de puntjes naast het beeld, en "Scroll" bij de eerste stap
+                const stap = p < T.stap1 ? 0 : p < T.stap2 ? 1 : p < T.stap3 ? 2 : p < T.stap4 ? 3 : 4;
+                if (stap !== stapNu) {
+                    stapNu = stap;
+                    puntjes.forEach((d, i) => d.classList.toggle('active', i === stap));
+                    if (podium) podium.classList.toggle('bij-start', stap === 0);
+                }
+                if (verderKnop) verderKnop.classList.toggle('zichtbaar', p >= T.verder);
+
+                // de tekening: groeit uit het idee, licht op zodra de echte print eronder verschijnt en lost dan op
+                const echt = zacht(norm(p, T.stap2, T.printEcht));
+                if (echt < 1) {
+                    tekenLayout(norm(p, T.tekenStart, T.tekenKlaar));
+                    zoomLayout(zacht(norm(p, T.tekenStart, T.tekenKlaar - 0.02)));
+                    bpLaag.style.visibility = ideeLaag.style.visibility = 'visible';
+                    bpLaag.style.opacity = 1 - norm(p, mix(T.stap2, T.printEcht, 0.4), T.printEcht);
+                    bpLaag.style.color = 'rgb(' + Math.round(mix(12, 120, echt)) + ',' + Math.round(mix(29, 205, echt)) + ',' + Math.round(mix(69, 255, echt)) + ')';
+                } else if (bpLaag.style.visibility !== 'hidden') {
+                    bpLaag.style.visibility = ideeLaag.style.visibility = 'hidden';
+                }
+
+                // de foto's
+                toonFotos(p);
+            }
+
+            /* ── Scrollen: de pagina scrolt gewoon; het beeld volgt met een korte, zachte uitloop ── */
+            let pDoel = 0, pNu = -1, loopt = false, vorigeTijd = 0, stapLijn = 0;
+
+            function meet() {
+                // De voortgang volgt de tekst: 0 als de eerste stap op zijn plek komt te staan,
+                // 1 als de laatste stap is afgelopen. Zo lopen tekst en beeld altijd gelijk, op elk scherm.
+                stapLijn = parseFloat(getComputedStyle(stappen[0]).top) || 0;
+                const eerste = secties[0].getBoundingClientRect();
+                // De hele scrollweg is 100 delen; de eerste stap is er --deel van (zie de opmaak van .stap).
+                const weg = eerste.height / (parseFloat(getComputedStyle(secties[0]).getPropertyValue('--deel')) || 6) * 100;
+                pDoel = weg > 0 ? clamp((stapLijn - eerste.top) / weg, 0, 1) : 0;
+                if (heroKnop) heroKnop.classList.toggle('weg', window.scrollY > 60);
+                tekstZicht();
+            }
+
+            function tekstZicht() {
+                // De beweging van de tekst is gewoon het scrollen van de pagina. Hier alleen de zachtheid:
+                // een nieuwe stap komt rustig op terwijl hij de laatste afstand naar zijn plek aflegt, en een
+                // oude stap vervaagt zodra de volgende hem omhoog duwt.
+                const lucht = parseFloat(getComputedStyle(stappen[0]).marginBottom) || 120;
+                for (const el of stappen) {
+                    const r = el.getBoundingClientRect();
+                    const boven = stapLijn - r.top;                         // > 0: wordt omhoog weggeduwd
+                    const weg = zacht(clamp(boven / Math.max(80, r.height * 0.7), 0, 1));
+                    const komt = zacht(clamp(1 - (-boven - lucht * 0.25) / (lucht * 1.5), 0, 1));
+                    el.style.opacity = Math.min(1 - weg, komt).toFixed(3);
+                }
+            }
+
+            function tik(nu) {
+                const dt = Math.min(50, nu - vorigeTijd || 16);
+                vorigeTijd = nu;
+                const d = pDoel - pNu;
+                if (pNu < 0 || Math.abs(d) < 0.00008) {
+                    pNu = pDoel;
+                    toon(pNu);
+                    loopt = false;
+                    return;
+                }
+                pNu += d * (1 - Math.exp(-dt / 85));
+                toon(pNu);
+                requestAnimationFrame(tik);
+            }
+
+            function start() {
+                meet();
+                if (!loopt) {
+                    loopt = true;
+                    vorigeTijd = performance.now();
+                    requestAnimationFrame(tik);
+                }
+            }
+
+            window.addEventListener('scroll', start, { passive: true });
+            window.addEventListener('resize', start);
+            window.addEventListener('load', start);
+            if (heroKnop) heroKnop.addEventListener('click', () => {
+                const doel = document.querySelector('.proto-intro') || track;
+                doel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+            if (verderKnop) verderKnop.addEventListener('click', () => {
+                const apps = document.getElementById('home-apps');
+                const doel = apps && !apps.hidden ? apps : document.querySelector('.home-cta');
+                if (doel) doel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            // Voor het nalopen: allicoVerhaal.toon(0.5) zet het beeld direct op die voortgang (0 tot 1).
+            window.allicoVerhaal = { toon: p => { pNu = pDoel = p; toon(p); }, tijden: T };
+
+            start();
+        })();
+
+        // Page router: navParent wordt dynamisch opgebouwd door renderAll()
+        let navParent = {};
+
+        function showPage(name) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('page-' + name);
+            if (target) target.classList.add('active');
+            window.scrollTo(0, 0);
+            const activeNav = navParent[name] || name;
+            document.querySelectorAll('nav a[data-page]').forEach(a => {
+                a.classList.toggle('active', a.dataset.page === activeNav);
+            });
+        }
+
+        // Adressen per pagina. bouw.js zet in de gebouwde site (map site/) window.ALLICO_ROUTES,
+        // bijvoorbeeld { "spec-1": "/elektronica-ontwikkeling/" }. Daar is elke pagina een eigen HTML-bestand
+        // en gaat een klik naar dat adres. Zonder routes (index.html direct geopend) wisselt de pagina zoals altijd.
+        function paginaUrl(name) {
+            const r = window.ALLICO_ROUTES;
+            return r && r[name] ? r[name] : '#';
+        }
+
+        function gaNaar(name) {
+            const r = window.ALLICO_ROUTES;
+            if (r && r[name]) window.location.href = r[name];
+            else showPage(name);
+        }
+
+    </script>
+
+
+    <footer>
+        <div class="footer-grid" id="footer-grid">
+      <div class="footer-brand">
+        <svg class="footer-logo" viewBox="0 0 222.816 222.816" aria-label="Allico Systems"><use href="#asMark"/></svg>
+        <p>Hardware, firmware en software in eigen beheer.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/allico-systems/" target="_blank" rel="noopener" title="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="mailto:info@allico.nl" title="E-mail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          </a>
+          <a href="tel:+31611671719" title="Bel ons">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17.92z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigatie</h4>
+        <ul>
+          <li><a href="../" data-page="home">Home</a></li>
+          <li><a href="../specialisaties/" data-page="specialisatie">Specialisatie</a></li>
+          <li><a href="../projecten/" data-page="projecten">Projecten</a></li>
+          <li><a href="../nieuws/" data-page="nieuws">Nieuws</a></li>
+          <li><a href="../contact/" data-page="contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Specialisaties</h4>
+        <ul>
+          <li><a href="../elektronica-ontwikkeling/" data-page="spec-1">Hardware ontwikkeling op maat</a></li><li><a href="../plc-besturing-embedded-software/" data-page="spec-2">Software voor communicatie en besturing</a></li><li><a href="../dashboards/" data-page="spec-3">Dashboards en andere applicaties</a></li><li><a href="../ot-beveiliging-iec-62443/" data-page="spec-4">Cybersecurity en beveiligde verbindingen</a></li><li><a href="../app-ontwikkeling/" data-page="spec-5">App-ontwikkeling op maat</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <span>Allico Systems</span>
+          <span>Expeditiestraat 11<br> 5961 PX Horst</span>
+          <a href="tel:+31611671719">+31 6 11 67 17 19</a>
+          <a href="mailto:info@allico.nl">info@allico.nl</a>
+        </address>
+      </div></div>
+        <div class="footer-bottom" id="footer-bottom">
+      <p>&copy; 2026 Allico Systems. Alle rechten voorbehouden.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+      </div></div>
+    </footer>
+
+    <script src="../data/siteData.js"></script>
+    <script>
+        /* ══════════════════════════════════════════════════════════════
+           INHOUD: alle teksten staan alleen in data/siteData.js (window.SITE_DATA),
+           dat hierboven wordt geladen. Pas daar de teksten aan; de HTML hoeft je nooit aan te raken.
+           ══════════════════════════════════════════════════════════════ */
+        const siteData = {};
+
+        /* ══════════════════════════════════════════════════════════════
+           RENDER FUNCTIES
+           ══════════════════════════════════════════════════════════════ */
+
+        const ARROW_SVG = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+        const BACK_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>`;
+
+        /* ══════════════════════════════════════════════════════════════
+           BLOKKEN: stukken die elke detailpagina (specialisatie, project, nieuwsbericht) mag gebruiken.
+           De inhoud staat in data/siteData.js bij de pagina zelf. Ontbreekt een veld, dan komt het blok er niet.
+             secties   [{ kop, alineas: [..], punten: [..] }]    tekstblok met een tussenkop
+             praktijk  { project, kop, tekst, linkTekst }        een project als voorbeeld, met link
+             vragen    [{ vraag, antwoord }]                     veelgestelde vragen
+             verwant   ["spec-4", { pagina, tekst }]             links naar andere pagina's, op id
+           Volgorde op de pagina: zie extraBlokken(). Opmaak: zoek in de stijlen op "BLOKKEN".
+           ══════════════════════════════════════════════════════════════ */
+
+        // Zoekt een specialisatie, project of nieuwsbericht op zijn id.
+        function vindPagina(id) {
+            const alle = [].concat(siteData.specialisaties, siteData.projecten, siteData.nieuws);
+            return alle.find(x => x.id === id) || null;
+        }
+
+        // Link in de tekst naar een andere pagina van de site. Zonder eigen tekst staat de titel van die pagina er.
+        // bouw.js zet het echte adres in de link; in index.html wisselt de pagina (zie bindEvents).
+        function paginaLink(id, tekst) {
+            const p = vindPagina(id);
+            if (!p) { console.warn('siteData.js verwijst naar een pagina die niet bestaat: "' + id + '"'); return ''; }
+            return `<a class="tekst-link" href="${paginaUrl(id)}" data-page="${id}">${tekst || p.titel}</a>`;
+        }
+
+        function sectiesBlok(secties) {
+            return (secties || []).map(s => `
+            <h2>${s.kop}</h2>
+            ${(s.alineas || []).map(a => `<p>${a}</p>`).join('')}
+            ${s.punten ? `<ul>${s.punten.map(punt => `<li>${punt}</li>`).join('')}</ul>` : ''}`).join('');
+        }
+
+        function praktijkBlok(praktijk) {
+            if (!praktijk) return '';
+            const link = paginaLink(praktijk.project, praktijk.linkTekst || 'Lees het hele project');
+            return `
+            <div class="praktijk-blok">
+              <h2>${praktijk.kop || 'Uit de praktijk'}</h2>
+              <p>${praktijk.tekst}</p>
+              ${link ? `<p>${link}</p>` : ''}
+            </div>`;
+        }
+
+        function vragenBlok(vragen) {
+            if (!vragen || !vragen.length) return '';
+            return `
+            <h2>Veelgestelde vragen</h2>
+            ${vragen.map(v => `<h3>${v.vraag}</h3><p>${v.antwoord}</p>`).join('')}`;
+        }
+
+        function verwantBlok(verwant) {
+            const links = (verwant || [])
+                .map(v => typeof v === 'string' ? paginaLink(v) : paginaLink(v.pagina, v.tekst))
+                .filter(Boolean);
+            if (!links.length) return '';
+            return `
+            <h2>Zie ook</h2>
+            <ul class="verwant-lijst">${links.map(link => `<li>${link}</li>`).join('')}</ul>`;
+        }
+
+        // Alle blokken van een pagina, in vaste volgorde. d is het "detail" van een specialisatie of project,
+        // of het nieuwsbericht zelf.
+        function extraBlokken(d) {
+            return sectiesBlok(d.secties) + praktijkBlok(d.praktijk) + vragenBlok(d.vragen) + verwantBlok(d.verwant);
+        }
+
+        // Vervolgstap onderaan een case of specialisatie. Tekst komt uit het "cta"-veld in siteData.js.
+        function ctaBlok(cta) {
+            const c = cta || { titel: 'Iets vergelijkbaars nodig?', tekst: 'Vertel ons waar je staat, dan denken we mee over wat haalbaar is.' };
+            return `
+    <div class="detail-cta">
+      <span class="detail-cta-label">Vergelijkbare vraag?</span>
+      <h2>${c.titel}</h2>
+      <p>${c.tekst}</p>
+      <div class="cta-knoppen">
+        <button type="button" class="cta-knop cta-knop-wit" data-cta="projectcheck">Start de projectcheck ${ARROW_SVG}</button>
+        <button type="button" class="cta-knop cta-knop-lijn" data-cta="terugbel">Bel me terug</button>
+      </div>
+    </div>`;
+        }
+
+        // Rij iPhones met onze apps. Verschijnt alleen bij de specialisatie uit siteData.appVoorbeelden.hoortBij.
+        // Alleen beeld: er is niets om in te klikken.
+        function appBeeldenHtml(specId) {
+            const a = siteData.appVoorbeelden;
+            if (!a || a.hoortBij !== specId || !a.beelden.length) return '';
+            return `
+            <h2>${a.titel}</h2>
+            <p>${a.tekst}</p>
+            <div class="app-beelden">
+              ${a.beelden.map(b => `
+              <figure class="app-beeld">
+                <img src="${b.foto}" alt="${b.fotoAlt}" loading="lazy">
+                <figcaption><strong>${b.naam}</strong>${b.tekst}</figcaption>
+              </figure>`).join('')}
+            </div>`;
+        }
+
+        // Strook op de home, direct onder de scrollanimatie: korte tekst, knop naar de specialisatie en drie iPhones.
+        function renderAppVoorbeelden() {
+            const a = siteData.appVoorbeelden;
+            const home = document.getElementById('home-apps');
+            if (!a || !home) return;
+            home.innerHTML = `
+      <div class="home-apps-inner">
+        <div>
+          <span class="proto-kicker">${a.home.label}</span>
+          <h2>${a.home.titel}</h2>
+          <p>${a.home.tekst}</p>
+          <button class="home-intro-cta" data-page="${a.hoortBij}">${a.home.knop} ${ARROW_SVG}</button>
+        </div>
+        <div class="home-apps-beelden">
+          ${a.beelden.slice(0, 3).map(b => `<img src="${b.foto}" alt="${b.fotoAlt}" loading="lazy">`).join('')}
+        </div>
+      </div>`;
+            home.hidden = false;
+        }
+
+        function renderHome() {
+            const h = siteData.home;
+            const b = siteData.bedrijf;
+
+            const label = document.getElementById('intro-label');
+            const titel = document.getElementById('intro-titel');
+            const tekst = document.getElementById('intro-tekst');
+            const cta = document.getElementById('intro-cta');
+            const foto = document.getElementById('intro-foto');
+            const dividerTekst = document.getElementById('scroll-divider-tekst');
+
+            if (label) label.textContent = h.introLabel;
+            if (titel) titel.textContent = h.introTitel;
+            if (tekst) tekst.textContent = h.introTekst;
+            if (cta) cta.innerHTML = h.introCta + ' ' + ARROW_SVG;
+            if (foto && h.introFoto) {
+                foto.innerHTML = `<img src="${h.introFoto}" alt="${b.naam}">`;
+            }
+            if (dividerTekst) dividerTekst.textContent = h.scrollDividerTekst;
+
+            h.stappen.forEach((stap, i) => {
+                const el = document.getElementById('home-step-' + i);
+                if (!el) return;
+                el.innerHTML = `<span class="step-tag">${stap.tag}</span><h2>${stap.titel}</h2><p>${stap.tekst}</p>`;
+            });
+        }
+
+        function renderSpecialisaties() {
+            const h = siteData.home;
+            const specs = siteData.specialisaties;
+
+            const secTitel = document.getElementById('spec-section-titel');
+            const secTekst = document.getElementById('spec-section-tekst');
+            if (secTitel) secTitel.textContent = 'Wat wij doen';
+            if (secTekst) secTekst.textContent = 'Van idee naar functionerend prototype, tot een schaalbaar en veilig systeem. Wij beheersen het volledige technische spectrum in eigen huis.';
+
+            const list = document.getElementById('spec-list');
+            if (list) {
+                list.innerHTML = specs.map(s => `
+      <div class="spec-item" data-page="${s.id}">
+        <div class="spec-thumb">
+          ${s.foto ? `<img src="${s.foto}" alt="${s.fotoAlt}">` : ''}
+          ${!s.foto ? `<div class="spec-thumb-placeholder">Foto toevoegen</div>` : ''}
+        </div>
+        <div class="spec-item-body">
+          <div class="spec-item-num">${s.num}</div>
+          <div class="spec-item-text">
+            <h2><a href="${paginaUrl(s.id)}">${s.titel}</a></h2>
+            <p>${s.samenvatting}</p>
+          </div>
+          <div class="spec-arrow">Meer lezen ${ARROW_SVG}</div>
+        </div>
+      </div>`).join('');
+            }
+
+            specs.forEach(s => {
+                const page = document.getElementById('page-' + s.id);
+                if (!page) return;
+                const d = s.detail;
+                const aanpakHtml = d.aanpakAlineas.map(p => `<p>${p}</p>`).join('');
+                const lijstHtml = d.watWijDoen.map(item => `<li>${item}</li>`).join('');
+                const tagsHtml = d.technologieen.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                page.innerHTML = `
+      <section class="detail-page">
+        <div class="detail-topbar">
+          <button class="back-btn" data-page="specialisatie">${BACK_SVG} Specialisaties</button>
+          <span class="detail-topbar-tag">${d.topbarTag}</span>
+        </div>
+        <div class="detail-content">
+          <div class="detail-main">
+            <h1>${d.kop || s.titel}</h1>
+            <p class="detail-lead">${d.lead}</p>
+            <h2>${d.kopAanpak || 'Aanpak'}</h2>
+            ${aanpakHtml}
+            <h2>${d.kopWatWijDoen || 'Wat wij doen'}</h2>
+            <ul>${lijstHtml}</ul>
+            ${appBeeldenHtml(s.id)}
+            ${extraBlokken(d)}
+            ${ctaBlok(s.cta)}
+          </div>
+          <aside class="detail-sidebar">
+            ${d.hero ? `<div class="detail-sidebar-photo"><img src="${d.hero}" alt="${s.fotoAlt}"></div>` : ''}
+            <div class="detail-sidebar-block">
+              <h3>Toepassingen</h3>
+              <p>${d.toepassingen}</p>
+            </div>
+            <div class="detail-sidebar-block">
+              <h3>Technologieën</h3>
+              <div class="tech-tags">${tagsHtml}</div>
+            </div>
+            <div class="detail-sidebar-block">
+              <h3>Meer weten?</h3>
+              <p>${d.meerWeten}</p>
+            </div>
+          </aside>
+        </div>
+      </section>`;
+            });
+        }
+
+        function renderProjecten() {
+            const projecten = siteData.projecten;
+
+            const list = document.getElementById('project-list');
+            if (list) {
+                list.innerHTML = projecten.map(p => `
+      <div class="project-card" data-page="${p.id}">
+        <div>
+          <div class="project-card-meta">
+            <span class="project-tag">${p.tag}</span>
+          </div>
+          <h3><a href="${paginaUrl(p.id)}">${p.titel}</a></h3>
+          <p>${p.samenvatting}</p>
+        </div>
+        <div class="project-card-right">
+          <div class="project-thumb">
+            ${p.foto ? `<img src="${p.foto}" alt="${p.fotoAlt}">` : ''}
+          </div>
+          <div class="project-card-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </div>
+      </div>`).join('');
+            }
+
+            projecten.forEach(p => {
+                const page = document.getElementById('page-' + p.id);
+                if (!page) return;
+                const d = p.detail;
+                const tagsHtml = d.technologieen.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                page.innerHTML = `
+      <section class="detail-page">
+        <div class="detail-topbar">
+          <button class="back-btn" data-page="projecten">${BACK_SVG} Projecten</button>
+          <span class="detail-topbar-tag">${d.topbarTag}</span>
+        </div>
+        <div class="detail-content">
+          <div class="detail-main">
+            <h1>${d.kop || p.titel}</h1>
+            <p class="detail-lead">${d.lead}</p>
+            <h2>Het doel</h2>
+            <p>${d.doel}</p>
+            <h2>De uitdaging</h2>
+            <p>${d.uitdaging}</p>
+            ${d.uitdagingEisen ? `<ul class="uitdaging-eisen">${d.uitdagingEisen.map(e => `<li><strong>${e.label}:</strong> ${e.tekst}</li>`).join('')}</ul>` : ''}
+            <h2>Onze aanpak</h2>
+            ${d.aanpak.split('\n\n').map(p => `<p>${p}</p>`).join('')}
+            <h2>Het resultaat</h2>
+            <p>${d.resultaat}</p>
+            ${extraBlokken(d)}
+            ${ctaBlok(p.cta)}
+          </div>
+          <aside class="detail-sidebar">
+            ${d.hero ? `<div class="detail-sidebar-photo"><img src="${d.hero}" alt="${p.fotoAlt}"></div>` : ''}
+            <div class="detail-sidebar-block">
+              <h3>Sector</h3>
+              <p>${d.sector}</p>
+            </div>
+            <div class="detail-sidebar-block">
+              <h3>Ingezette technologie</h3>
+              <div class="tech-tags">${tagsHtml}</div>
+            </div>
+            <div class="detail-sidebar-block">
+              <h3>Doorlooptijd</h3>
+              <p>${d.doorlooptijd}</p>
+            </div>
+          </aside>
+        </div>
+      </section>`;
+            });
+        }
+
+        function renderNieuws() {
+            const feed = document.getElementById('nieuws-feed');
+            if (!feed) return;
+            feed.innerHTML = siteData.nieuws.map(item => {
+                const linkbaar = item.id && item.tekst && item.tekst.length;
+                const fotoKlasse = item.fotoType === 'logo' ? ' logo' : '';
+                return `
+    <article class="nieuws-item${linkbaar ? ' nieuws-link' : ''}${item.foto ? ' met-foto' : ''}"${linkbaar ? ` data-page="${item.id}"` : ''}>
+      <div class="nieuws-meta">${item.datum}</div>
+      <div>
+        <h3>${linkbaar ? `<a href="${paginaUrl(item.id)}">${item.titel}</a>` : item.titel}</h3>
+        <p>${item.samenvatting}</p>
+        ${linkbaar ? `<div class="nieuws-arrow">Lees meer ${ARROW_SVG}</div>` : ''}
+      </div>
+      ${item.foto ? `<div class="nieuws-foto${fotoKlasse}"><img src="${item.foto}" alt="${item.fotoAlt || ''}" loading="lazy"></div>` : ''}
+    </article>`;
+            }).join('');
+
+            siteData.nieuws.forEach(item => {
+                if (!item.id || !item.tekst) return;
+                const page = document.getElementById('page-' + item.id);
+                if (!page) return;
+                // Een stuk tekst is een alinea ("gewone tekst"), een tussenkop ({ kop }) of een lijst ({ punten })
+                const body = item.tekst.map(t => typeof t === 'string' ? `<p>${t}</p>`
+                    : t.kop ? `<h2>${t.kop}</h2>`
+                    : t.punten ? `<ul>${t.punten.map(punt => `<li>${punt}</li>`).join('')}</ul>` : '').join('');
+                const datum = item.datum + (item.bijgewerkt ? ' · bijgewerkt ' + item.bijgewerkt : '');
+                const foto = item.foto ? `
+            <figure class="artikel-foto${item.fotoType === 'logo' ? ' logo' : ''}">
+              <img src="${item.foto}" alt="${item.fotoAlt || ''}">
+              ${item.fotoBron ? `<figcaption>${item.fotoBron}</figcaption>` : ''}
+            </figure>` : '';
+                page.innerHTML = `
+      <section class="detail-page">
+        <div class="detail-topbar">
+          <button class="back-btn" data-page="nieuws">${BACK_SVG} Nieuws</button>
+          <span class="detail-topbar-tag">${datum}</span>
+        </div>
+        <div class="artikel-wrap">
+          <div class="detail-main">
+            <h1>${item.kop || item.titel}</h1>
+            ${foto}
+            ${body}
+            ${extraBlokken(item)}
+            <button class="artikel-cta" data-page="contact">Neem contact op ${ARROW_SVG}</button>
+          </div>
+        </div>
+      </section>`;
+            });
+        }
+
+        function renderContact() {
+            const b = siteData.bedrijf;
+            const gegevens = document.getElementById('contact-gegevens');
+            if (gegevens) {
+                gegevens.innerHTML = `
+      <li><span class="gegeven-label">Bedrijf</span> ${b.naam}</li>
+      <li><span class="gegeven-label">Adres</span> ${b.adres}</li>
+      <li><span class="gegeven-label">Telefoon</span> <a href="tel:${b.telefoon.replace(/[\s()]/g, '')}">${b.telefoon}</a></li>
+      <li><span class="gegeven-label">E-mail</span> <a href="mailto:${b.email}">${b.email}</a></li>`;
+            }
+            // Werkgebied: korte tekst onder de gegevens, uit siteData.contact.werkgebied
+            const werkgebied = document.getElementById('contact-werkgebied');
+            if (werkgebied && siteData.contact && siteData.contact.werkgebied) {
+                werkgebied.innerHTML = siteData.contact.werkgebied;
+            }
+            const wa = document.getElementById('whatsapp-link');
+            if (wa && b.whatsapp) {
+                wa.href = 'https://wa.me/' + b.whatsapp.replace(/\D/g, '');
+                wa.hidden = false;
+            }
+        }
+
+        function renderFooter() {
+            const b = siteData.bedrijf;
+            const specs = siteData.specialisaties;
+
+            const grid = document.getElementById('footer-grid');
+            if (grid) {
+                grid.innerHTML = `
+      <div class="footer-brand">
+        <svg class="footer-logo" viewBox="0 0 222.816 222.816" aria-label="${b.naam}"><use href="#asMark"/></svg>
+        <p>${b.beschrijving}</p>
+        <div class="footer-social">
+          <a href="${b.linkedin}" target="_blank" rel="noopener" title="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="mailto:${b.email}" title="E-mail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          </a>
+          <a href="tel:${b.telefoon.replace(/\s/g, '').replace(/[()]/g, '')}" title="Bel ons">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17.92z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigatie</h4>
+        <ul>
+          <li><a href="${paginaUrl('home')}" data-page="home">Home</a></li>
+          <li><a href="${paginaUrl('specialisatie')}" data-page="specialisatie">Specialisatie</a></li>
+          <li><a href="${paginaUrl('projecten')}" data-page="projecten">Projecten</a></li>
+          <li><a href="${paginaUrl('nieuws')}" data-page="nieuws">Nieuws</a></li>
+          <li><a href="${paginaUrl('contact')}" data-page="contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Specialisaties</h4>
+        <ul>
+          ${specs.map(s => `<li><a href="${paginaUrl(s.id)}" data-page="${s.id}">${s.titel}</a></li>`).join('')}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <span>${b.naam}</span>
+          <span>${b.adres.replace(',', '<br>')}</span>
+          <a href="tel:${b.telefoon.replace(/\s/g, '').replace(/[()]/g, '')}">${b.telefoon}</a>
+          <a href="mailto:${b.email}">${b.email}</a>
+        </address>
+      </div>`;
+            }
+
+            const bottom = document.getElementById('footer-bottom');
+            if (bottom) {
+                bottom.innerHTML = `
+      <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+      </div>`;
+            }
+        }
+
+        function buildNavParent() {
+            navParent = {};
+            siteData.specialisaties.forEach(s => { navParent[s.id] = 'specialisatie'; });
+            siteData.projecten.forEach(p => { navParent[p.id] = 'projecten'; });
+        }
+
+        function bindEvents() {
+            // Gebouwde site: elke pagina heeft een eigen adres. Links doen het zelf;
+            // kaarten, knoppen en het logo gaan via gaNaar() naar het adres van hun pagina.
+            if (window.ALLICO_ROUTES) {
+                document.addEventListener('click', e => {
+                    const el = e.target.closest('[data-page]');
+                    if (!el || e.target.closest('a[href]')) return;
+                    gaNaar(el.dataset.page);
+                });
+                return;
+            }
+            document.querySelectorAll('nav a[data-page]').forEach(link => {
+                link.addEventListener('click', e => { e.preventDefault(); showPage(link.dataset.page); });
+            });
+            document.querySelectorAll('.spec-item[data-page]').forEach(item => {
+                item.addEventListener('click', () => showPage(item.dataset.page));
+            });
+            document.querySelectorAll('.project-card[data-page]').forEach(card => {
+                card.addEventListener('click', () => showPage(card.dataset.page));
+            });
+            document.querySelectorAll('.back-btn[data-page]').forEach(btn => {
+                btn.addEventListener('click', () => showPage(btn.dataset.page));
+            });
+            document.querySelectorAll('button[data-page]').forEach(btn => {
+                btn.addEventListener('click', () => showPage(btn.dataset.page));
+            });
+            document.querySelectorAll('footer a[data-page]').forEach(link => {
+                link.addEventListener('click', e => { e.preventDefault(); showPage(link.dataset.page); window.scrollTo(0, 0); });
+            });
+            document.querySelectorAll('a.tekst-link[data-page]').forEach(link => {
+                link.addEventListener('click', e => { e.preventDefault(); showPage(link.dataset.page); });
+            });
+        }
+
+        function renderAll() {
+            // Gebouwde site (bouw.js): alles staat al in de HTML, alleen de knoppen hoeven nog te werken
+            if (window.ALLICO_GEBOUWD) { bindEvents(); return; }
+            buildNavParent();
+            renderHome();
+            renderAppVoorbeelden();
+            renderSpecialisaties();
+            renderProjecten();
+            renderNieuws();
+            renderContact();
+            renderFooter();
+            bindEvents();
+        }
+
+        /* data/siteData.js is geladen via <script src> hierboven: werkt altijd, ook zonder server.
+           Later overstappen op database: vervang het <script src> door een fetch() naar je API-endpoint. */
+        if (window.SITE_DATA) Object.assign(siteData, window.SITE_DATA);
+        else console.error('data/siteData.js is niet geladen: de teksten van de site ontbreken.');
+        renderAll();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.ALLICO_ROUTES) return; // gebouwde site: zie bindEvents()
+            // Selecteer alle knoppen, navigatielinks en logo's die een data-page attribuut hebben
+            const pageTriggers = document.querySelectorAll('[data-page]');
+            const pages = document.querySelectorAll('.page');
+
+            pageTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function (e) {
+                    e.preventDefault(); // Voorkom dat de pagina herlaadt of verspringt door de '#'
+
+                    const targetPage = this.getAttribute('data-page');
+
+                    // 1. Verwijder de actieve status van alle navigatielinks
+                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+
+                    // Zet de actieve status op de juiste navigatielink (ook als je via het logo of de CTA knop klikt)
+                    const navLink = document.querySelector(`nav a[data-page="${targetPage}"]`);
+                    if (navLink) {
+                        navLink.classList.add('active');
+                    }
+
+                    // 2. Verberg alle pagina-divs en toon alleen degene die we willen zien
+                    pages.forEach(page => page.classList.remove('active'));
+                    const pageToShow = document.getElementById(`page-${targetPage}`);
+                    if (pageToShow) {
+                        pageToShow.classList.add('active');
+                    }
+
+                    // 3. Scroll netjes terug naar de bovenkant van het scherm bij een paginawissel
+                    window.scrollTo(0, 0);
+                });
+            });
+        });
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        document.addEventListener('click', e => {
+            const photo = e.target.closest('.detail-sidebar-photo');
+            if (photo) {
+                const img = photo.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightbox.classList.add('open');
+                }
+            }
+        });
+
+        lightboxClose.addEventListener('click', () => lightbox.classList.remove('open'));
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) lightbox.classList.remove('open');
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') lightbox.classList.remove('open');
+        });
+    </script>
+    <script>
+        /* ══════════════════════════════════════════════════════════════
+           VERVOLGSTAP: menu, knoppen, projectcheck en terugbelverzoek
+           ══════════════════════════════════════════════════════════════ */
+        (function () {
+            const header = document.querySelector('header');
+            const menuKnop = document.querySelector('.menu-toggle');
+
+            function sluitMenu() {
+                header.classList.remove('nav-open');
+                menuKnop.setAttribute('aria-expanded', 'false');
+                menuKnop.setAttribute('aria-label', 'Menu openen');
+            }
+            menuKnop.addEventListener('click', () => {
+                const open = header.classList.toggle('nav-open');
+                menuKnop.setAttribute('aria-expanded', open ? 'true' : 'false');
+                menuKnop.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+            });
+            document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', sluitMenu));
+
+            // Alle knoppen met data-cta gaan naar de contactpagina: data-cta="projectcheck" of "terugbel"
+            document.addEventListener('click', e => {
+                const knop = e.target.closest('[data-cta]');
+                if (!knop) return;
+                e.preventDefault();
+                sluitMenu();
+                // Gebouwde site: de formulieren staan op de contactpagina
+                if (window.ALLICO_ROUTES && !document.getElementById('page-contact')) {
+                    window.location.href = window.ALLICO_ROUTES.contact + '#' + knop.dataset.cta;
+                    return;
+                }
+                showPage('contact');
+                const doel = document.getElementById(knop.dataset.cta);
+                if (!doel) return;
+                doel.scrollIntoView({ block: 'start' });
+                if (knop.dataset.cta === 'terugbel') document.getElementById('tb-naam').focus({ preventScroll: true });
+            });
+
+            // Staat de contactpagina niet in dit bestand (gebouwde site), dan is de rest niet nodig
+            if (!document.getElementById('page-contact')) return;
+
+            // Keuzeknoppen (tegels en chips) gedragen zich als radioknoppen
+            document.querySelectorAll('#page-contact [role="radiogroup"]').forEach(groep => {
+                groep.addEventListener('click', e => {
+                    const keuze = e.target.closest('[role="radio"]');
+                    if (!keuze) return;
+                    groep.querySelectorAll('[role="radio"]').forEach(r => r.setAttribute('aria-checked', r === keuze ? 'true' : 'false'));
+                });
+            });
+            const gekozen = id => {
+                const k = document.querySelector('#' + id + ' [aria-checked="true"]');
+                return k ? k.dataset.val : '';
+            };
+
+            /* Formulieren gaan naar siteData.formulier.endpoint (bijvoorbeeld een Formspree-adres).
+               Zonder endpoint opent het mailprogramma van de bezoeker met het bericht al ingevuld. */
+            async function verstuur(onderwerp, velden) {
+                const endpoint = siteData.formulier && siteData.formulier.endpoint;
+                if (endpoint) {
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(Object.assign({ _subject: onderwerp }, velden))
+                    });
+                    if (!res.ok) throw new Error('Versturen mislukt: ' + res.status);
+                    return 'verzonden';
+                }
+                const tekst = Object.entries(velden).filter(([, v]) => v).map(([k, v]) => k + ': ' + v).join('\n');
+                window.location.href = 'mailto:' + siteData.bedrijf.email
+                    + '?subject=' + encodeURIComponent(onderwerp) + '&body=' + encodeURIComponent(tekst);
+                return 'mail';
+            }
+            const foutTekst = () => 'Versturen lukte niet. Mail ons op ' + siteData.bedrijf.email + ' of bel ' + siteData.bedrijf.telefoon + '.';
+
+            /* ── Projectcheck ── */
+            const pc = document.getElementById('projectcheck');
+            const stappen = pc.querySelectorAll('[data-stap]');
+            const stapLabels = pc.querySelectorAll('.pc-stappen li');
+            const terug = document.getElementById('pc-terug');
+            const verder = document.getElementById('pc-verder');
+            const teller = document.getElementById('pc-teller');
+            const melding = document.getElementById('pc-melding');
+            let stap = 1;
+
+            function toonStap() {
+                stappen.forEach(s => { s.hidden = s.dataset.stap !== String(stap); });
+                stapLabels.forEach((li, i) => li.classList.toggle('actief', stap === 'klaar' || i < stap));
+                pc.querySelector('.pc-nav').hidden = stap === 'klaar';
+                terug.disabled = stap === 1;
+                teller.textContent = 'Stap ' + stap + ' van 3';
+                verder.textContent = stap === 3 ? 'Verstuur' : 'Volgende';
+                melding.hidden = true;
+            }
+            function fout(tekst) { melding.textContent = tekst; melding.hidden = false; }
+
+            terug.addEventListener('click', () => { if (stap > 1) { stap--; toonStap(); } });
+            verder.addEventListener('click', async () => {
+                if (stap === 1) {
+                    if (!gekozen('pc-onderwerp')) return fout('Kies waar je vraag over gaat.');
+                    stap = 2; return toonStap();
+                }
+                if (stap === 2) {
+                    if (!gekozen('pc-fase')) return fout('Kies hoe ver je bent.');
+                    stap = 3; return toonStap();
+                }
+                const naam = document.getElementById('pc-naam').value.trim();
+                const email = document.getElementById('pc-email').value.trim();
+                if (!naam || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    return fout('Vul je naam en een geldig e-mailadres in, dan kunnen we reageren.');
+                }
+                if (document.getElementById('pc-website').value) { stap = 'klaar'; return toonStap(); } // spambot
+
+                verder.disabled = true;
+                try {
+                    const resultaat = await verstuur('Projectcheck: ' + gekozen('pc-onderwerp') + ', ' + naam, {
+                        naam,
+                        email,
+                        bedrijf: document.getElementById('pc-bedrijf').value.trim(),
+                        telefoon: document.getElementById('pc-tel').value.trim(),
+                        onderwerp: gekozen('pc-onderwerp'),
+                        fase: gekozen('pc-fase'),
+                        start: gekozen('pc-start'),
+                        toelichting: document.getElementById('pc-toelichting').value.trim()
+                    });
+                    if (resultaat === 'mail') {
+                        document.getElementById('pc-klaar-titel').textContent = 'Je mailprogramma opent.';
+                        document.getElementById('pc-klaar-tekst').textContent = 'Je aanvraag staat klaar in een nieuwe e-mail. Verstuur die, dan komt hij bij ons binnen. Opent er niets? Mail ons op ' + siteData.bedrijf.email + '.';
+                    } else {
+                        document.getElementById('pc-klaar-titel').textContent = 'Bedankt, ' + naam.split(' ')[0] + '. Je aanvraag is binnen.';
+                    }
+                    stap = 'klaar'; toonStap();
+                } catch (err) {
+                    fout(foutTekst());
+                } finally {
+                    verder.disabled = false;
+                }
+            });
+
+            /* ── Terugbelverzoek ── */
+            const tbForm = document.getElementById('terugbel-form');
+            const tbMelding = document.getElementById('tb-melding');
+            const toon = (tekst, soort) => { tbMelding.textContent = tekst; tbMelding.className = 'form-melding ' + soort; tbMelding.hidden = false; };
+
+            tbForm.addEventListener('submit', async e => {
+                e.preventDefault();
+                const naam = document.getElementById('tb-naam').value.trim();
+                const telefoon = document.getElementById('tb-tel').value.trim();
+                if (!naam || telefoon.replace(/\D/g, '').length < 9) return toon('Vul je naam en een telefoonnummer in.', 'fout');
+                if (document.getElementById('tb-website').value) return toon('Bedankt, we bellen je zo snel mogelijk terug.', 'goed'); // spambot
+
+                const knop = tbForm.querySelector('button[type="submit"]');
+                knop.disabled = true;
+                try {
+                    const resultaat = await verstuur('Terugbelverzoek: ' + naam, { naam, telefoon, moment: gekozen('tb-moment') });
+                    if (resultaat === 'mail') {
+                        toon('Je mailprogramma opent met je verzoek. Verstuur die mail, dan bellen we je terug. Opent er niets? Bel ons op ' + siteData.bedrijf.telefoon + '.', 'goed');
+                    } else {
+                        toon('Bedankt, ' + naam.split(' ')[0] + '. We bellen je binnen een werkdag terug.', 'goed');
+                        tbForm.reset();
+                    }
+                } catch (err) {
+                    toon(foutTekst(), 'fout');
+                } finally {
+                    knop.disabled = false;
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>
