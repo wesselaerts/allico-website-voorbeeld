@@ -1,5 +1,5 @@
 > **Tijdelijke kopie ter beoordeling (12-11-2026).** Dit is een voorbeeld van de vernieuwde site van Allico Systems; het staat nog niet online.
-> Bekijken: klik hierboven op de groene knop **Code**, kies **Download ZIP**, pak het uit en open `site/index.html` met een dubbelklik.
+> **Bekijken: https://wesselaerts.github.io/allico-website-voorbeeld/**
 > De echte site staat op https://allicosystems.nl. Deze kopie wordt weer verwijderd.
 
 # Website Allico Systems
