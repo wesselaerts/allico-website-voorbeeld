@@ -1,0 +1,4 @@
+.vscode
+.DS_Store
+# Samba laat op Wescloud soms tijdelijk .smbdelete-bestanden staan
+.smbdelete*
