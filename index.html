@@ -32,6 +32,7 @@
       "@id": "https://allicosystems.nl/#website",
       "url": "https://allicosystems.nl/",
       "name": "Allico Systems",
+      "alternateName": ["Allico", "allicosystems.nl"],
       "inLanguage": "nl-NL",
       "publisher": {
         "@id": "https://allicosystems.nl/#bedrijf"
@@ -41,11 +42,12 @@
       "@type": "ProfessionalService",
       "@id": "https://allicosystems.nl/#bedrijf",
       "name": "Allico Systems",
+      "alternateName": "Allico",
       "legalName": "Allico Systems B.V.",
       "url": "https://allicosystems.nl/",
       "logo": "https://allicosystems.nl/allico-logo-512.png",
       "image": "https://allicosystems.nl/deelbeeld.jpg",
-      "description": "Allico Systems is gespecialiseerd in de ontwikkeling en het combineren van sensortechniek, IoT-systemen en industriële besturingstechniek.",
+      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.",
       "telephone": "+31611671719",
       "email": "info@allico.nl",
       "address": {
@@ -81,10 +83,6 @@
 }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
     <style>
         /* ─── BASIS STYLING VAN DE SCHIL (Blijft staan) ─── */
         *,
@@ -99,7 +97,7 @@
             padding: 0;
             background-color: #f4f7fb;
             color: #0c1d45;
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
         }
 
         /* ── Header ─────────────────────────────────────── */
@@ -709,7 +707,7 @@
             align-items: start;
         }
 
-        .contact-gegevens h2 {
+        .contact-gegevens h1 {
             font-size: 2rem;
             font-weight: 800;
             color: #0c1d45;
@@ -997,6 +995,8 @@
             /* zo lang blijft de laatste stap nog staan nadat het verhaal af is: tot het beeld uit zicht scrolt */
             --tussen: 24vh;
             /* lucht tussen twee stappen: de oude tekst is weg voordat de nieuwe op zijn plek komt */
+            /* de vergrote kastfoto mag niet buiten beeld steken: dan kan de pagina zijwaarts schuiven (clip laat sticky heel) */
+            overflow-x: clip;
             display: grid;
             grid-template-columns: minmax(0, 36fr) minmax(0, 52fr);
             column-gap: 5vw;
@@ -1769,6 +1769,13 @@
             text-decoration: underline;
         }
 
+        /* Wie het artikel schreef en wanneer, klein onder de kop */
+        .artikel-door {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin: -0.8rem 0 1.5rem;
+        }
+
         /* Tussenkoppen in een nieuwsbericht zijn gewone zinnen, vaak een vraag: geen hoofdletters */
         .artikel-wrap .detail-main h2 {
             font-size: 1.25rem;
@@ -2311,6 +2318,12 @@
             transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
         }
 
+        /* De kop van een kaart is een echte link naar de eigen pagina (ook voor zoekmachines) */
+        .home-breed-card h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
         .home-breed-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 16px 40px rgba(12, 29, 69, 0.09);
@@ -2653,7 +2666,7 @@
         }
 
         /* ─── Contactpagina: projectcheck + terugbelverzoek ─── */
-        .contact-gegevens h2 {
+        .contact-gegevens h1 {
             margin-bottom: 2rem;
         }
 
@@ -3377,10 +3390,10 @@
                              Het script (zoek op allicoVerhaal) regelt wanneer ze in beeld komen.
                              De 3D-film uit Blender die hier later voor in de plaats komt, staat in de tak scroll-3d. -->
                         <div class="layer" id="pcb-layer">
-                            <img src="PCB.webp" alt="De printplaat van de ARK-i van Allico Systems">
+                            <img src="PCB.webp" alt="De printplaat van de ARK-i van Allico Systems" data-maat="groot" decoding="async" fetchpriority="low">
                         </div>
                         <div class="layer" id="real-photo-layer">
-                            <img src="schakelkast.webp" alt="De ARK-i gemonteerd in een schakelkast">
+                            <img src="schakelkast.webp" alt="De ARK-i gemonteerd in een schakelkast" data-maat="groot" decoding="async" fetchpriority="low">
                         </div>
 
                         <!-- Het idee: een oplichtend punt op de plek van de processor. Deelt zijn uitsnede met de tekening. -->
@@ -11685,14 +11698,14 @@
                     <p>Ook in besturing, dashboards en cybersecurity gaan we de diepte in.</p>
                 </div>
                 <div class="home-breed-grid">
-                    <div class="home-breed-card" data-page="specialisatie">
+                    <div class="home-breed-card" data-page="spec-2">
                         <div class="hb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="7" y="7" width="10" height="10" rx="1.5" />
                                 <path
                                     d="M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3M9 4v3M12 4v3M15 4v3M9 17v3M12 17v3M15 17v3" />
                             </svg></div>
-                        <h3>Besturing &amp; PLC</h3>
+                        <h3><a href="#" data-page="spec-2">PLC-besturing en embedded software</a></h3>
                         <p>Embedded firmware en industri&euml;le besturing die hardware slim maakt en systemen laat
                             samenwerken.</p>
                         <span class="hb-arrow">Meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -11701,7 +11714,7 @@
                                 <polyline points="12 5 19 12 12 19" />
                             </svg></span>
                     </div>
-                    <div class="home-breed-card" data-page="specialisatie">
+                    <div class="home-breed-card" data-page="spec-3">
                         <div class="hb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -11710,7 +11723,7 @@
                                 <line x1="12" y1="16" x2="12" y2="12" />
                                 <line x1="16" y1="16" x2="16" y2="14" />
                             </svg></div>
-                        <h3>Dashboards &amp; applicaties</h3>
+                        <h3><a href="#" data-page="spec-3">Dashboards en applicaties</a></h3>
                         <p>Maatwerk dashboards die data omzetten in inzicht en directe bediening.</p>
                         <span class="hb-arrow">Meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
@@ -11718,13 +11731,13 @@
                                 <polyline points="12 5 19 12 12 19" />
                             </svg></span>
                     </div>
-                    <div class="home-breed-card" data-page="specialisatie">
+                    <div class="home-breed-card" data-page="spec-4">
                         <div class="hb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" />
                                 <path d="M9.5 12l1.8 1.8 3.5-3.6" />
                             </svg></div>
-                        <h3>Cybersecurity</h3>
+                        <h3><a href="#" data-page="spec-4">OT-security en IEC 62443</a></h3>
                         <p>Beveiligde verbindingen en toegang op afstand op IEC 62443-niveau.</p>
                         <span class="hb-arrow">Meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
@@ -11776,7 +11789,12 @@
     <div class="page" id="page-nieuws">
         <section class="nieuws-section" id="nieuws">
             <div class="section-inner">
-                <div class="spec-label">Nieuws</div>
+                <div class="section-head">
+                    <div>
+                        <h1>Nieuws en kennis</h1>
+                    </div>
+                    <p>Nieuws van Allico Systems, en uitleg over PLCnext, NIS2 en de beveiliging van besturing.</p>
+                </div>
                 <div class="nieuws-feed" id="nieuws-feed"></div>
             </div>
         </section>
@@ -11790,7 +11808,7 @@
                         <use href="#asMark" />
                     </svg>
                     <div class="spec-label">Contact</div>
-                    <h2>Neem contact op</h2>
+                    <h1>Neem contact op</h1>
                     <ul class="gegevens-lijst" id="contact-gegevens">
                         <li><span class="gegeven-label">Bedrijf</span> Allico Systems</li>
                         <li><span class="gegeven-label">Adres</span> Expeditiestraat 11, 5961 PX Horst</li>
@@ -11990,8 +12008,14 @@
     <div class="page" id="page-project-3"></div><!-- /page-project-3 -->
 
     <!-- ── Nieuws detail pagina's ── -->
+    <!-- Een nieuw bericht in data/siteData.js heeft hier een leeg blok met zijn id nodig -->
     <div class="page" id="page-nieuws-1"></div><!-- /page-nieuws-1 -->
     <div class="page" id="page-nieuws-3"></div><!-- /page-nieuws-3 -->
+    <div class="page" id="page-nieuws-4"></div><!-- /page-nieuws-4 -->
+    <div class="page" id="page-nieuws-5"></div><!-- /page-nieuws-5 -->
+    <div class="page" id="page-nieuws-6"></div><!-- /page-nieuws-6 -->
+    <div class="page" id="page-nieuws-7"></div><!-- /page-nieuws-7 -->
+    <div class="page" id="page-nieuws-8"></div><!-- /page-nieuws-8 -->
 
     <script>
         (function () {
@@ -12412,7 +12436,13 @@
             const foto = document.getElementById('intro-foto');
             const dividerTekst = document.getElementById('scroll-divider-tekst');
 
-            if (label) label.textContent = h.introLabel;
+            if (label) {
+                // elk deel tussen de puntjes blijft op één regel (anders breekt "Noord-Limburg" na het streepje)
+                const veilig = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                label.innerHTML = h.introLabel.split(' · ')
+                    .map(deel => '<span style="white-space: nowrap">' + veilig(deel) + '</span>')
+                    .join(' · ');
+            }
             if (titel) titel.textContent = h.introTitel;
             if (tekst) tekst.textContent = h.introTekst;
             if (cta) cta.innerHTML = h.introCta + ' ' + ARROW_SVG;
@@ -12548,8 +12578,7 @@
             ${d.uitdagingEisen ? `<ul class="uitdaging-eisen">${d.uitdagingEisen.map(e => `<li><strong>${e.label}:</strong> ${e.tekst}</li>`).join('')}</ul>` : ''}
             <h2>Onze aanpak</h2>
             ${d.aanpak.split('\n\n').map(p => `<p>${p}</p>`).join('')}
-            <h2>Het resultaat</h2>
-            <p>${d.resultaat}</p>
+            ${d.resultaat ? `<h2>Het resultaat</h2><p>${d.resultaat}</p>` : ''}
             ${extraBlokken(d)}
             ${ctaBlok(p.cta)}
           </div>
@@ -12614,6 +12643,7 @@
         <div class="artikel-wrap">
           <div class="detail-main">
             <h1>${item.kop || item.titel}</h1>
+            <div class="artikel-door">Door ${siteData.bedrijf.naam} · ${datum}</div>
             ${foto}
             ${body}
             ${extraBlokken(item)}
@@ -12697,12 +12727,14 @@
 
             const bottom = document.getElementById('footer-bottom');
             if (bottom) {
+                // Links onderaan: alleen als het adres is ingevuld in siteData.juridisch (geen dode links)
+                const j = siteData.juridisch || {};
+                const juridisch = [['privacy', 'Privacybeleid'], ['voorwaarden', 'Algemene voorwaarden']]
+                    .filter(([sleutel]) => j[sleutel])
+                    .map(([sleutel, tekst]) => `<a href="${j[sleutel]}">${tekst}</a>`).join('');
                 bottom.innerHTML = `
       <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacybeleid</a>
-        <a href="#">Algemene voorwaarden</a>
-      </div>`;
+      ${juridisch ? `<div class="footer-bottom-links">${juridisch}</div>` : ''}`;
             }
         }
 
@@ -12710,6 +12742,7 @@
             navParent = {};
             siteData.specialisaties.forEach(s => { navParent[s.id] = 'specialisatie'; });
             siteData.projecten.forEach(p => { navParent[p.id] = 'projecten'; });
+            siteData.nieuws.forEach(n => { if (n.id) navParent[n.id] = 'nieuws'; });
         }
 
         function bindEvents() {
@@ -12810,7 +12843,7 @@
             if (photo) {
                 const img = photo.querySelector('img');
                 if (img) {
-                    lightboxImg.src = img.src;
+                    lightboxImg.src = img.dataset.groot || img.src; // de originele foto, niet de kleine versie
                     lightboxImg.alt = img.alt;
                     lightbox.classList.add('open');
                 }

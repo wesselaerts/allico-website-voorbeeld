@@ -24,7 +24,7 @@ const http = require('http');
 
 const ROOT = __dirname;
 const UIT = path.join(ROOT, 'site');
-const BEELD = /\.(?:png|jpe?g|webp|svg|ico|gif)$/i;
+const BEELD = /\.(?:png|jpe?g|webp|svg|ico|gif|pdf)$/i;   // ook pdf: een bestand waar de site naar linkt, gaat mee naar site/
 const ALTIJD_MEE = ['robots.txt', '.htaccess', 'favicon.ico', 'favicon.svg', 'favicon-96.png', 'apple-touch-icon.png'];
 
 const meldingen = [];
@@ -65,8 +65,10 @@ function paginaLijst(d) {
     const vast = seo.paginas || {};
     const naam = d.bedrijf.naam;
     const lijst = [];
-    const voeg = (id, url, s, nav, terugvalTitel, terugvalTekst) => lijst.push({
-        id, url, nav,
+    const voeg = (id, url, s, nav, terugvalTitel, terugvalTekst, artikel) => lijst.push({
+        id, url, nav, artikel,
+        naamKort: terugvalTitel,
+        gewijzigd: (s && s.gewijzigd) || '',
         titel: (s && s.titel) || terugvalTitel + ' | ' + naam,
         omschrijving: (s && s.omschrijving) || kort(terugvalTekst || d.bedrijf.beschrijving, 155),
     });
@@ -84,13 +86,15 @@ function paginaLijst(d) {
     for (const p of d.projecten) voeg(p.id, map.projecten + ((p.seo && p.seo.adres) || slug(p.titel)) + '/', p.seo, 'projecten', p.titel, p.samenvatting);
     for (const n of d.nieuws) {
         if (!n.id || !n.tekst || !n.tekst.length) continue; // alleen berichten met een eigen pagina
-        voeg(n.id, map.nieuws + ((n.seo && n.seo.adres) || slug(n.titel)) + '/', n.seo, 'nieuws', n.titel, n.samenvatting);
+        voeg(n.id, map.nieuws + ((n.seo && n.seo.adres) || slug(n.titel)) + '/', n.seo, 'nieuws', n.titel, n.samenvatting,
+            { kop: n.kop || n.titel, gepubliceerd: (n.seo && n.seo.gepubliceerd) || '', foto: n.foto || '' });
     }
 
     const gezien = {};
     for (const p of lijst) {
         if (gezien[p.url]) stop('Twee pagina\'s met hetzelfde adres ' + p.url + ': ' + gezien[p.url] + ' en ' + p.id);
         gezien[p.url] = p.id;
+        if (p.gewijzigd && !/^\d{4}-\d{2}-\d{2}$/.test(p.gewijzigd)) waarschuw('Datum "gewijzigd" van ' + p.id + ' is geen JJJJ-MM-DD: ' + p.gewijzigd);
         if (p.omschrijving.length > 160) waarschuw('Omschrijving van ' + p.id + ' is ' + p.omschrijving.length + ' tekens (Google toont er ongeveer 155).');
     }
     return lijst;
@@ -168,6 +172,38 @@ function render(sjabloon, data, routes) {
     return opname;
 }
 
+/* ── Gegevensblok per pagina (voor zoekmachines, niet zichtbaar) ────── */
+
+// Kruimelpad (Home > Nieuws > titel) op elke onderliggende pagina, en bij een bericht een Article-blok met
+// de kop, de datum van wijziging en Allico Systems als schrijver. Het algemene blok over het bedrijf staat in
+// de <head> van index.html. Alleen wat ook zichtbaar op de pagina staat, hoort hier.
+function gegevensblok(p, lijst, basis) {
+    const graaf = [];
+    if (p.id !== 'home') {
+        const pad = [{ naam: 'Home', url: '/' }];
+        const ouder = p.nav && p.nav !== p.id ? lijst.find(x => x.id === p.nav) : null;
+        if (ouder) pad.push({ naam: ouder.naamKort, url: ouder.url });
+        pad.push({ naam: p.naamKort, url: p.url });
+        graaf.push({
+            '@type': 'BreadcrumbList',
+            itemListElement: pad.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.naam, item: basis + x.url })),
+        });
+    }
+    if (p.artikel) {
+        const a = {
+            '@type': 'Article', headline: kort(p.artikel.kop, 110), description: p.omschrijving, inLanguage: 'nl-NL',
+            mainEntityOfPage: basis + p.url, author: { '@id': basis + '/#bedrijf' }, publisher: { '@id': basis + '/#bedrijf' },
+        };
+        if (p.artikel.gepubliceerd) a.datePublished = p.artikel.gepubliceerd;
+        if (p.gewijzigd) a.dateModified = p.gewijzigd;
+        if (p.artikel.foto && !/\.svg$/i.test(p.artikel.foto)) a.image = basis + '/' + encodeURI(p.artikel.foto);
+        graaf.push(a);
+    }
+    if (!graaf.length) return '';
+    return '    <script type="application/ld+json">\n'
+        + JSON.stringify({ '@context': 'https://schema.org', '@graph': graaf }, null, 2).replace(/</g, '\\u003c') + '\n    </script>\n';
+}
+
 /* ── Een pagina bouwen ──────────────────────────────────────────────── */
 
 function zetMeta(html, patroon, waarde) {
@@ -189,7 +225,7 @@ const BESTAND_SCRIPT = `(function () {
         });
     })();`;
 
-function bouwPagina(sjabloon, blokken, p, opname, routes, basis) {
+function bouwPagina(sjabloon, blokken, p, opname, routes, basis, dataBlok) {
     let html = sjabloon;
 
     // Paden vanaf de pagina zelf (../PCB.webp), zodat de site ook werkt als je index.html gewoon opent.
@@ -238,6 +274,7 @@ function bouwPagina(sjabloon, blokken, p, opname, routes, basis) {
         html = zetMeta(html, /(<link rel="canonical" href=")[^"]*(")/, adres);
         html = zetMeta(html, /(<meta property="og:url" content=")[^"]*(")/, adres);
     }
+    html = html.replace('</head>', () => (p.gegevens || '') + '</head>');
     html = html.replace('</head>', '    <script>\n    window.ALLICO_GEBOUWD = true;\n    window.ALLICO_ROUTES = '
         + JSON.stringify(eigenRoutes) + ';\n    ' + BESTAND_SCRIPT + '\n    </script>\n</head>');
 
@@ -261,11 +298,117 @@ function bouwPagina(sjabloon, blokken, p, opname, routes, basis) {
         })
         .replace(/\b(src|href)="([^"]*)"/g, (m, attr, v) => (v === '' || /^(?:[a-z][a-z0-9+.-]*:|\/|#)/i.test(v)) ? m : attr + '="/' + v + '"')
         .replace(/\b(src|href)="(\/[^"]*)"/g, (m, attr, v) => attr + '="' + naar(v) + '"'));
-    const dataScript = '<script src="' + naar('/data/siteData.js') + '"></script>';
-    html = html.replace('<script src="data/siteData.js"></script>', dataScript);
-    if (!html.includes(dataScript)) stop('<script src="data/siteData.js"> staat niet meer in index.html.');
+    // De gebouwde pagina's tekenen niets opnieuw: de formulieren hebben alleen e-mail, telefoon en het formulieradres
+    // nodig. Die staan in een klein blok in de pagina, in plaats van heel data/siteData.js (scheelt 56 kB per pagina).
+    if (!html.includes('<script src="data/siteData.js"></script>')) stop('<script src="data/siteData.js"> staat niet meer in index.html.');
+    html = html.replace('<script src="data/siteData.js"></script>', () => dataBlok);
+
+    // Snelheid: kleinere tekening (alleen de home) en CSS zonder commentaar en witruimte
+    if (p.id === 'home') html = kleinereTekening(html);
+    html = kleinereCss(html);
+    html = buitenScripts(html, slimmeBeelden);
 
     return html;
+}
+
+/* ── Snelheid: alleen in de gebouwde site; index.html en siteData.js blijven zoals ze zijn ─── */
+
+// De printtekening op de home (in #blueprint-layer) komt rauw uit EasyEDA: verborgen tekstgroepen, editorgegevens
+// bij elk lijntje en getallen met vier decimalen. Dit haalt dat weg (ongeveer 1.000 naar 190 kB) zonder dat er iets
+// anders te zien is. Een nieuwe export uit EasyEDA wordt zo vanzelf ook opgeschoond.
+// Let op: stroke-width blijft precies zoals hij is, want de CSS kiest de lijndikte op die waarden.
+const TEKENING_WEG = /\s(?:layerid|id|locked|net|c_[a-z_]+|number|plated|title|pasteexpansion|solderexpansion|transformarc)="[^"]*"/g;
+const TEKENING_GETALLEN = /(\s(?:d|points|cx|cy|r|x|y|width|height|transform)=")([^"]*)(")/g;
+const rond = g => { const t = (Math.round(parseFloat(g) * 10) / 10).toFixed(1).replace(/\.0$/, ''); return t === '-0' ? '0' : t; };
+
+function kleinereTekening(html) {
+    const laag = vindElement(html, 'blueprint-layer');
+    if (!laag) { waarschuw('De tekening (#blueprint-layer) staat niet op de home; niet opgeschoond.'); return html; }
+    let svg = html.slice(laag.binnenStart, laag.binnenEind);
+    const re = /<g\b[^>]*\bdisplay="none"[^>]*>/g;
+    let m;
+    while ((m = re.exec(svg))) {
+        const eind = naSluittag(svg, 'g', m.index + m[0].length);
+        svg = svg.slice(0, m.index) + svg.slice(eind.na);
+        re.lastIndex = m.index;
+    }
+    svg = svg.replace(/<!--[\s\S]*?-->/g, '')
+        .replace(/<title>\s*<\/title>/g, '')
+        .replace(TEKENING_WEG, '')
+        .replace(TEKENING_GETALLEN, (x, voor, waarde, na) => voor + waarde.replace(/-?\d+\.\d+/g, rond) + na)
+        .replace(/>\s+</g, '><').replace(/\s{2,}/g, ' ').replace(/\s+\/>/g, '/>');
+    return html.slice(0, laag.binnenStart) + svg + html.slice(laag.binnenEind);
+}
+
+// Kleinere versies van foto's (gemaakt met node beelden.js). Staat naast kemkens.jpeg ook kemkens-800.webp en
+// kemkens-1200.webp, dan krijgt de <img> een srcset en kiest de browser de kleinste die scherp genoeg is; het
+// origineel blijft voor de vergroting (data-groot). Een png met een .webp ernaast (app-schermen) wordt die .webp.
+// data-maat="groot" op een <img> in index.html betekent: groot in beeld (de foto's van de scrollanimatie).
+const MATEN = [800, 1200, 1600];
+const breedtes = {};
+function beeldBreedte(rel) {
+    if (rel in breedtes) return breedtes[rel];
+    let w = 0;
+    try {
+        const b = fs.readFileSync(path.join(ROOT, rel));
+        if (b.slice(1, 4).toString() === 'PNG') w = b.readUInt32BE(16);
+        else if (b.slice(0, 4).toString() === 'RIFF' && b.slice(8, 12).toString() === 'WEBP') {
+            const soort = b.slice(12, 16).toString();
+            if (soort === 'VP8 ') w = b.readUInt16LE(26) & 0x3fff;
+            else if (soort === 'VP8L') w = 1 + (((b[22] & 0x3f) << 8) | b[21]);
+            else if (soort === 'VP8X') w = 1 + b.readUIntLE(24, 3);
+        } else if (b[0] === 0xff && b[1] === 0xd8) {
+            for (let i = 2; i < b.length;) {
+                if (b[i] !== 0xff) { i++; continue; }
+                const merk = b[i + 1];
+                if (merk >= 0xc0 && merk <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(merk)) { w = b.readUInt16BE(i + 7); break; }
+                i += 2 + b.readUInt16BE(i + 2);
+            }
+        }
+    } catch (e) { }
+    return (breedtes[rel] = w);
+}
+
+function slimmeBeelden(deel) {
+    return deel.replace(/<img\b[^>]*>/g, tag => {
+        const src = (/\ssrc="([^"]*)"/.exec(tag) || [])[1];
+        if (!src || /^(?:[a-z]+:|\/\/)/i.test(src) || /\ssrcset=/.test(tag)) return tag;
+        const voor = /^(?:(?:\.\.\/)+|\/)?/.exec(src)[0];
+        let rel = src.slice(voor.length);
+        try { rel = decodeURIComponent(rel); } catch (e) { }
+        const basis = rel.replace(/\.[a-z]+$/i, '');
+        const url = naam => voor + naam.replace(/ /g, '%20');
+        let nieuw = tag;
+        if (/\.png$/i.test(rel) && bestaatPrecies(basis + '.webp')) {
+            nieuw = nieuw.replace(/\ssrc="[^"]*"/, ' src="' + voor + basis + '.webp"');
+        } else if (bestaatPrecies(basis + '-800.webp')) {
+            const kandidaten = MATEN.filter(m => bestaatPrecies(basis + '-' + m + '.webp')).map(m => [basis + '-' + m + '.webp', m]);
+            const groot = /\sdata-maat="groot"/.test(tag);
+            // Alleen een foto die groot in beeld staat, mag ook het (grotere) origineel kiezen
+            const grootste = kandidaten[kandidaten.length - 1][1];
+            const w = beeldBreedte(rel);
+            if (groot && w > grootste && /\.(?:webp|jpe?g)$/i.test(rel)) kandidaten.push([rel, w]);
+            nieuw = nieuw.replace(/\ssrc="[^"]*"/, ' src="' + voor + basis + '-800.webp"'
+                + ' srcset="' + kandidaten.map(([n, m]) => url(n) + ' ' + m + 'w').join(', ') + '"'
+                + ' sizes="' + (groot ? '(max-width: 900px) 90vw, 60vw' : '(max-width: 700px) 92vw, 36vw') + '"'
+                + ' data-groot="' + src + '"');
+        } else if (/\.(?:jpe?g|webp)$/i.test(rel) && beeldBreedte(rel) > 800) {
+            waarschuw('Foto zonder kleine versie: ' + rel + ' (draai node beelden.js)');
+        }
+        if (!/\sdecoding=/.test(nieuw)) nieuw = nieuw.replace(/^<img\b/, '<img decoding="async"');
+        return nieuw;
+    });
+}
+
+// CSS in <style>: commentaar en overbodige witruimte weg (ongeveer de helft kleiner). Alleen spaties rond { } ; ,
+// gaan weg; spaties in waarden als calc(a + b) blijven staan.
+function kleinereCss(html) {
+    return html.replace(/(<style\b[^>]*>)([\s\S]*?)(<\/style>)/g, (m, open, css, sluit) => open + css
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/\s+/g, ' ')
+        .replace(/\s*([{};,])\s*/g, '$1')
+        .replace(/;}/g, '}')
+        .trim() + sluit);
 }
 
 const blok404 = `<div class="page" id="page-404">
@@ -310,7 +453,8 @@ function kopieerBeelden(paginas, data, basis) {
         else waarschuw('Beeld niet gevonden (let ook op hoofdletters): ' + rel);
     };
     for (const html of paginas) {
-        for (const m of html.matchAll(/\b(?:src|href|content)="([^"]+)"/g)) voeg(m[1]);
+        for (const m of html.matchAll(/\b(?:src|href|content|data-groot)="([^"]+)"/g)) voeg(m[1]);
+        for (const m of html.matchAll(/\bsrcset="([^"]+)"/g)) m[1].split(',').forEach(d => voeg(d.trim().split(/\s+/)[0]));
         for (const m of html.matchAll(new RegExp('"(' + regEsc(basis) + '/[^"]+)"', 'g'))) voeg(m[1]);
     }
     (function loop(v) {
@@ -347,6 +491,12 @@ function bouw() {
 
     for (const p of lijst) if (!blokken.some(b => b.id === p.id)) stop('Voor "' + p.id + '" staat geen <div class="page" id="page-' + p.id + '"> in index.html.');
     const opname = render(sjabloon, data, routes);
+    for (const p of lijst) p.gegevens = gegevensblok(p, lijst, basis);
+    const b = bron.bedrijf;
+    const dataBlok = '<script>window.SITE_DATA = ' + JSON.stringify({
+        bedrijf: { naam: b.naam, email: b.email, telefoon: b.telefoon, whatsapp: b.whatsapp },
+        formulier: bron.formulier || {},
+    }).replace(/</g, '\\u003c') + ';</script>';
 
     // Op een netwerkmap (Wescloud) laat Samba een geopend bestand even als .smbdelete... staan; daarom opnieuw proberen.
     try {
@@ -357,7 +507,7 @@ function bouw() {
     const gebouwd = [];
     console.log('\n  adres'.padEnd(56) + 'woorden  titel');
     for (const p of lijst) {
-        const html = bouwPagina(sjabloon, blokken, p, opname, routes, basis);
+        const html = bouwPagina(sjabloon, blokken, p, opname, routes, basis, dataBlok);
         schrijf(p.url.slice(1) + 'index.html', html);
         gebouwd.push(html);
         const eigen = vindElement(html, 'page-' + p.id);
@@ -367,17 +517,13 @@ function bouw() {
     }
 
     const p404 = { id: '404', url: '/404.html', nav: null, nietVindbaar: true, blok: blok404, titel: 'Pagina niet gevonden | ' + bron.bedrijf.naam, omschrijving: 'Dit adres bestaat niet of niet meer.' };
-    const html404 = bouwPagina(sjabloon, blokken, p404, opname, routes, basis);
+    const html404 = bouwPagina(sjabloon, blokken, p404, opname, routes, basis, dataBlok);
     schrijf('404.html', html404);
     gebouwd.push(html404);
 
-    // De gebouwde pagina's tekenen niets opnieuw (alles staat al in de HTML); dit is alleen voor de formulieren.
-    schrijf('data/siteData.js', '// Gemaakt door bouw.js uit data/siteData.js. Niet hier aanpassen: wijzig de bron en bouw opnieuw.\n'
-        + 'window.SITE_DATA = ' + JSON.stringify(bron, null, 2) + ';\n');
-
-    const vandaag = new Date().toISOString().slice(0, 10);
     schrijf('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + lijst.map(p => '  <url>\n    <loc>' + basis + p.url + '</loc>\n    <lastmod>' + vandaag + '</lastmod>\n  </url>\n').join('')
+        + lijst.map(p => '  <url>\n    <loc>' + basis + p.url + '</loc>\n'
+            + (p.gewijzigd ? '    <lastmod>' + p.gewijzigd + '</lastmod>\n' : '') + '  </url>\n').join('')
         + '</urlset>\n');
 
     const aantal = kopieerBeelden(gebouwd, data, basis);
