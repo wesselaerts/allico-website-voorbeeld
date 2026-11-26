@@ -47,7 +47,7 @@
       "url": "https://allicosystems.nl/",
       "logo": "https://allicosystems.nl/allico-logo-512.png",
       "image": "https://allicosystems.nl/deelbeeld.jpg",
-      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.",
+      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand vanuit IEC 62443. Van idee tot werkend systeem.",
       "telephone": "+31611671719",
       "email": "info@allico.nl",
       "address": {
@@ -12773,7 +12773,7 @@
                         ? `<a href="${j[sleutel]}">${tekst}</a>`
                         : `<a href="${paginaUrl(sleutel)}" data-page="${sleutel}">${tekst}</a>`).join('');
                 bottom.innerHTML = `
-      <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
+      <p>&copy; ${b.copyright.replace(/\.$/, '')}. Alle rechten voorbehouden.${b.kvk ? ` KvK ${b.kvk}.` : ''}${b.btw ? ` Btw ${b.btw}.` : ''}</p>
       ${juridisch ? `<div class="footer-bottom-links">${juridisch}</div>` : ''}`;
             }
         }

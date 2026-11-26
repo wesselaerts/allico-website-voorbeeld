@@ -51,7 +51,10 @@ window.SITE_DATA = {
     "email": "info@allico.nl",
     "linkedin": "https://www.linkedin.com/company/allico-systems/",
     "beschrijving": "Hardware, firmware en software in eigen beheer, vanuit Horst in Noord-Limburg.",
-    "copyright": "2026 Allico Systems"
+    "copyright": "2026 Allico Systems B.V.",
+    // KvK-nummer en btw-id moeten volgens de wet op de site (art. 3:15d BW). Leeg = niet getoond. Invullen voor livegang.
+    "kvk": "",
+    "btw": ""
   },
 
   // [FORMULIER] Waar de projectcheck en het terugbelverzoek naartoe gaan.
@@ -71,13 +74,13 @@ window.SITE_DATA = {
     "paginas": {
       "home": {
         "titel": "Allico Systems | PLC-besturing, elektronica en OT-security",
-        "omschrijving": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.",
+        "omschrijving": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand vanuit IEC 62443. Van idee tot werkend systeem.",
         "gewijzigd": "2026-11-26"
       },
       "specialisatie": {
         "adres": "specialisaties",
         "titel": "Specialisaties: printplaat tot besturing | Allico Systems",
-        "omschrijving": "Hardware, embedded software en PLC-besturing, dashboards, apps en beveiliging volgens IEC 62443. Vijf specialismen in één hand, van idee tot systeem.",
+        "omschrijving": "Hardware, embedded software en PLC-besturing, dashboards, apps en beveiliging vanuit IEC 62443. Vijf specialismen in één hand, van idee tot systeem.",
         "gewijzigd": "2026-11-26"
       },
       "projecten": {
@@ -272,7 +275,7 @@ window.SITE_DATA = {
           {
             "kop": "PLCnext van Phoenix Contact",
             "alineas": [
-              "PLCnext Technology is het open automatiseringsplatform van Phoenix Contact. Het combineert de klassieke PLC-talen uit IEC 61131 met hogere programmeertalen zoals C, C++ en MATLAB Simulink.",
+              "PLCnext Technology is het open automatiseringsplatform van Phoenix Contact. Het combineert de PLC-talen uit IEC 61131-3 met hogere talen zoals C/C++, C# en MATLAB Simulink.",
               "Daarmee kan één besturing meer dan een traditionele PLC. Denk aan een dashboard direct vanaf de besturing, beveiligde toegang op afstand en koppelingen naar cloud- of MES-systemen.",
               "Wij hebben de Workshop PLCnext Engineer bij Phoenix Contact gevolgd en zetten dat traject voort. De techniek passen we inmiddels toe in meerdere projecten."
             ]
@@ -330,7 +333,7 @@ window.SITE_DATA = {
           { "pagina": "nieuws-6", "tekst": "Machineverordening 2027 en cybersecurity voor machinebouwers" }
         ],
         "toepassingen": "Machinebouw, procesautomatisering, IoT-gateways, remote monitoring en slimme sensoren.",
-        "technologieen": ["PLCnext", "IEC 61131", "C / C++", "FreeRTOS", "Modbus", "MQTT", "OPC UA", "LoRaWAN"],
+        "technologieen": ["PLCnext", "IEC 61131-3", "C / C++", "FreeRTOS", "Modbus", "MQTT", "OPC UA", "LoRaWAN"],
         "meerWeten": "Vertel ons over je systeem, dan kijken we hoe we het slimmer kunnen maken."
       }
     },
@@ -432,8 +435,8 @@ window.SITE_DATA = {
       "id": "spec-4",
       "seo": {
         "adres": "ot-beveiliging-iec-62443",
-        "titel": "Installaties beveiligen volgens IEC 62443 en NIS2 | Allico Systems",
-        "omschrijving": "OT-security voor installaties: veilige toegang op afstand met VPN, tweestapsverificatie en versleutelde verbindingen, opgebouwd vanuit IEC 62443 en NIS2.",
+        "titel": "Installaties beveiligen: IEC 62443 en NIS2 | Allico Systems",
+        "omschrijving": "OT-security voor installaties: veilige toegang op afstand met VPN, tweestapsverificatie en versleutelde verbindingen, opgebouwd vanuit IEC 62443, ook voor NIS2.",
         "gewijzigd": "2026-11-26"
       },
       "num": "04",
@@ -451,10 +454,10 @@ window.SITE_DATA = {
         "kop": "OT-security vanuit IEC 62443: installaties veilig op afstand bereikbaar",
         "lead": "OT-security, ook wel OT-beveiliging, gaat over de beveiliging van machines, installaties en hun besturing. Data inzien en installaties op afstand besturen is een gevoelig onderwerp. Deze systemen mogen alleen toegankelijk zijn voor de partijen waarvoor ze bedoeld zijn. Daarom is een doordachte beveiliging cruciaal voor de continuïteit van het systeem.",
         "aanpakAlineas": [
-          "Het gewenste beveiligingsniveau bepalen we op basis van het profiel van het systeem, de gevoeligheid van de data en de risico's bij ongeautoriseerde toegang.",
+          "Samen met jou bepalen we het gewenste beveiligingsniveau. Dat doen we op basis van het profiel van het systeem, de gevoeligheid van de data en de risico's bij ongeautoriseerde toegang.",
           "Voor applicaties die data tonen, betekent dat bijvoorbeeld sterke netwerkbeveiliging, afgeschermde toegang en betrouwbare verificatie zoals tweestapsverificatie (2FA).",
           "Bij systemen waarmee installaties op afstand worden bestuurd, ligt de lat aanzienlijk hoger. Ongeautoriseerde toegang kan daar directe gevolgen hebben voor de continuïteit en de veiligheid.",
-          "Voor dit soort trajecten werken wij samen met een vaste partner. Hoog aangeschreven hardware combineren we met gezamenlijk ontwikkelde software. Zo kunnen we een hoog beveiligingsniveau realiseren."
+          "Voor dit soort trajecten werken wij samen met een vaste partner. Hoog aangeschreven hardware combineren we met gezamenlijk ontwikkelde software. Zo werken we toe naar het beveiligingsniveau dat bij de installatie hoort."
         ],
         "watWijDoen": [
           "Analyse van het benodigde beveiligingsprofiel",
@@ -484,7 +487,7 @@ window.SITE_DATA = {
           {
             "kop": "Een PLC veilig op afstand benaderen",
             "alineas": [
-              "Veilige toegang op afstand (secure remote access) tot een PLC of installatie begint bij de verbinding. Wij richten een versleutelde VPN-verbinding in, met afgeschermde toegang en tweestapsverificatie.",
+              "Veilige toegang op afstand (secure remote access) tot een PLC of installatie begint bij de verbinding. Wij richten een versleutelde VPN-verbinding in, met afgeschermde toegang en tweestapsverificatie. Daarbij horen ook persoonlijke accounts, rechten per rol, tijdelijke toegang en logging van elke sessie.",
               "Het beveiligingsniveau stemmen we af op wat er op afstand moet kunnen. Monitoring op afstand vraagt minder dan een installatie op afstand besturen."
             ]
           },
@@ -503,7 +506,7 @@ window.SITE_DATA = {
           },
           {
             "vraag": "Hoe regel je toegang op afstand voor monteurs en leveranciers?",
-            "antwoord": "Met een versleutelde VPN-verbinding, afgeschermde toegang en tweestapsverificatie. Het beveiligingsniveau stemmen we af op wat er op afstand moet kunnen: alleen meekijken, of ook bedienen."
+            "antwoord": "Met een versleutelde VPN-verbinding, persoonlijke accounts met tweestapsverificatie, rechten per rol, tijdelijke toegang en logging van elke sessie. Het beveiligingsniveau stemmen we af op wat er op afstand moet kunnen: alleen meekijken, of ook bedienen."
           },
           {
             "vraag": "Is OT-security alleen iets voor grote bedrijven?",
@@ -620,7 +623,7 @@ window.SITE_DATA = {
     "home": {
       "label": "App-ontwikkeling",
       "titel": "Ook de app bouwen we zelf",
-      "tekst": "Van sensor en besturing tot de app op je telefoon: alles in één hand. Wil je een dashboard of app laten maken bij je machine, installatie of IoT-sensoren? Ook die bouwen we zelf. Overzichtelijk, veilig en gemaakt voor de mensen die er dagelijks mee werken.",
+      "tekst": "Van sensor en besturing tot de app op je telefoon: alles in één hand. Wil je een dashboard of app laten maken bij je machine, installatie of IoT-sensoren? Ook die bouwen we zelf. Overzichtelijk, veilig en gemaakt voor de mensen die er dagelijks mee werken. De gegevens in deze apps zijn voorbeelden.",
       "knop": "Meer over app-ontwikkeling"
     },
     "beelden": [
@@ -659,8 +662,8 @@ window.SITE_DATA = {
         "kop": "Sprinklerinstallaties op afstand testen: remote toegang voor Kemkens Brandbeveiliging",
         "lead": "Kemkens Brandbeveiliging zocht een betrouwbare manier om sprinklerinstallaties op afstand te testen, te monitoren en te beheren. De veiligheid van het systeem mocht daar niet onder lijden.",
         "doel": "Om toekomstbestendig te blijven, zocht Kemkens Brandbeveiliging een efficiënte manier om het onderhoud van installaties te garanderen. De oplossing: testen op afstand. Het doel van dit project is een uiterst betrouwbare en beveiligde verbinding met brandbeveiligingsinstallaties op willekeurige locaties in Nederland. Daarmee kunnen systemen op afstand in werking worden gesteld en sensoren worden uitgelezen. Dat geeft direct inzicht in de prestaties en de werking van de installatie.",
-        "uitdaging": "Brandbeveiligingssystemen zijn kritieke installaties. De beveiliging van de verbinding moet daarom optimaal en volledig gecertificeerd zijn. Daarnaast is gebruiksgemak een harde eis: het nieuwe beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken.",
-        "aanpak": "Voor een certificering op IEC 62443-niveau zijn speciale hardware, software en licenties nodig. Daarvoor werken we nauw samen met gespecialiseerde partners. Zij leveren de robuuste basis voor dit type systemen. Daarop ontwikkelt Allico Systems de integratie en het maatwerk dat aansluit op het doel van het project.",
+        "uitdaging": "Brandbeveiligingssystemen zijn kritieke installaties. De verbinding moet daarom aantoonbaar veilig zijn. Daarnaast is gebruiksgemak een harde eis: het nieuwe beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken.",
+        "aanpak": "Daarom bouwen we vanuit IEC 62443, op hardware en software van gespecialiseerde partners. Zij leveren de robuuste basis voor dit type systemen. Daarop ontwikkelt Allico Systems de integratie en het maatwerk dat aansluit op het doel van het project.",
         "secties": [
           {
             "kop": "Testen, monitoren en beheren op afstand: het doel",
@@ -834,8 +837,8 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems uit Horst doet PLC-programmering en procesbesturing en werkt met PLCnext van Phoenix Contact. Wij ontwikkelen besturing waarin beveiliging vanaf het ontwerp is meegenomen. Denk aan installaties die beveiligd op afstand toegankelijk zijn, met de documentatie voor een audit of leveranciersvragenlijst. Wij bepalen het benodigde beveiligingsprofiel van een systeem, richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Voor zware trajecten werken wij samen met een vaste partner.",
-        "Bronnen: Verordening (EU) 2023/1230, artikelen 3, 10, 18, 51, 52 en 54 en bijlage III (EUR-Lex, geconsolideerde tekst van 29 mei 2026, met rectificatie PB L 169 van 4 juli 2023); Europese Commissie, pagina's Machinery en Harmonised standards for machinery; Verordening (EU) 2024/2847, overweging 53 en bijlage I; RDI, veelgestelde vragen Cyberbeveiligingswet. Stand: november 2026.",
+        "Allico Systems uit Horst doet PLC-programmering en procesbesturing en werkt met PLCnext van Phoenix Contact. Wij ontwikkelen besturing waarin beveiliging vanaf het ontwerp is meegenomen. Denk aan installaties die beveiligd op afstand toegankelijk zijn, met documentatie die je helpt bij een audit of leveranciersvragenlijst. Samen met jou bepalen we het benodigde beveiligingsniveau van een systeem. We richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Voor zware trajecten werken wij samen met een vaste partner.",
+        "Bronnen: Verordening (EU) 2023/1230, artikelen 3, 10, 18, 51, 52 en 54 en bijlage III (EUR-Lex, geconsolideerde tekst van 29 mei 2026, met rectificatie PB L 169 van 4 juli 2023); Europese Commissie, pagina's Machinery en Harmonised Standards: Machinery (MD) (stand 8 september 2026); Verordening (EU) 2024/2847, overweging 53 en bijlage I; RDI, veelgestelde vragen Cyberbeveiligingswet. Stand: november 2026.",
         "Dit artikel geeft algemene informatie en is geen juridisch advies."
       ],
       "vragen": [
@@ -863,7 +866,7 @@ window.SITE_DATA = {
         },
         {
           "pagina": "spec-4",
-          "tekst": "Cybersecurity en OT-beveiliging volgens IEC 62443"
+          "tekst": "Cybersecurity en OT-beveiliging vanuit IEC 62443"
         },
         {
           "pagina": "nieuws-7",
@@ -904,14 +907,14 @@ window.SITE_DATA = {
         "De NIS2-richtlijn noemt bij cyberhygiëne onder meer software-updates, de configuratie van apparaten, netwerksegmentatie en identiteits- en toegangsbeheer (overweging 89). Bij een nieuwe of bestaande installatie zijn dit vragen om na te lopen, ongeacht het merk besturing:",
         {
           "punten": [
-            "Wachtwoorden en accounts: zijn standaardwachtwoorden vervangen, en heeft iedereen een eigen account op PLC, HMI en netwerkapparatuur?",
+            "Wachtwoorden en accounts: zijn standaardwachtwoorden vervangen, en heeft iedereen die beheert of van buiten inlogt een eigen account op PLC, HMI en netwerkapparatuur?",
             "Diensten en poorten: staan er diensten of poorten open die niet worden gebruikt?",
             "Netwerk: zijn kantoor, besturing en toegang op afstand van elkaar gescheiden, of is het netwerk plat?",
             "Logging: wordt vastgelegd wie wanneer inlogde of het programma wijzigde?",
             "Updates: is er een vast proces om firmware en software bij te werken?"
           ]
         },
-        "Deze punten staan niet letterlijk in de wet. Het zijn technische invullingen van de maatregelen hieronder.",
+        "Deze punten staan niet letterlijk in de wet. Het zijn technische invullingen van de maatregelen hieronder. Het Cyberbeveiligingsbesluit eist wel letterlijk logging, geteste back-ups en een actuele lijst van je systemen (artikelen 8, 9 en 16).",
         {
           "kop": "Wat betekenen de tien maatregelen voor een installatie?"
         },
@@ -937,13 +940,13 @@ window.SITE_DATA = {
         {
           "punten": [
             "IEC 62443-2-1: eisen aan het beveiligingsprogramma van de eigenaar van de installatie.",
-            "IEC 62443-3-2: risicoanalyse voor het ontwerp van een systeem, met de indeling in zones en verbindingen (conduits) en een beoogd beveiligingsniveau per zone.",
+            "IEC 62443-3-2: risicoanalyse voor het ontwerp, met zones en verbindingen (conduits) en een beoogd beveiligingsniveau (SL-T) per zone en per conduit.",
             "IEC 62443-3-3: beveiligingseisen voor het systeem als geheel, met de beveiligingsniveaus (security levels).",
             "IEC 62443-4-1: eisen aan het veilige ontwikkelproces van een productleverancier.",
             "IEC 62443-4-2: technische beveiligingseisen voor afzonderlijke componenten, zoals een controller, een switch of een softwaretoepassing."
           ]
         },
-        "Volgens de RDI betekent het volgen van een normenkader niet dat een organisatie aan de zorgplicht voldoet. Een normenkader kan wel houvast geven bij het beheersen van de risico's, ook bij OT.",
+        "Volgens de RDI betekent het volgen van een normenkader niet dat een organisatie aan de zorgplicht voldoet. Een normenkader kan wel houvast geven bij het beheersen van de risico's. Voor OT noemt de RDI het Purdue-model en IEC 62443 als concrete handvatten.",
         {
           "kop": "Wat vraagt NIS2 van remote access voor leveranciers en servicemonteurs?"
         },
@@ -961,14 +964,14 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen, en werkt met PLCnext van Phoenix Contact. We bepalen het benodigde beveiligingsprofiel, richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Daarbij hoort de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst.",
-        "Bronnen: Cyberbeveiligingswet, Staatsblad 2026, 187 (artikelen 1, 21 en 25 tot en met 29); memorie van toelichting, Kamerstukken II 36764, nr. 3; Richtlijn (EU) 2022/2555 (NIS2), overweging 89; NCSC, De Cyberbeveiligingswet en toeleveranciers; RDI, veelgestelde vragen Cyberbeveiligingswet; ISA en IEC, titels en samenvattingen van de delen van ISA/IEC 62443. Stand: november 2026.",
+        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen, en werkt met PLCnext van Phoenix Contact. Samen met jou bepalen we het benodigde beveiligingsniveau. We richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Daarbij hoort documentatie die je helpt bij een audit of leveranciersvragenlijst.",
+        "Bronnen: Cyberbeveiligingswet, Staatsblad 2026, 187 (artikelen 1, 21 en 25 tot en met 29); memorie van toelichting, Kamerstukken II 36764, nr. 3; Cyberbeveiligingsbesluit, Staatsblad 2026, 189 (artikelen 8, 9 en 16, en de nota van toelichting); Richtlijn (EU) 2022/2555 (NIS2), overweging 89; NCSC, De Cyberbeveiligingswet en toeleveranciers; RDI, veelgestelde vragen Cyberbeveiligingswet en pagina Operationele technologie; ISA en IEC, titels en samenvattingen van de delen van ISA/IEC 62443. Stand: november 2026.",
         "Dit artikel geeft algemene informatie en is geen juridisch advies."
       ],
       "vragen": [
         {
           "vraag": "Moet een PLC gecertificeerd zijn voor NIS2?",
-          "antwoord": "De Cyberbeveiligingswet zelf eist geen certificaat voor een PLC of ander onderdeel. De wet vraagt passende maatregelen van de organisatie, en de keuze van componenten hoort daarbij."
+          "antwoord": "De Cyberbeveiligingswet eist nu geen certificaat voor een PLC of ander onderdeel. De wet vraagt passende maatregelen van de organisatie, en de keuze van componenten hoort daarbij."
         },
         {
           "vraag": "Is netwerksegmentatie verplicht onder NIS2?",
@@ -976,7 +979,7 @@ window.SITE_DATA = {
         },
         {
           "vraag": "Is IEC 62443 verplicht onder de Cyberbeveiligingswet?",
-          "antwoord": "Nee, IEC 62443 is een norm en geen wet. De wet vraagt wel om waar van toepassing rekening te houden met Europese en internationale normen (artikel 21, lid 2)."
+          "antwoord": "Nee, IEC 62443 is een norm en geen wet. De wet vraagt wel om waar van toepassing rekening te houden met Europese en internationale normen (artikel 21, lid 2). De toelichting op het Cyberbeveiligingsbesluit noemt een beveiligingsprogramma op basis van IEC 62443 wel als voorbeeld."
         },
         {
           "vraag": "Wie is verantwoordelijk voor de beveiliging van een machine onder NIS2?",
@@ -1015,15 +1018,15 @@ window.SITE_DATA = {
       },
       "datum": "November 2026",
       "titel": "PLC veilig op afstand: VPN, tweestapsverificatie en IEC 62443",
-      "kop": "PLC op afstand benaderen zonder risico: VPN, tweestapsverificatie en IEC 62443",
+      "kop": "Zo benader je een PLC veilig op afstand: VPN, tweestapsverificatie en IEC 62443",
       "samenvatting": "Welke bouwstenen een veilige toegang op afstand tot een PLC nodig heeft, wat IEC 62443-3-3 vraagt en waarom bedienen strengere regels vraagt dan meekijken.",
       "tekst": [
-        "Een PLC op afstand benaderen kan veilig, als de besturing niet direct aan het openbare internet hangt. Het NCSC adviseert toegang voor gebruikers alleen mogelijk te maken met meerfactorauthenticatie en een versleutelde verbinding. Persoonlijke accounts, rechten per rol, logging en netwerksegmentatie maken de opzet compleet.",
+        "Een PLC op afstand benaderen kan veilig als je meerdere lagen combineert. De eerste: de besturing hangt niet direct aan het internet. Het NCSC adviseert toegang voor gebruikers alleen mogelijk te maken met meerfactorauthenticatie en een versleutelde verbinding. Persoonlijke accounts, rechten per rol, logging en netwerksegmentatie maken de opzet compleet.",
         {
           "kop": "Waarom is toegang op afstand tot een PLC een risico?"
         },
         "Elke verbinding van buiten is een mogelijke ingang voor een aanvaller. Het NCSC schrijft dat bij het koppelen van OT aan internet, bijvoorbeeld voor beheer op afstand, niet altijd de juiste beveiligingsmaatregelen worden genomen. Bovendien bestuurt OT fysieke processen. Een fout of aanval raakt dan de machine zelf.",
-        "De Amerikaanse overheidsdienst CISA noemt OT-apparaten aan het internet makkelijke doelwitten. Ze zijn met zoekmachines voor open poorten snel te vinden. Volgens recente analyses van CISA gebruiken aangevallen systemen standaardwachtwoorden of wachtwoorden die makkelijk te raden zijn.",
+        "De Amerikaanse overheidsdienst CISA noemt OT-apparaten aan het internet makkelijke doelwitten. Ze zijn met zoekmachines voor open poorten snel te vinden. Volgens een factsheet van CISA, FBI, EPA en DOE uit mei 2025 gebruikten aangevallen OT-systemen standaardwachtwoorden of makkelijk te raden wachtwoorden. Het ging om de doelwitten van een recente reeks aanvallen.",
         {
           "kop": "Wat zijn de bouwstenen van een veilige opzet?"
         },
@@ -1037,6 +1040,7 @@ window.SITE_DATA = {
             "Toegang alleen op aanvraag en voor beperkte tijd, bijvoorbeeld na akkoord van de eigenaar van de installatie.",
             "Logging van wie wanneer inlogde en wat er gebeurde, met regelmatige controle.",
             "Netwerksegmentatie, zodat de verbinding alleen uitkomt bij het deel van het netwerk dat nodig is.",
+            "Een aparte zone voor toegang van buiten, zoals een DMZ met een jump host, zodat niemand direct in het besturingsnetwerk uitkomt.",
             "Updates van besturing, router en software, eerst getest en daarna doorgevoerd."
           ]
         },
@@ -1044,7 +1048,7 @@ window.SITE_DATA = {
         {
           "kop": "Wat vraagt IEC 62443-3-3 voor toegang op afstand?"
         },
-        "IEC 62443-3-3 beschrijft beveiligingseisen voor het besturingssysteem als geheel, ingedeeld in security levels 1 tot en met 4. De eisen gaan over wat het systeem moet kunnen. Voor toegang op afstand zijn vooral deze system requirements van belang:",
+        "IEC 62443-3-3 beschrijft beveiligingseisen voor het besturings- en automatiseringssysteem als geheel, ingedeeld in security levels 1 tot en met 4. De eisen gaan over wat het systeem moet kunnen. Voor toegang op afstand zijn vooral deze system requirements van belang:",
         {
           "punten": [
             "SR 1.1, Human user identification and authentication: het systeem kan elke menselijke gebruiker identificeren en authenticeren. Vanaf SL 3 vraagt een uitbreiding meerfactorauthenticatie bij toegang via onvertrouwde netwerken.",
@@ -1060,7 +1064,7 @@ window.SITE_DATA = {
           "kop": "Wat is het verschil tussen meekijken en bedienen op afstand?"
         },
         "Bedienen op afstand vraagt strengere maatregelen dan meekijken. Wie alleen standen, alarmen en trends leest, verandert niets aan het proces. Wie een instelling wijzigt, een programma laadt of iets start, grijpt in op een machine waar misschien iemand bij staat.",
-        "Bijlage III van de Machineverordening (EU) 2023/1230 bevat eisen over bedieningsorganen die hierbij passen (punt 1.2.2). De bediener moet zich vanaf iedere bedieningspost kunnen vergewissen dat er niemand in de gevarenzone is. Anders moet het besturingssysteem het inschakelen verhinderen zolang er iemand in de gevarenzone is.",
+        "Bijlage III van de Machineverordening (EU) 2023/1230 bevat eisen over bedieningsorganen die hierbij passen (punt 1.2.2). De bediener moet zich vanaf iedere bedieningspost kunnen vergewissen dat er niemand in de gevarenzone is. Anders moet het besturingssysteem het inschakelen verhinderen zolang er iemand in de gevarenzone is. Bij meer bedieningsposten mag er maar één tegelijk in gebruik zijn, behalve voor stop en noodstop. Denk daaraan als je ook op afstand bedient.",
         "Kan geen van beide, dan moet vóór het inschakelen een geluids- of lichtsignaal worden gegeven. Zo nodig moet de machine alleen vanaf bedieningsposten in vooraf bepaalde zones of plaatsen te bedienen zijn.",
         "Een bruikbaar uitgangspunt is daarom: geef bedienrechten op afstand alleen aan wie ze nodig heeft. Laat ook op afstand niemand iets starten dat een persoon bij de machine in gevaar kan brengen.",
         {
@@ -1086,7 +1090,7 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen, met de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst. We bepalen het benodigde beveiligingsprofiel van een systeem, richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie.",
+        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen, met documentatie die je helpt bij een audit of leveranciersvragenlijst. Samen met jou bepalen we het benodigde beveiligingsniveau van een systeem. We richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie.",
         "Bronnen: NCSC, Aan de slag met het beveiligen van OT/IACS; NCSC, Cyberbeveiligingswet (NIS2); CISA, FBI, EPA en DOE, Primary Mitigations to Reduce Cyber Threats to Operational Technology (mei 2025); IEC 62443-3-3:2013; Verordening (EU) 2023/1230, artikel 54 en bijlage III, en de rectificatie daarvan; Richtlijn (EU) 2022/2555, artikel 21. Stand: november 2026.",
         "Dit artikel geeft algemene informatie en is geen juridisch advies."
       ],
@@ -1111,7 +1115,7 @@ window.SITE_DATA = {
       "verwant": [
         {
           "pagina": "spec-4",
-          "tekst": "Cybersecurity en OT-beveiliging volgens IEC 62443"
+          "tekst": "Cybersecurity en OT-beveiliging vanuit IEC 62443"
         },
         {
           "pagina": "project-1",
@@ -1148,7 +1152,7 @@ window.SITE_DATA = {
           "kop": "Wat is een product met digitale elementen?"
         },
         "Artikel 3, punt 1, noemt het ‘een software- of hardwareproduct en zijn oplossingen voor gegevensverwerking op afstand’. Componenten die apart in de handel komen, horen daar ook bij. De verordening geldt als het beoogde of redelijkerwijs voorzienbare gebruik een gegevensverbinding met een apparaat of netwerk omvat. Die verbinding mag direct of indirect zijn (artikel 2, lid 1).",
-        "Volgens de richtsnoeren van de Europese Commissie is alleen een uitgang aan- en uitschakelen nog geen gegevensverbinding. Dat geldt als die toestanden geen gegevens moeten voorstellen of niet door een digitale ingang worden gelezen. Een samengesteld systeem dat als één product in de handel komt, is volgens dezelfde richtsnoeren één product met digitale elementen. De Commissie gebruikt zelf voorbeelden als een industrieel automatiseringssysteem met een PLC en een industriële machine met een cloudkoppeling.",
+        "Volgens de richtsnoeren van de Europese Commissie is alleen een uitgang aan- en uitschakelen nog geen gegevensverbinding. Dat geldt als die toestanden geen gegevens moeten voorstellen of niet door een digitale ingang worden gelezen. Een samengesteld systeem dat als één product in de handel komt, is volgens dezelfde richtsnoeren één product met digitale elementen. De Commissie gebruikt zelf voorbeelden als een industrieel automatiseringssysteem met een PLC en een industrieel apparaat met een back-end in de cloud.",
         "Software die nodig is om een product te bedienen of configureren, hoort volgens de Commissie bij dat product. De CRA sluit onder meer medische hulpmiddelen, motorvoertuigen en gecertificeerde luchtvaartproducten uit (artikel 2). Machines staan niet in die lijst.",
         {
           "kop": "Wie is de fabrikant onder de CRA?"
@@ -1158,12 +1162,12 @@ window.SITE_DATA = {
         {
           "kop": "Welke data gelden?"
         },
-        "De CRA is op 10 december 2024 in werking getreden. Sinds 11 september 2026 geldt de meldplicht uit artikel 14. Vanaf 11 december 2027 geldt de rest van de verordening (artikel 71).",
+        "De CRA is op 10 december 2024 in werking getreden. Sinds 11 september 2026 geldt de meldplicht uit artikel 14. Vanaf 11 december 2027 gelden de producteisen, de conformiteitsbeoordeling en de CE-markering (artikel 71). De regels voor aangemelde instanties (hoofdstuk IV) gelden al sinds 11 juni 2026.",
         "De meldplicht geldt ook voor producten die al eerder in de handel zijn gebracht (artikel 69, lid 3). De overige eisen gelden voor zulke oudere producten alleen als ze vanaf 11 december 2027 ingrijpend worden gewijzigd (artikel 69, lid 2).",
         {
           "kop": "Wat moet de fabrikant doen?"
         },
-        "De fabrikant zorgt dat het product is ontworpen, ontwikkeld en geproduceerd volgens de essentiële cyberbeveiligingsvereisten van bijlage I. Daarna volgen de conformiteitsbeoordeling, de EU-conformiteitsverklaring en de CE-markering (artikel 13). In gewone woorden gaat het om:",
+        "De fabrikant zorgt dat het product is ontworpen, ontwikkeld en geproduceerd volgens de essentiële cyberbeveiligingsvereisten van bijlage I. Daarna volgen de conformiteitsbeoordeling, de EU-conformiteitsverklaring en de CE-markering (artikel 13). Is de hoofdfunctie van je product VPN of router, dan is het een belangrijk product uit bijlage III. Zelf beoordelen is dan beperkt of niet toegestaan (artikel 32). In gewone woorden gaat het om:",
         {
           "punten": [
             "Een gedocumenteerde beoordeling van de cyberbeveiligingsrisico's, die in de technische documentatie komt en tijdens de ondersteuningsperiode wordt bijgewerkt.",
@@ -1208,8 +1212,8 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems uit Horst ontwikkelt hardware, firmware en software in eigen beheer, en doet PLC-programmering met PLCnext van Phoenix Contact. Wij ontwikkelen besturing waarin beveiliging vanaf het ontwerp is meegenomen, met de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst. Wij bepalen het benodigde beveiligingsprofiel van een systeem, richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Voor zware trajecten werken wij samen met een vaste partner.",
-        "Bronnen: Verordening (EU) 2024/2847 (Cyber Resilience Act), artikelen 2, 3, 13, 14, 22, 69 en 71, overweging 53 en bijlage I (EUR-Lex); Europese Commissie, pagina Cyber Resilience Act en richtsnoeren C/2026/6013 (Publicatieblad C van 17 november 2026); NCSC, nieuwsbericht van 11 september 2026 over de CRA-meldplicht; RDI, pagina Cyber Resilience Act; Verordening (EU) 2023/1230. Stand: november 2026.",
+        "Allico Systems uit Horst ontwikkelt hardware, firmware en software in eigen beheer, en doet PLC-programmering met PLCnext van Phoenix Contact. Wij ontwikkelen besturing waarin beveiliging vanaf het ontwerp is meegenomen, met documentatie die je helpt bij een audit of leveranciersvragenlijst. Samen met jou bepalen we het benodigde beveiligingsniveau van een systeem. We richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Voor zware trajecten werken wij samen met een vaste partner.",
+        "Bronnen: Verordening (EU) 2024/2847 (Cyber Resilience Act), artikelen 2, 3, 7, 13, 14, 22, 32, 69 en 71, overweging 53 en bijlagen I en III (EUR-Lex); Europese Commissie, pagina Cyber Resilience Act en richtsnoeren C/2026/6013 (Publicatieblad C van 17 november 2026); NCSC, nieuwsbericht van 11 september 2026 over de CRA-meldplicht; RDI, pagina Cyber Resilience Act; Verordening (EU) 2023/1230. Stand: november 2026.",
         "Dit artikel geeft algemene informatie en is geen juridisch advies."
       ],
       "vragen": [
@@ -1300,13 +1304,13 @@ window.SITE_DATA = {
         },
         "Je programmeert in PLCnext Engineer, volgens IEC 61131-3. Volgens Phoenix Contact is de basisversie gratis te downloaden. De functies kun je uitbreiden met betaalde add-ins. Als voorbeelden van add-ins noemt de fabrikant een editor voor veiligheidstoepassingen en een HMI-generator.",
         "De productpagina van de AXC F 2152 noemt als talen SFC, LD, FBD en ST, plus C++, C#, Java, Python en Simulink.",
-        "Volgens Phoenix Contact kan de taakafhandeling IEC-code, hogere talen en Simulink-modellen in één taak combineren. Programma's in een hogere taal lopen dan net zo deterministisch als klassieke PLC-code. Realtime noemt de fabrikant uitdrukkelijk voor IEC 61131-3, C/C++, C# en MATLAB Simulink.",
+        "Volgens Phoenix Contact kan de taakafhandeling IEC-code, hogere talen en Simulink-modellen in één taak combineren. Volgens Phoenix Contact lopen programma's in een hogere taal dan net zo deterministisch, mits je de code geschikt voor realtime schrijft. Realtime noemt de fabrikant uitdrukkelijk voor IEC 61131-3, C/C++, C# en MATLAB Simulink.",
         "C++ en C# ontwikkel je met de PLCnext Technology Toolchain, met een add-in voor Eclipse of een extensie voor Visual Studio. Werk je al met CODESYS, dan kun je dat volgens Phoenix Contact koppelen via de Global Data Space van de besturing.",
         {
           "kop": "Kan het bedieningsscherm op de besturing zelf draaien?"
         },
         "Ja. PLCnext Engineer bevat volgens Phoenix Contact een webgebaseerde visualisatie op basis van HTML5 en JavaScript, met een eigen editor. De besturing heeft een eigen webserver. Je maakt het bedieningsscherm dus in dezelfde software als het PLC-programma. De operator opent het in een browser, bijvoorbeeld op een paneel, laptop of tablet.",
-        "Voor uitgebreidere dashboards kun je ook software in een container op de besturing zetten. Dat gebruiken wij voor zelfanalyserende en interactieve dashboards op de besturing.",
+        "Voor uitgebreidere dashboards kun je ook software in een container op de besturing zetten. Dat gebruiken wij voor zelfanalyserende en interactieve dashboards op de besturing. Neem zo'n container dan wel mee in je risicoanalyse.",
         {
           "kop": "Welke koppelingen ondersteunt PLCnext?"
         },
@@ -1323,8 +1327,8 @@ window.SITE_DATA = {
         {
           "kop": "Wat betekent de IEC 62443-certificering van PLCnext?"
         },
-        "Ze zegt iets over de fabrikant en het product, niet over jouw installatie. Volgens Phoenix Contact is PLCnext Control door TÜV gecertificeerd volgens IEC 62443-4-1 (ML 3) en IEC 62443-4-2. Deel 4-1 gaat over het ontwikkelproces van de fabrikant, deel 4-2 over het product zelf. Bij deel 4-2 noemt Phoenix Contact security level 2.",
-        "Phoenix Contact schrijft er zelf bij dat het om geselecteerde besturingen gaat. Bij de AXC F 1152, 2152 en 3152 staan in de catalogus het ontwikkelproces en het product als gecertificeerd. Voor de certificeringsvoorwaarden verwijst de fabrikant naar de gebruikersdocumentatie. Bij de AXC F 1252 staat alleen het ontwikkelproces als gecertificeerd.",
+        "Ze zegt iets over de fabrikant en het product, niet over jouw installatie. Volgens Phoenix Contact is PLCnext Control door TÜV gecertificeerd volgens IEC 62443-4-1 (ML 3) en IEC 62443-4-2. Deel 4-1 gaat over het ontwikkelproces van de fabrikant, deel 4-2 over het product zelf. Bij deel 4-2 gaat het volgens Phoenix Contact om security level 2 als vermogen van het product (SL-C 2), niet van je installatie.",
+        "Phoenix Contact schrijft er zelf bij dat het om geselecteerde besturingen gaat. Bij de AXC F 1152, 2152 en 3152 staan in de catalogus het ontwikkelproces en het product als gecertificeerd. Voor de certificeringsvoorwaarden verwijst de fabrikant naar de gebruikersdocumentatie. Volgens Phoenix Contact geldt het certificaat voor firmware 2024.0 LTS, en alleen als je de beveiligingsvoorwaarden uit de documentatie volgt. Bij de AXC F 1252 staat alleen het ontwikkelproces als gecertificeerd.",
         "Een gecertificeerde besturing maakt een installatie dus niet vanzelf veilig. Daarvoor is ook werk in ontwerp en beheer nodig: beveiligingsfuncties aanzetten, het netwerk in zones verdelen, accounts en rechten inrichten en updates bijhouden. Voor het systeem als geheel beschrijft IEC 62443-3-3 de eisen, per security level.",
         {
           "kop": "Welke PLCnext-besturingen zijn er?"
@@ -1348,8 +1352,8 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems uit Horst doet PLC-programmering en procesbesturing en werkt met PLCnext van Phoenix Contact. Het team past de techniek toe in meerdere projecten. Voorbeelden zijn installaties die beveiligd op afstand toegankelijk zijn, met een dashboard direct vanaf de PLC. Beveiliging nemen we vanaf het ontwerp mee, met de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst.",
-        "Bronnen: Phoenix Contact, PLCnext Technology (productoverzicht en catalogus, nl-nl); Phoenix Contact, productpagina besturing AXC F 2152 (2404267); Phoenix Contact, PLC-programmering en productpagina PLCnext Engineer (1046008); Phoenix Contact, IEC 62443-norm voor industriële cybersecurity; IEC 62443-3-3:2013. Stand: november 2026. PLCnext en Phoenix Contact zijn merken van Phoenix Contact GmbH & Co. KG."
+        "Allico Systems uit Horst doet PLC-programmering en procesbesturing en werkt met PLCnext van Phoenix Contact. Het team past de techniek toe in meerdere projecten. Voorbeelden zijn installaties die beveiligd op afstand toegankelijk zijn, met een dashboard direct vanaf de PLC. Beveiliging nemen we vanaf het ontwerp mee, met documentatie die je helpt bij een audit of leveranciersvragenlijst.",
+        "Bronnen: Phoenix Contact, PLCnext Technology (productoverzicht en catalogus, nl-nl); Phoenix Contact, productpagina besturing AXC F 2152 (2404267); Phoenix Contact, PLC-programmering en productpagina PLCnext Engineer (1046008); Phoenix Contact, IEC 62443-norm voor industriële cybersecurity; Phoenix Contact, Security Info Center, IEC 62443-4-2 compliance list (augustus 2026); IEC 62443-3-3:2013. Stand: november 2026. PLCnext en Phoenix Contact zijn merken van Phoenix Contact GmbH & Co. KG."
       ],
       "vragen": [
         {
@@ -1384,7 +1388,7 @@ window.SITE_DATA = {
         },
         {
           "pagina": "spec-4",
-          "tekst": "Cybersecurity en OT-beveiliging volgens IEC 62443"
+          "tekst": "Cybersecurity en OT-beveiliging vanuit IEC 62443"
         },
         {
           "pagina": "nieuws-8",
@@ -1422,7 +1426,7 @@ window.SITE_DATA = {
         },
         "Alleen als je bedrijf zelf in een sector uit de wet valt en groot genoeg is. De sectoren staan in bijlage 1 en 2 van de wet. In de regel geldt de wet daar voor bedrijven die minstens middelgroot zijn volgens de Europese mkb-definitie.",
         "Let op als je machines bouwt: bijlage 2 noemt de vervaardiging van machines, elektrische apparatuur en elektronische producten. Bijlage 1 noemt ook aanbieders van beheerde diensten. Volgens artikel 1 zijn dat bedrijven die netwerk- en informatiesystemen van een klant installeren, beheren of onderhouden, ter plaatse of op afstand.",
-        "Val je er niet onder, dan sta je volgens het NCSC ook niet onder toezicht. Toch dacht zes op de tien toeleveranciers die NIS2 kennen dat de regels ook voor hen gelden. Dat bleek uit een peiling van het Digital Trust Center uit september 2024.",
+        "Val je er niet onder, dan sta je volgens het NCSC ook niet onder toezicht. Toch dacht zes op de tien toeleveranciers die NIS2 kennen dat de regels volledig ook voor hen gelden. Dat bleek uit een peiling van het Digital Trust Center uit september 2024.",
         {
           "kop": "Waarom krijg je dan toch een NIS2-vragenlijst?"
         },
@@ -1431,6 +1435,7 @@ window.SITE_DATA = {
         {
           "kop": "Welke NIS2-eisen stelt een klant aan jou als leverancier?"
         },
+        "Het Cyberbeveiligingsbesluit werkt de zorgplicht verder uit. Volgens artikel 10 toetst je klant of zijn rechtstreekse leveranciers aan de beveiligingseisen voldoen, en controleert hij dat geregeld. Daar komt de vragenlijst vandaan.",
         "Een vaste lijst met NIS2-eisen voor leveranciers bestaat niet. Wat NIS2 voor leveranciers betekent, verschilt per klant, omdat de eisen volgen uit zijn eigen risicoanalyse. Vragen die je kunt verwachten, gekoppeld aan artikel 21, lid 3:",
         {
           "punten": [
@@ -1475,7 +1480,7 @@ window.SITE_DATA = {
         {
           "kop": "Bestaat er een NIS2-certificaat voor leveranciers?"
         },
-        "Nee. Volgens het NCSC bestaan er geen keurmerken of certificaten waarmee je aantoont dat je aan de Cyberbeveiligingswet voldoet. De RDI schrijft dat keurmerken niet bewijzen dat een organisatie aan de wet voldoet. Een normenkader zoals ISO 27001 kan volgens het NCSC wel helpen in het gesprek met klanten, maar de wet schrijft het niet voor.",
+        "Nee. Volgens het NCSC bestaan er geen keurmerken of certificaten waarmee je aantoont dat je aan de Cyberbeveiligingswet voldoet. De RDI schrijft dat keurmerken niet bewijzen dat een organisatie aan de wet voldoet. Een normenkader zoals ISO 27001 kan volgens het NCSC wel helpen in het gesprek met klanten, maar de wet schrijft het niet voor. Voor sommige sectoren schrijft een ministeriële regeling wel een norm voor, zoals ISO 27001 voor de overheid en waterschappen. Dat kan doorwerken in wat zo'n klant van jou vraagt.",
         {
           "kop": "Wat betekent dit voor machines en besturing?"
         },
@@ -1495,8 +1500,8 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen. Denk aan beveiligde installaties die op afstand toegankelijk zijn, met de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst. Werk je aan een installatie die op afstand toegankelijk moet zijn, neem dan contact met ons op.",
-        "Bronnen: Cyberbeveiligingswet, Staatsblad 2026, 187 (artikelen 1, 12, 21, 24 tot en met 29, 33, 44 en 106, bijlagen 1 en 2); memorie van toelichting, Kamerstukken II 36764, nr. 3; Richtlijn (EU) 2022/2555; NCSC en Digital Trust Center; RDI; Rijksoverheid; ISA, ISA/IEC 62443. Stand: november 2026.",
+        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen. Denk aan beveiligde installaties die op afstand toegankelijk zijn, met documentatie die je helpt bij een audit of leveranciersvragenlijst. Werk je aan een installatie die op afstand toegankelijk moet zijn, neem dan contact met ons op.",
+        "Bronnen: Cyberbeveiligingswet, Staatsblad 2026, 187 (artikelen 1, 12, 21, 24 tot en met 29, 33, 44 en 106, bijlagen 1 en 2); Cyberbeveiligingsbesluit, Staatsblad 2026, 189 (artikelen 10 en 35); sectorregelingen onder het besluit (Staatscourant 2026, 24093 en 27679); memorie van toelichting, Kamerstukken II 36764, nr. 3; Richtlijn (EU) 2022/2555; NCSC, pagina's Cyberbeveiligingswet (NIS2), De Cyberbeveiligingswet en toeleveranciers en Toeleveranciers van Cbw-organisaties, en nieuwsbericht van 8 juli 2025; Digital Trust Center, Flitspeiling beleving NIS2-regelgeving bij toeleveranciers (oktober 2024); RDI, veelgestelde vragen Cyberbeveiligingswet; ISA, ISA/IEC 62443. Stand: november 2026.",
         "Dit artikel geeft algemene informatie en is geen juridisch advies."
       ],
       "vragen": [
@@ -1578,7 +1583,7 @@ window.SITE_DATA = {
       "foto": "kemkens-pand-oss.jpg",
       "fotoAlt": "Het pand van Kemkens Brandbeveiliging in Oss",
       "fotoBron": "Foto: Kemkens Brandbeveiliging",
-      "samenvatting": "Kemkens Brandbeveiliging heeft Allico Systems per februari een nieuwe innovatieopdracht gegeven. Samen zetten we de volgende stap naar een gedigitaliseerd en slim brandbeveiligingssysteem. De nadruk ligt op digitaal inzicht en het testen van de installatie. Met toeleveranciers van Allico Systems wordt de installatie ontworpen volgens IEC 62443."
+      "samenvatting": "Kemkens Brandbeveiliging heeft Allico Systems per februari een nieuwe innovatieopdracht gegeven. Samen zetten we de volgende stap naar een gedigitaliseerd en slim brandbeveiligingssysteem. De nadruk ligt op digitaal inzicht en het testen van de installatie. Met toeleveranciers van Allico Systems wordt de installatie ontworpen vanuit IEC 62443."
     }
   ],
 
@@ -1596,64 +1601,36 @@ window.SITE_DATA = {
       "kop": "Privacyverklaring",
       "bijgewerkt": "26 november 2026",
       "tekst": [
-        "Allico Systems B.V. gaat zorgvuldig om met je persoonsgegevens. In deze verklaring lees je welke gegevens we gebruiken, waarvoor, en welke rechten je hebt.",
+        "Allico Systems B.V. is verantwoordelijk voor je gegevens als je deze site bezoekt of contact met ons opneemt. Je bereikt ons op Expeditiestraat 11, 5961 PX Horst, via info@allico.nl of op +31 6 11 67 17 19.",
         {
-          "kop": "Wie zijn wij?"
+          "kop": "Contact en formulieren"
         },
-        "Allico Systems B.V. is verantwoordelijk voor de verwerking van je gegevens. We zitten aan de Expeditiestraat 11, 5961 PX Horst. Je bereikt ons via info@allico.nl of +31 6 11 67 17 19.",
+        "Mail, bel of app je ons, of vul je een formulier in? Dan gebruiken we wat je ons stuurt, zoals je naam, contactgegevens, bedrijf en vraag.",
+        "De formulieren versturen zelf niets. Ze openen je eigen mailprogramma en jij verstuurt de mail.",
+        "We gebruiken je gegevens om je vraag te beantwoorden, een voorstel te maken en een opdracht uit te voeren en te factureren.",
+        "Dat mag omdat we er een gerechtvaardigd belang bij hebben: contact en zaken doen met jou of je bedrijf. Sluit je zelf een overeenkomst met ons, dan is die de grondslag.",
+        "Je hoeft ons geen gegevens te geven. Zonder naam en e-mailadres of telefoonnummer kunnen we je alleen niet antwoorden.",
         {
-          "kop": "Welke gegevens gebruiken we?"
+          "kop": "Bezoek aan de site"
         },
-        "We gebruiken alleen gegevens die je zelf aan ons geeft:",
+        "Deze site gebruikt geen cookies. De webserver ziet wel je IP-adres, je browser en de pagina die je opvraagt.",
+        "Die gegevens zijn nodig om de site te tonen en te beveiligen. Dat is ons gerechtvaardigd belang. Ze worden niet langer bewaard dan daarvoor nodig is.",
         {
-          "punten": [
-            "Projectcheck: je naam en e-mailadres, en als je die invult ook je bedrijf, telefoonnummer, toelichting en antwoorden over je project",
-            "Terugbelverzoek: je naam en telefoonnummer",
-            "Mail, telefoon of WhatsApp: wat je daarin met ons deelt"
-          ]
+          "kop": "Wie je gegevens ziet"
         },
+        "Alleen wij en de bedrijven die onze website, e-mail en administratie verzorgen. Is het nodig voor je project, dan ook onze partners daarin.",
+        "Stuur je ons een WhatsApp-bericht, dan verwerkt WhatsApp (Meta) dat ook volgens zijn eigen privacybeleid.",
         {
-          "kop": "Hoe werken de formulieren?"
+          "kop": "Hoe lang we je gegevens bewaren"
         },
-        "De formulieren op deze site versturen zelf niets. Ze openen je eigen mailprogramma met je bericht erin. Je ziet dus wat je stuurt, en je verstuurt de mail zelf naar info@allico.nl.",
+        "Zolang we contact hebben of samenwerken, en daarna nog twee jaar. Facturen en andere administratie bewaren we zeven jaar, omdat de belastingwet dat eist.",
         {
-          "kop": "Waarvoor gebruiken we je gegevens?"
+          "kop": "Je rechten"
         },
-        {
-          "punten": [
-            "Om je vraag te beantwoorden of je terug te bellen",
-            "Om een voorstel voor je project te maken",
-            "Om een opdracht uit te voeren en te factureren"
-          ]
-        },
-        "Dat mag volgens de AVG omdat je ons zelf om contact vraagt, of omdat we een overeenkomst met je willen sluiten of uitvoeren. Voor facturen geldt daarnaast een wettelijke bewaarplicht.",
-        {
-          "kop": "Hoe lang bewaren we je gegevens?"
-        },
-        "We bewaren je gegevens niet langer dan nodig. Leidt je vraag niet tot een opdracht, dan verwijderen we je gegevens uiterlijk twee jaar na het laatste contact. Gegevens die we volgens de belastingwet moeten bewaren, zoals facturen, bewaren we zeven jaar.",
-        {
-          "kop": "Met wie delen we je gegevens?"
-        },
-        "We verkopen je gegevens niet en gebruiken ze niet voor reclame. Ze komen alleen bij ons en bij de bedrijven die onze website en e-mail technisch verzorgen. De website staat bij STRATO, een hostingbedrijf in Duitsland.",
-        "Verder delen we je gegevens alleen als dat nodig is voor je vraag of project, of als de wet ons dat verplicht. Stuur je ons een WhatsApp-bericht, dan loopt dat via WhatsApp van Meta. Daarvoor geldt ook het privacybeleid van WhatsApp.",
-        {
-          "kop": "Cookies en bezoekgegevens"
-        },
-        "Deze site gebruikt geen cookies.",
-        "Bij elk bezoek ontvangt de webserver wel technische gegevens, zoals je IP-adres, je browser en de pagina die je opvraagt. Die zijn nodig om de site te tonen en te beveiligen.",
-        {
-          "kop": "Beveiliging"
-        },
-        "De site gebruikt een versleutelde verbinding (https). Merk je dat er iets mis is met je gegevens, laat het ons dan direct weten.",
-        {
-          "kop": "Jouw rechten"
-        },
-        "Je mag je gegevens inzien, laten verbeteren of laten verwijderen. Je kunt ook bezwaar maken tegen het gebruik, het gebruik laten beperken of je gegevens laten overdragen. Stuur daarvoor een mail naar info@allico.nl. We reageren binnen een maand.",
-        "Ben je het niet eens met hoe we met je gegevens omgaan? Laat het ons eerst weten. Je kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl).",
-        {
-          "kop": "Wijzigingen"
-        },
-        "Deze verklaring kan veranderen, bijvoorbeeld als de site verandert. Bovenaan staat wanneer ze voor het laatst is bijgewerkt."
+        "Je mag je gegevens inzien, laten verbeteren of laten wissen. Je mag ook vragen het gebruik te beperken of je gegevens over te dragen.",
+        "Je mag altijd bezwaar maken tegen het gebruik van je gegevens op grond van ons gerechtvaardigd belang.",
+        "Mail daarvoor naar info@allico.nl. We reageren binnen een maand.",
+        "Ben je het niet eens met hoe we met je gegevens omgaan? Dan kun je een klacht indienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl)."
       ]
     }
   },

@@ -47,7 +47,7 @@
       "url": "https://allicosystems.nl/",
       "logo": "https://allicosystems.nl/allico-logo-512.png",
       "image": "https://allicosystems.nl/deelbeeld.jpg",
-      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.",
+      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand vanuit IEC 62443. Van idee tot werkend systeem.",
       "telephone": "+31611671719",
       "email": "info@allico.nl",
       "address": {
@@ -226,10 +226,10 @@
             <h2>Het doel</h2>
             <p>Om toekomstbestendig te blijven, zocht Kemkens Brandbeveiliging een efficiënte manier om het onderhoud van installaties te garanderen. De oplossing: testen op afstand. Het doel van dit project is een uiterst betrouwbare en beveiligde verbinding met brandbeveiligingsinstallaties op willekeurige locaties in Nederland. Daarmee kunnen systemen op afstand in werking worden gesteld en sensoren worden uitgelezen. Dat geeft direct inzicht in de prestaties en de werking van de installatie.</p>
             <h2>De uitdaging</h2>
-            <p>Brandbeveiligingssystemen zijn kritieke installaties. De beveiliging van de verbinding moet daarom optimaal en volledig gecertificeerd zijn. Daarnaast is gebruiksgemak een harde eis: het nieuwe beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken.</p>
+            <p>Brandbeveiligingssystemen zijn kritieke installaties. De verbinding moet daarom aantoonbaar veilig zijn. Daarnaast is gebruiksgemak een harde eis: het nieuwe beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken.</p>
             
             <h2>Onze aanpak</h2>
-            <p>Voor een certificering op IEC 62443-niveau zijn speciale hardware, software en licenties nodig. Daarvoor werken we nauw samen met gespecialiseerde partners. Zij leveren de robuuste basis voor dit type systemen. Daarop ontwikkelt Allico Systems de integratie en het maatwerk dat aansluit op het doel van het project.</p>
+            <p>Daarom bouwen we vanuit IEC 62443, op hardware en software van gespecialiseerde partners. Zij leveren de robuuste basis voor dit type systemen. Daarop ontwikkelt Allico Systems de integratie en het maatwerk dat aansluit op het doel van het project.</p>
             
             
             <h2>Testen, monitoren en beheren op afstand: het doel</h2>
@@ -599,7 +599,7 @@
         </address>
       </div></div>
         <div class="footer-bottom" id="footer-bottom">
-      <p>&copy; 2026 Allico Systems. Alle rechten voorbehouden.</p>
+      <p>&copy; 2026 Allico Systems B.V. Alle rechten voorbehouden.</p>
       <div class="footer-bottom-links"><a href="../../privacyverklaring/" data-page="privacy">Privacyverklaring</a></div></div>
     </footer>
 
@@ -1080,7 +1080,7 @@
                         ? `<a href="${j[sleutel]}">${tekst}</a>`
                         : `<a href="${paginaUrl(sleutel)}" data-page="${sleutel}">${tekst}</a>`).join('');
                 bottom.innerHTML = `
-      <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
+      <p>&copy; ${b.copyright.replace(/\.$/, '')}. Alle rechten voorbehouden.${b.kvk ? ` KvK ${b.kvk}.` : ''}${b.btw ? ` Btw ${b.btw}.` : ''}</p>
       ${juridisch ? `<div class="footer-bottom-links">${juridisch}</div>` : ''}`;
             }
         }
