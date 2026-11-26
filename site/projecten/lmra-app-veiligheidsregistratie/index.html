@@ -237,9 +237,6 @@
             <h2>Wat is een LMRA?</h2>
             <p>LMRA staat voor Laatste Minuut Risico Analyse: een korte controle vlak voordat iemand aan een klus begint. Kloppen de omstandigheden, zijn de risico's bekend en zijn de maatregelen genomen?</p><p>Een papieren LMRA-formulier raakt snel zoek, of wordt pas achteraf ingevuld. Met een digitale LMRA gebeurt het op het moment zelf, en ziet de leidinggevende het direct.</p>
             
-            <h2>Digitale LMRA: standaardpakket of eigen app?</h2>
-            <p>Er bestaan standaardpakketten voor de digitale LMRA. Wil je alleen een digitaal formulier, dan is zo'n pakket vaak de snelste weg.</p><p>Een eigen veiligheidsapp of werkplekinspectie-app loont als de app moet aansluiten op je eigen accounts en systemen. Of als je eigen overzichten en meldingen wilt, zoals in dit project.</p>
-            
             <h2>Veelgestelde vragen</h2>
             <h3>Werkt de LMRA-app ook voor medewerkers die geen Nederlands spreken?</h3><p>Ja. Dat was een van de eisen. De app is gemakkelijk te begrijpen en in te vullen, ook voor werknemers en onderaannemers die geen Nederlands spreken.</p><h3>Ziet een leidinggevende direct wat er is ingevuld?</h3><p>Ja. De resultaten zijn direct beschikbaar, ook voor leidinggevenden op andere locaties. Bij een onveilige situatie gaat er automatisch een pushmelding uit.</p><h3>Kan onze eigen IT-afdeling de app beheren?</h3><p>Ja. De accounts zijn gekoppeld aan de bestaande e-mailadressen. Hosting, updates en certificaten zijn zo ingericht dat de interne IT-afdeling het zelf kan oppakken.</p>
             <h2>Zie ook</h2>
@@ -265,10 +262,7 @@
               <h3>Ingezette technologie</h3>
               <div class="tech-tags"><span class="tech-tag">Dart</span><span class="tech-tag">REST API</span><span class="tech-tag">SQL</span></div>
             </div>
-            <div class="detail-sidebar-block">
-              <h3>Doorlooptijd</h3>
-              <p>6 maanden</p>
-            </div>
+            
           </aside>
         </div>
       </section></div><!-- /page-project-2 -->
@@ -911,10 +905,10 @@
               <h3>Ingezette technologie</h3>
               <div class="tech-tags">${tagsHtml}</div>
             </div>
-            <div class="detail-sidebar-block">
+            ${d.doorlooptijd ? `<div class="detail-sidebar-block">
               <h3>Doorlooptijd</h3>
               <p>${d.doorlooptijd}</p>
-            </div>
+            </div>` : ''}
           </aside>
         </div>
       </section>`;

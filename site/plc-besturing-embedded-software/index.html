@@ -224,7 +224,7 @@
             <p>PLCnext Technology is het open automatiseringsplatform van Phoenix Contact. Het combineert de klassieke PLC-talen uit IEC 61131 met hogere programmeertalen zoals C, C++ en MATLAB Simulink.</p><p>Daarmee kan één besturing meer dan een traditionele PLC. Denk aan een dashboard direct vanaf de besturing, beveiligde toegang op afstand en koppelingen naar cloud- of MES-systemen.</p><p>Wij hebben de Workshop PLCnext Engineer bij Phoenix Contact gevolgd en zetten dat traject voort. De techniek passen we inmiddels toe in meerdere projecten.</p>
             
             <h2>Een PLC-programmeur zoeken of het programmeren uitbesteden?</h2>
-            <p>Zoek je een PLC-programmeur in Limburg, of wil je het PLC-programmeren uitbesteden? Bij ons werk je niet met een losse zzp'er, maar met een klein team. Hardware, firmware en software houden we in eigen beheer.</p><p>Zo streven we naar één geheel: besturing, bediening en beveiliging uit één hand.</p><p>Het team is compact en ieder heeft een eigen specialisme. Daardoor schakelen we snel: je hebt snel een voorstel, en een project kan snel starten en vlot worden afgerond.</p>
+            <p>Zoek je een PLC-programmeur, of wil je het PLC-programmeren uitbesteden? Bij ons werk je met een klein en gespecialiseerd team. Hardware, firmware en software houden we in eigen beheer.</p><p>Zo kunnen we een compleet systeem opleveren: van besturing en bediening tot beveiliging.</p><p>Het team is compact en ieder heeft een eigen specialisme. Daardoor schakelen we snel: je hebt snel een voorstel, en een project kan snel starten en vlot worden afgerond.</p>
             
             <h2>Een besturing die ook de monteur begrijpt</h2>
             <p>Via een dashboard maken we veel van de besturing toegankelijk en instelbaar. Zo zijn servicemonteurs minder afhankelijk van PLC-kennis.</p><p>Meer daarover lees je op de pagina over dashboards.</p>
@@ -919,10 +919,10 @@
               <h3>Ingezette technologie</h3>
               <div class="tech-tags">${tagsHtml}</div>
             </div>
-            <div class="detail-sidebar-block">
+            ${d.doorlooptijd ? `<div class="detail-sidebar-block">
               <h3>Doorlooptijd</h3>
               <p>${d.doorlooptijd}</p>
-            </div>
+            </div>` : ''}
           </aside>
         </div>
       </section>`;

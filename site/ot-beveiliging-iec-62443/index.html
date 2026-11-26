@@ -219,7 +219,7 @@
             <h1>OT-security vanuit IEC 62443: installaties veilig op afstand bereikbaar</h1>
             <p class="detail-lead">OT-security, ook wel OT-beveiliging, gaat over de beveiliging van machines, installaties en hun besturing. Data inzien en installaties op afstand besturen is een gevoelig onderwerp. Deze systemen mogen alleen toegankelijk zijn voor de partijen waarvoor ze bedoeld zijn. Daarom is een doordachte beveiliging cruciaal voor de continuïteit van het systeem.</p>
             <h2>Aanpak</h2>
-            <p>Het gewenste beveiligingsniveau bepalen we op basis van het profiel van het systeem, de gevoeligheid van de data en de risico's bij ongeautoriseerde toegang.</p><p>Voor applicaties die data tonen, betekent dat bijvoorbeeld sterke netwerkbeveiliging, afgeschermde toegang en betrouwbare verificatie zoals tweestapsverificatie (2FA).</p><p>Bij systemen waarmee installaties op afstand worden bestuurd, ligt de lat aanzienlijk hoger. Ongeautoriseerde toegang kan daar directe gevolgen hebben voor de continuïteit en de veiligheid.</p><p>Voor dit soort trajecten werken wij samen met een vaste partner. Hoog aangeschreven hardware combineren we met gezamenlijk ontwikkelde software. Zo kunnen we een hoog beveiligingsniveau realiseren, zoals in het project voor Kemkens, opgebouwd vanuit IEC 62443.</p>
+            <p>Het gewenste beveiligingsniveau bepalen we op basis van het profiel van het systeem, de gevoeligheid van de data en de risico's bij ongeautoriseerde toegang.</p><p>Voor applicaties die data tonen, betekent dat bijvoorbeeld sterke netwerkbeveiliging, afgeschermde toegang en betrouwbare verificatie zoals tweestapsverificatie (2FA).</p><p>Bij systemen waarmee installaties op afstand worden bestuurd, ligt de lat aanzienlijk hoger. Ongeautoriseerde toegang kan daar directe gevolgen hebben voor de continuïteit en de veiligheid.</p><p>Voor dit soort trajecten werken wij samen met een vaste partner. Hoog aangeschreven hardware combineren we met gezamenlijk ontwikkelde software. Zo kunnen we een hoog beveiligingsniveau realiseren.</p>
             <h2>Wat wij doen</h2>
             <ul><li>Analyse van het benodigde beveiligingsprofiel</li><li>Opzetten van digitale beveiliging voor websites en platforms</li><li>Inrichten van VPN-tunnelbeveiliging</li><li>Versleutelde communicatie tussen systemen</li></ul>
             
@@ -230,20 +230,12 @@
             <h2>IEC 62443 in het kort</h2>
             <p>IEC 62443 is de internationale normenreeks voor de beveiliging van industriële automatisering en besturing. De normenreeks is geen wet, maar wel een veelgebruikte manier om de beveiliging van een installatie aantoonbaar te maken.</p>
             <ul><li>IEC 62443-3-3: eisen aan het systeem als geheel, ingedeeld in beveiligingsniveaus</li><li>IEC 62443-4-1: eisen aan het ontwikkelproces van de leverancier</li><li>IEC 62443-4-2: technische eisen aan de onderdelen, zoals een PLC</li></ul>
-            <h2>Wat houdt een IEC 62443-certificering in?</h2>
-            <p>Een certificering volgens IEC 62443 wordt afgegeven door een onafhankelijke instelling. Ze geldt voor een onderdeel, een ontwikkelproces of een systeem.</p><p>In het project voor Kemkens werken we voor de hardware, software en licenties samen met gespecialiseerde partners. Zij leveren de basis. Wij ontwikkelen de integratie en het maatwerk.</p>
-            
             <h2>Een PLC veilig op afstand benaderen</h2>
             <p>Veilige toegang op afstand (secure remote access) tot een PLC of installatie begint bij de verbinding. Wij richten een versleutelde VPN-verbinding in, met afgeschermde toegang en tweestapsverificatie.</p><p>Het beveiligingsniveau stemmen we af op wat er op afstand moet kunnen. Monitoring op afstand vraagt minder dan een installatie op afstand besturen.</p>
             
             <h2>NIS2, de Cyberbeveiligingswet en OT-security</h2>
             <p>Sinds 15 augustus 2026 geldt de Cyberbeveiligingswet, de Nederlandse uitwerking van NIS2. Organisaties die onder de wet vallen, zijn ook verantwoordelijk voor de beveiliging van hun toeleveringsketen.</p><p>Daarom vragen zij ook van hun leveranciers aantoonbare maatregelen. Veilige toegang op afstand, netwerkscheiding en een aantoonbaar ontwikkelproces worden zo onderdeel van wat een klant van je verwacht.</p>
             
-            <div class="praktijk-blok">
-              <h2>Uit de praktijk: sprinklerinstallaties veilig op afstand testen</h2>
-              <p>Voor Kemkens Brandbeveiliging werken we aan een betrouwbare en beveiligde verbinding met sprinklerinstallaties op locaties in heel Nederland. Omdat het om kritieke installaties gaat, is de beveiliging opgebouwd vanuit IEC 62443.</p>
-              <p><a class="tekst-link" href="../projecten/brandbeveiliging-op-afstand-testen-kemkens/" data-page="project-1">Lees het hele project</a></p>
-            </div>
             <h2>Veelgestelde vragen</h2>
             <h3>Moet mijn machine of installatie aan IEC 62443 voldoen?</h3><p>IEC 62443 is een norm, geen wet. Wetgeving zoals de Cyberbeveiligingswet vraagt wel om aantoonbare maatregelen. De norm is een praktische manier om die in te vullen.</p><h3>Hoe regel je toegang op afstand voor monteurs en leveranciers?</h3><p>Met een versleutelde VPN-verbinding, afgeschermde toegang en tweestapsverificatie. Het beveiligingsniveau stemmen we af op wat er op afstand moet kunnen: alleen meekijken, of ook bedienen.</p><h3>Is OT-security alleen iets voor grote bedrijven?</h3><p>Nee. We bepalen het beveiligingsniveau op basis van het profiel van je systeem en de risico's. Voor een kleine installatie is dat een ander niveau dan voor een kritieke installatie.</p>
             <h2>Zie ook</h2>
@@ -922,10 +914,10 @@
               <h3>Ingezette technologie</h3>
               <div class="tech-tags">${tagsHtml}</div>
             </div>
-            <div class="detail-sidebar-block">
+            ${d.doorlooptijd ? `<div class="detail-sidebar-block">
               <h3>Doorlooptijd</h3>
               <p>${d.doorlooptijd}</p>
-            </div>
+            </div>` : ''}
           </aside>
         </div>
       </section>`;

@@ -7,13 +7,14 @@
 #   alleen de regel met Content-Security-Policy en kijk in de console van de browser (F12) wat er werd geweigerd.
 # - Vul je formulier.endpoint in data/siteData.js in (bijvoorbeeld Formspree)? Zet dat domein dan achter connect-src,
 #   bijvoorbeeld: connect-src 'self' https://formspree.io; anders weigert de browser het versturen.
+# - Google Fonts is er op 26-11-2026 uit gehaald (Wessel): de site laadt geen lettertypen of opmaak van andere sites.
 <IfModule mod_headers.c>
     Header always set Strict-Transport-Security "max-age=86400; includeSubDomains"
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "DENY"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
 </IfModule>
 
 # Een adres voor Google. Alles wat niet precies allicosystems.nl is

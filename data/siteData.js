@@ -280,8 +280,8 @@ window.SITE_DATA = {
           {
             "kop": "Een PLC-programmeur zoeken of het programmeren uitbesteden?",
             "alineas": [
-              "Zoek je een PLC-programmeur in Limburg, of wil je het PLC-programmeren uitbesteden? Bij ons werk je niet met een losse zzp'er, maar met een klein team. Hardware, firmware en software houden we in eigen beheer.",
-              "Zo streven we naar één geheel: besturing, bediening en beveiliging uit één hand.",
+              "Zoek je een PLC-programmeur, of wil je het PLC-programmeren uitbesteden? Bij ons werk je met een klein en gespecialiseerd team. Hardware, firmware en software houden we in eigen beheer.",
+              "Zo kunnen we een compleet systeem opleveren: van besturing en bediening tot beveiliging.",
               "Het team is compact en ieder heeft een eigen specialisme. Daardoor schakelen we snel: je hebt snel een voorstel, en een project kan snel starten en vlot worden afgerond."
             ]
           },
@@ -454,7 +454,7 @@ window.SITE_DATA = {
           "Het gewenste beveiligingsniveau bepalen we op basis van het profiel van het systeem, de gevoeligheid van de data en de risico's bij ongeautoriseerde toegang.",
           "Voor applicaties die data tonen, betekent dat bijvoorbeeld sterke netwerkbeveiliging, afgeschermde toegang en betrouwbare verificatie zoals tweestapsverificatie (2FA).",
           "Bij systemen waarmee installaties op afstand worden bestuurd, ligt de lat aanzienlijk hoger. Ongeautoriseerde toegang kan daar directe gevolgen hebben voor de continuïteit en de veiligheid.",
-          "Voor dit soort trajecten werken wij samen met een vaste partner. Hoog aangeschreven hardware combineren we met gezamenlijk ontwikkelde software. Zo kunnen we een hoog beveiligingsniveau realiseren, zoals in het project voor Kemkens, opgebouwd vanuit IEC 62443."
+          "Voor dit soort trajecten werken wij samen met een vaste partner. Hoog aangeschreven hardware combineren we met gezamenlijk ontwikkelde software. Zo kunnen we een hoog beveiligingsniveau realiseren."
         ],
         "watWijDoen": [
           "Analyse van het benodigde beveiligingsprofiel",
@@ -482,13 +482,6 @@ window.SITE_DATA = {
             ]
           },
           {
-            "kop": "Wat houdt een IEC 62443-certificering in?",
-            "alineas": [
-              "Een certificering volgens IEC 62443 wordt afgegeven door een onafhankelijke instelling. Ze geldt voor een onderdeel, een ontwikkelproces of een systeem.",
-              "In het project voor Kemkens werken we voor de hardware, software en licenties samen met gespecialiseerde partners. Zij leveren de basis. Wij ontwikkelen de integratie en het maatwerk."
-            ]
-          },
-          {
             "kop": "Een PLC veilig op afstand benaderen",
             "alineas": [
               "Veilige toegang op afstand (secure remote access) tot een PLC of installatie begint bij de verbinding. Wij richten een versleutelde VPN-verbinding in, met afgeschermde toegang en tweestapsverificatie.",
@@ -503,11 +496,6 @@ window.SITE_DATA = {
             ]
           }
         ],
-        "praktijk": {
-          "project": "project-1",
-          "kop": "Uit de praktijk: sprinklerinstallaties veilig op afstand testen",
-          "tekst": "Voor Kemkens Brandbeveiliging werken we aan een betrouwbare en beveiligde verbinding met sprinklerinstallaties op locaties in heel Nederland. Omdat het om kritieke installaties gaat, is de beveiliging opgebouwd vanuit IEC 62443."
-        },
         "vragen": [
           {
             "vraag": "Moet mijn machine of installatie aan IEC 62443 voldoen?",
@@ -602,7 +590,7 @@ window.SITE_DATA = {
           },
           {
             "vraag": "Wie beheert de app na oplevering?",
-            "antwoord": "Dat spreken we vooraf af. Bij de LMRA-app is het beheer (hosting, updates en certificaten) zo ingericht dat de interne IT-afdeling het zelf kan oppakken."
+            "antwoord": "Dat spreken we vooraf af. Dat kunnen wij zijn, maar ook je eigen IT-afdeling."
           },
           {
             "vraag": "Kunnen we eerst iets kleins proberen?",
@@ -688,7 +676,7 @@ window.SITE_DATA = {
             "antwoord": "De opzet is opgebouwd vanuit IEC 62443, de normenreeks voor de beveiliging van industriële besturing. Daarbij horen een VPN-verbinding en tweestapsverificatie (2FA)."
           },
           {
-            "vraag": "Kan dit ook voor andere installaties dan brandbeveiliging?",
+            "vraag": "Kan dit ook voor andere installaties buiten brandbeveiliging?",
             "antwoord": "Dezelfde aanpak past bij andere installaties die je op afstand wilt monitoren, testen of beheren. We kijken graag wat dat voor jouw installaties kan betekenen."
           },
           {
@@ -748,13 +736,6 @@ window.SITE_DATA = {
               "LMRA staat voor Laatste Minuut Risico Analyse: een korte controle vlak voordat iemand aan een klus begint. Kloppen de omstandigheden, zijn de risico's bekend en zijn de maatregelen genomen?",
               "Een papieren LMRA-formulier raakt snel zoek, of wordt pas achteraf ingevuld. Met een digitale LMRA gebeurt het op het moment zelf, en ziet de leidinggevende het direct."
             ]
-          },
-          {
-            "kop": "Digitale LMRA: standaardpakket of eigen app?",
-            "alineas": [
-              "Er bestaan standaardpakketten voor de digitale LMRA. Wil je alleen een digitaal formulier, dan is zo'n pakket vaak de snelste weg.",
-              "Een eigen veiligheidsapp of werkplekinspectie-app loont als de app moet aansluiten op je eigen accounts en systemen. Of als je eigen overzichten en meldingen wilt, zoals in dit project."
-            ]
           }
         ],
         "vragen": [
@@ -776,8 +757,7 @@ window.SITE_DATA = {
           { "pagina": "spec-3", "tekst": "Dashboard op maat voor machines en sensordata" }
         ],
         "sector": "Industrie · Veiligheid",
-        "technologieen": ["Dart", "REST API", "SQL"],
-        "doorlooptijd": "6 maanden"
+        "technologieen": ["Dart", "REST API", "SQL"]
       }
     }
   ],
@@ -874,10 +854,6 @@ window.SITE_DATA = {
         {
           "vraag": "Is een software-update een substantiële wijziging onder de Machineverordening?",
           "antwoord": "Niet vanzelf. Volgens artikel 3, punt 16, gaat het om een wijziging die de fabrikant niet heeft voorzien of gepland, ook met digitale middelen. Ze schept een nieuw gevaar of vergroot een bestaand risico. Daardoor zijn extra afschermingen of beveiligingsinrichtingen met een aangepast veiligheidscontrolesysteem nodig, of maatregelen voor stabiliteit of sterkte."
-        },
-        {
-          "vraag": "Mag een machine die vóór 20 januari 2027 in de handel is gebracht op de markt blijven?",
-          "antwoord": "Ja. Een machine die vóór 20 januari 2027 volgens de Machinerichtlijn 2006/42/EG in de handel is gebracht, mag daarna nog op de markt worden aangeboden. Dat staat in artikel 52."
         }
       ],
       "verwant": [
@@ -985,7 +961,7 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen, en werkt met PLCnext van Phoenix Contact. We bepalen het benodigde beveiligingsprofiel, richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Daarbij hoort de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst. Voor Kemkens Brandbeveiliging werken we aan een beveiligde verbinding om brandbeveiligingsinstallaties op afstand te testen en te beheren, opgebouwd vanuit IEC 62443.",
+        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen, en werkt met PLCnext van Phoenix Contact. We bepalen het benodigde beveiligingsprofiel, richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Daarbij hoort de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst.",
         "Bronnen: Cyberbeveiligingswet, Staatsblad 2026, 187 (artikelen 1, 21 en 25 tot en met 29); memorie van toelichting, Kamerstukken II 36764, nr. 3; Richtlijn (EU) 2022/2555 (NIS2), overweging 89; NCSC, De Cyberbeveiligingswet en toeleveranciers; RDI, veelgestelde vragen Cyberbeveiligingswet; ISA en IEC, titels en samenvattingen van de delen van ISA/IEC 62443. Stand: november 2026.",
         "Dit artikel geeft algemene informatie en is geen juridisch advies."
       ],
@@ -1110,7 +1086,7 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen, met de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst. We bepalen het benodigde beveiligingsprofiel van een systeem, richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie. Voor Kemkens Brandbeveiliging werkt Allico aan een beveiligde verbinding om brandbeveiligingsinstallaties op afstand te testen en te beheren, opgebouwd vanuit IEC 62443. Voor zware trajecten werkt Allico samen met een vaste partner.",
+        "Allico Systems ontwikkelt besturing waarin beveiliging vanaf het ontwerp is meegenomen, met de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst. We bepalen het benodigde beveiligingsprofiel van een systeem, richten VPN-verbindingen en versleutelde communicatie in en gebruiken tweestapsverificatie.",
         "Bronnen: NCSC, Aan de slag met het beveiligen van OT/IACS; NCSC, Cyberbeveiligingswet (NIS2); CISA, FBI, EPA en DOE, Primary Mitigations to Reduce Cyber Threats to Operational Technology (mei 2025); IEC 62443-3-3:2013; Verordening (EU) 2023/1230, artikel 54 en bijlage III, en de rectificatie daarvan; Richtlijn (EU) 2022/2555, artikel 21. Stand: november 2026.",
         "Dit artikel geeft algemene informatie en is geen juridisch advies."
       ],
@@ -1330,7 +1306,7 @@ window.SITE_DATA = {
           "kop": "Kan het bedieningsscherm op de besturing zelf draaien?"
         },
         "Ja. PLCnext Engineer bevat volgens Phoenix Contact een webgebaseerde visualisatie op basis van HTML5 en JavaScript, met een eigen editor. De besturing heeft een eigen webserver. Je maakt het bedieningsscherm dus in dezelfde software als het PLC-programma. De operator opent het in een browser, bijvoorbeeld op een paneel, laptop of tablet.",
-        "Voor uitgebreidere dashboards kun je ook software in een container op de besturing zetten. Volgens Phoenix Contact zit de container-engine Podman daarvoor sinds firmware 2023.0 in het besturingssysteem.",
+        "Voor uitgebreidere dashboards kun je ook software in een container op de besturing zetten. Dat gebruiken wij voor zelfanalyserende en interactieve dashboards op de besturing.",
         {
           "kop": "Welke koppelingen ondersteunt PLCnext?"
         },
@@ -1350,7 +1326,6 @@ window.SITE_DATA = {
         "Ze zegt iets over de fabrikant en het product, niet over jouw installatie. Volgens Phoenix Contact is PLCnext Control door TÜV gecertificeerd volgens IEC 62443-4-1 (ML 3) en IEC 62443-4-2. Deel 4-1 gaat over het ontwikkelproces van de fabrikant, deel 4-2 over het product zelf. Bij deel 4-2 noemt Phoenix Contact security level 2.",
         "Phoenix Contact schrijft er zelf bij dat het om geselecteerde besturingen gaat. Bij de AXC F 1152, 2152 en 3152 staan in de catalogus het ontwikkelproces en het product als gecertificeerd. Voor de certificeringsvoorwaarden verwijst de fabrikant naar de gebruikersdocumentatie. Bij de AXC F 1252 staat alleen het ontwikkelproces als gecertificeerd.",
         "Een gecertificeerde besturing maakt een installatie dus niet vanzelf veilig. Daarvoor is ook werk in ontwerp en beheer nodig: beveiligingsfuncties aanzetten, het netwerk in zones verdelen, accounts en rechten inrichten en updates bijhouden. Voor het systeem als geheel beschrijft IEC 62443-3-3 de eisen, per security level.",
-        "Daarnaast bereidt Phoenix Contact de AXC F 2152 voor op de Cyber Resilience Act. Het doel is volgens de fabrikant dat hij vanaf 11 december 2027 aan de eisen voldoet. Phoenix Contact gaat daarbij uit van wat er nu over die wet bekend is.",
         {
           "kop": "Welke PLCnext-besturingen zijn er?"
         },
@@ -1373,7 +1348,7 @@ window.SITE_DATA = {
         {
           "kop": "Hoe Allico Systems hierbij helpt"
         },
-        "Allico Systems uit Horst doet PLC-programmering en procesbesturing en werkt met PLCnext van Phoenix Contact. Het team heeft de Workshop PLCnext Engineer bij Phoenix Contact gevolgd en past de techniek toe in meerdere projecten. Voorbeelden zijn installaties die beveiligd op afstand toegankelijk zijn, met een dashboard direct vanaf de PLC. Beveiliging nemen we vanaf het ontwerp mee, met de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst.",
+        "Allico Systems uit Horst doet PLC-programmering en procesbesturing en werkt met PLCnext van Phoenix Contact. Het team past de techniek toe in meerdere projecten. Voorbeelden zijn installaties die beveiligd op afstand toegankelijk zijn, met een dashboard direct vanaf de PLC. Beveiliging nemen we vanaf het ontwerp mee, met de documentatie die je nodig hebt voor een audit of leveranciersvragenlijst.",
         "Bronnen: Phoenix Contact, PLCnext Technology (productoverzicht en catalogus, nl-nl); Phoenix Contact, productpagina besturing AXC F 2152 (2404267); Phoenix Contact, PLC-programmering en productpagina PLCnext Engineer (1046008); Phoenix Contact, IEC 62443-norm voor industriële cybersecurity; IEC 62443-3-3:2013. Stand: november 2026. PLCnext en Phoenix Contact zijn merken van Phoenix Contact GmbH & Co. KG."
       ],
       "vragen": [
@@ -1572,10 +1547,9 @@ window.SITE_DATA = {
       "titel": "Allico Systems start certificeringstraject bij Phoenix Contact",
       "samenvatting": "Wij volgen bij Phoenix Contact een certificeringstraject voor PLCnext. Daarin worden personen volgens vaste criteria gecertificeerd. De Workshop PLCnext Engineer hebben we gevolgd; het traject loopt nog.",
       "tekst": [
-        "De afgelopen periode hebben wij de Workshop PLCnext Engineer bij Phoenix Contact gevolgd. Die workshop is de start van een certificeringstraject. Daarin worden personen volgens vaste criteria gecertificeerd. Op dit moment volgen we het voor PLCnext.",
-        "Dit traject zetten we het komende jaar voort om onze kennis en vaardigheden verder te ontwikkelen. Het loopt dus nog.",
+        "De afgelopen periode hebben wij de Workshop PLCnext Engineer bij Phoenix Contact gevolgd. Die workshop is de start van een certificeringstraject. Daarin worden personen volgens vaste criteria gecertificeerd.",
+        "Dit traject zetten we het komende jaar voort om onze kennis en vaardigheden verder te ontwikkelen.",
         "Een belangrijk onderdeel van dit traject is PLCnext Technology. Dit open automatiseringsplatform combineert de klassieke betrouwbaarheid van IEC 61131 met hogere programmeertalen zoals C, C++ en MATLAB Simulink. Dankzij de open Linux-kernel kunnen deze technologieën binnen dezelfde realtime-omgeving worden toegepast.",
-        "Daarmee ontstaan mogelijkheden die verder gaan dan een traditionele PLC-besturing. Denk aan HTML5-dashboards direct vanaf de besturing en beveiligde toegang op afstand. Of aan datakoppelingen naar cloud- of MES-systemen, zonder aparte industriële pc in de kast.",
         "De timing is geen toeval. Met de Cyberbeveiligingswet, de Nederlandse uitwerking van NIS2, krijgen meer bedrijven te maken met strengere eisen aan cybersecurity. Ook in de toeleveringsketen. Cybersecurity wordt daarmee iets dat je aantoonbaar op orde moet hebben.",
         "Daarbij wordt het belangrijker om te laten zien dat cybersecurity vanaf het ontwerp is meegenomen. Ontwikkelprocessen volgens IEC 62443-4-1 zijn dan geen technisch detail meer. Ze zijn onderdeel van een bredere aanpak rond veilige industriële automatisering.",
         "Inmiddels passen we Phoenix Contact PLCnext toe in meerdere projecten. Bijvoorbeeld bij installaties die beveiligd op afstand toegankelijk zijn, met complexe besturingen en een volwaardig dashboard direct vanaf de PLC.",
@@ -1665,7 +1639,7 @@ window.SITE_DATA = {
         {
           "kop": "Cookies en bezoekgegevens"
         },
-        "Deze site gebruikt geen cookies en geen programma's die je bezoek volgen, zoals Google Analytics. De site laadt ook geen onderdelen van andere websites.",
+        "Deze site gebruikt geen cookies.",
         "Bij elk bezoek ontvangt de webserver wel technische gegevens, zoals je IP-adres, je browser en de pagina die je opvraagt. Die zijn nodig om de site te tonen en te beveiligen.",
         {
           "kop": "Beveiliging"
