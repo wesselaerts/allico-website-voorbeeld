@@ -255,7 +255,7 @@
               <p><a class="tekst-link" href="../projecten/lmra-app-veiligheidsregistratie/" data-page="project-2">Lees het hele project</a></p>
             </div>
             <h2>Veelgestelde vragen</h2>
-            <h3>Kan de app gekoppeld worden aan onze machine of PLC?</h3><p>Ja. We koppelen apps aan bestaande systemen, sensoren en PLC's. Zo zie je meetwaarden, krijg je meldingen en kun je waar nodig bedienen.</p><h3>Werkt de app ook voor medewerkers die geen Nederlands spreken?</h3><p>Bij de LMRA-app was dat een eis. De app is gemakkelijk te begrijpen en in te vullen, ook voor medewerkers en onderaannemers die geen Nederlands spreken.</p><h3>Wie beheert de app na oplevering?</h3><p>Dat spreken we vooraf af. Bij de LMRA-app is het beheer (hosting, updates en certificaten) zo ingericht dat de interne IT-afdeling het zelf kan oppakken.</p><h3>Kunnen we eerst iets kleins proberen?</h3><p>Ja. We bouwen graag een eerste opzet op basis van je eigen proces. Zo zie je of het werkt voordat je verder gaat.</p>
+            <h3>Kan de app gekoppeld worden aan onze machine of PLC?</h3><p>Ja. We koppelen apps aan bestaande systemen, sensoren en PLC's. Zo zie je meetwaarden, krijg je meldingen en kun je waar nodig bedienen.</p><h3>Werkt de app ook voor medewerkers die geen Nederlands spreken?</h3><p>Bij de LMRA-app was dat een eis. De app is gemakkelijk te begrijpen en in te vullen, ook voor medewerkers en onderaannemers die geen Nederlands spreken.</p><h3>Wie beheert de app na oplevering?</h3><p>Dat spreken we vooraf af. Dat kunnen wij zijn, maar ook je eigen IT-afdeling.</p><h3>Kunnen we eerst iets kleins proberen?</h3><p>Ja. We bouwen graag een eerste opzet op basis van je eigen proces. Zo zie je of het werkt voordat je verder gaat.</p>
             <h2>Zie ook</h2>
             <ul class="verwant-lijst"><li><a class="tekst-link" href="../projecten/lmra-app-veiligheidsregistratie/" data-page="project-2">LMRA-app en werkplekinspectie-app op maat</a></li><li><a class="tekst-link" href="../dashboards/" data-page="spec-3">Dashboard voor machines en sensordata</a></li><li><a class="tekst-link" href="../plc-besturing-embedded-software/" data-page="spec-2">PLC-besturing en embedded software</a></li></ul>
             
@@ -930,10 +930,10 @@
               <h3>Ingezette technologie</h3>
               <div class="tech-tags">${tagsHtml}</div>
             </div>
-            <div class="detail-sidebar-block">
+            ${d.doorlooptijd ? `<div class="detail-sidebar-block">
               <h3>Doorlooptijd</h3>
               <p>${d.doorlooptijd}</p>
-            </div>
+            </div>` : ''}
           </aside>
         </div>
       </section>`;

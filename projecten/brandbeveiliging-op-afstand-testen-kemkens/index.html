@@ -236,7 +236,7 @@
             <p>Het doel is dat systemen op afstand in werking kunnen worden gesteld en dat sensoren kunnen worden uitgelezen, via een beveiligde verbinding. Dat is meer dan monitoring op afstand: de installatie wordt op afstand ook echt getest.</p><p>Het beheerportaal is bedoeld voor de medewerkers die er dagelijks mee werken. Daarom is gebruiksgemak een harde eis.</p>
             
             <h2>Veelgestelde vragen</h2>
-            <h3>Hoe is toegang op afstand tot een sprinklerinstallatie beveiligd?</h3><p>De opzet is opgebouwd vanuit IEC 62443, de normenreeks voor de beveiliging van industriële besturing. Daarbij horen een VPN-verbinding en tweestapsverificatie (2FA).</p><h3>Kan dit ook voor andere installaties dan brandbeveiliging?</h3><p>Dezelfde aanpak past bij andere installaties die je op afstand wilt monitoren, testen of beheren. We kijken graag wat dat voor jouw installaties kan betekenen.</p><h3>Is testen op afstand hetzelfde als remote ondersteuning?</h3><p>Niet helemaal. Bij remote ondersteuning kijkt iemand op afstand mee of helpt hij een collega ter plekke. Bij testen op afstand wordt de installatie zelf op afstand in werking gesteld en worden de sensoren uitgelezen. Dat laatste is het doel van dit project.</p>
+            <h3>Hoe is toegang op afstand tot een sprinklerinstallatie beveiligd?</h3><p>De opzet is opgebouwd vanuit IEC 62443, de normenreeks voor de beveiliging van industriële besturing. Daarbij horen een VPN-verbinding en tweestapsverificatie (2FA).</p><h3>Kan dit ook voor andere installaties buiten brandbeveiliging?</h3><p>Dezelfde aanpak past bij andere installaties die je op afstand wilt monitoren, testen of beheren. We kijken graag wat dat voor jouw installaties kan betekenen.</p><h3>Is testen op afstand hetzelfde als remote ondersteuning?</h3><p>Niet helemaal. Bij remote ondersteuning kijkt iemand op afstand mee of helpt hij een collega ter plekke. Bij testen op afstand wordt de installatie zelf op afstand in werking gesteld en worden de sensoren uitgelezen. Dat laatste is het doel van dit project.</p>
             <h2>Zie ook</h2>
             <ul class="verwant-lijst"><li><a class="tekst-link" href="../../ot-beveiliging-iec-62443/" data-page="spec-4">OT-security en beveiligde verbindingen</a></li><li><a class="tekst-link" href="../../plc-besturing-embedded-software/" data-page="spec-2">PLC-besturing en embedded software</a></li><li><a class="tekst-link" href="../../nieuws/plc-veilig-op-afstand-benaderen/" data-page="nieuws-8">Een PLC veilig op afstand benaderen</a></li></ul>
             
@@ -908,10 +908,10 @@
               <h3>Ingezette technologie</h3>
               <div class="tech-tags">${tagsHtml}</div>
             </div>
-            <div class="detail-sidebar-block">
+            ${d.doorlooptijd ? `<div class="detail-sidebar-block">
               <h3>Doorlooptijd</h3>
               <p>${d.doorlooptijd}</p>
-            </div>
+            </div>` : ''}
           </aside>
         </div>
       </section>`;
