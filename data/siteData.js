@@ -1303,9 +1303,9 @@ window.SITE_DATA = {
           "kop": "Hoe programmeer je een PLCnext-besturing?"
         },
         "Je programmeert in PLCnext Engineer, volgens IEC 61131-3. Volgens Phoenix Contact is de basisversie gratis te downloaden. De functies kun je uitbreiden met betaalde add-ins. Als voorbeelden van add-ins noemt de fabrikant een editor voor veiligheidstoepassingen en een HMI-generator.",
-        "De productpagina van de AXC F 2152 noemt als talen SFC, LD, FBD en ST, plus C++, C#, Java, Python en Simulink.",
+        "De productpagina van de AXC F 2152 noemt als talen SFC, LD, FBD en ST, plus C++, Java, Python en Simulink.",
         "Volgens Phoenix Contact kan de taakafhandeling IEC-code, hogere talen en Simulink-modellen in één taak combineren. Volgens Phoenix Contact lopen programma's in een hogere taal dan net zo deterministisch, mits je de code geschikt voor realtime schrijft. Realtime noemt de fabrikant uitdrukkelijk voor IEC 61131-3, C/C++ en MATLAB Simulink.",
-        "C++ en C# ontwikkel je met de PLCnext Technology Toolchain, met een add-in voor Eclipse of een extensie voor Visual Studio. Werk je al met CODESYS, dan kun je dat volgens Phoenix Contact koppelen via de Global Data Space van de besturing.",
+        "C++ ontwikkel je met de PLCnext Technology Toolchain, met een add-in voor Eclipse of een extensie voor Visual Studio. Werk je al met CODESYS, dan kun je dat volgens Phoenix Contact koppelen via de Global Data Space van de besturing.",
         {
           "kop": "Kan het bedieningsscherm op de besturing zelf draaien?"
         },
@@ -1362,7 +1362,7 @@ window.SITE_DATA = {
         },
         {
           "vraag": "Kun je PLCnext in Python of C++ programmeren?",
-          "antwoord": "Ja, naast de talen van IEC 61131-3. Phoenix Contact noemt bij onder meer de AXC F 2152 C++, C#, Java, Python en Simulink als ondersteunde talen."
+          "antwoord": "Ja, naast de talen van IEC 61131-3. Phoenix Contact noemt bij onder meer de AXC F 2152 C++, Java, Python en Simulink als ondersteunde talen."
         },
         {
           "vraag": "Is mijn installatie veilig als de PLCnext-besturing volgens IEC 62443 gecertificeerd is?",
