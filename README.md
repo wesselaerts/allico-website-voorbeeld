@@ -99,6 +99,7 @@ Alle teksten staan in `data/siteData.js`, de opbouw en de opmaak in `index.html`
 | Datum van wijziging voor de sitemap | `data/siteData.js` | `"gewijzigd"` in het blok `seo` van de pagina (JJJJ-MM-DD) |
 | Privacyverklaring (eigen pagina `/privacyverklaring/`, link in de footer) | `data/siteData.js` | `[JURIDISCH]`; opbouw in `index.html` bij `renderJuridisch`. Algemene voorwaarden: zet bij `juridisch` `"voorwaarden": "/voorwaarden.pdf"` (alleen een link) of een blok met `tekst` (eigen pagina, plus een leeg blok `page-voorwaarden` in `index.html`) |
 | De drie kaarten "Ontdek onze andere specialismen" op de home | `index.html` | `home-breed-card` |
+| Deelbanner per pagina (plaatje bij een gedeelde link in WhatsApp of LinkedIn) | `deelbanners/<id>.jpg` | opnieuw maken met `python3 deelbanners/maak-banners.py` (titels staan in dat script), daarna `node bouw.js` |
 | Gegevensblokken voor zoekmachines | `index.html` (bedrijf) en `bouw.js` (per pagina) | `application/ld+json`, `gegevensblok` |
 
 - Een veld met "(mag)" weglaten haalt dat stuk van de pagina weg. Er hoeft dan niets in `index.html` te veranderen.

@@ -272,6 +272,12 @@ function bouwPagina(sjabloon, blokken, p, opname, routes, basis, dataBlok) {
     html = zetMeta(html, /(<meta name="description" content=")[^"]*(")/, p.omschrijving);
     html = zetMeta(html, /(<meta property="og:title" content=")[^"]*(")/, p.titel);
     html = zetMeta(html, /(<meta property="og:description" content=")[^"]*(")/, p.omschrijving);
+    // Deelbanner (WhatsApp, LinkedIn): deelbanners/<id>.jpg als die er is, anders het deelbeeld uit index.html
+    const banner = 'deelbanners/' + p.id + '.jpg';
+    if (fs.existsSync(path.join(ROOT, banner))) {
+        html = zetMeta(html, /(<meta property="og:image" content=")[^"]*(")/, basis + '/' + banner);
+        html = zetMeta(html, /(<meta property="og:image:alt" content=")[^"]*(")/, p.id === 'home' ? p.titel.replace(' | ', ': ') : 'Allico Systems: ' + p.naamKort);
+    }
     if (p.nietVindbaar) {
         html = html.replace(/\s*<link rel="canonical" href="[^"]*">/, '\n    <meta name="robots" content="noindex">');
         html = html.replace(/\s*<meta property="og:url" content="[^"]*">/, '');
