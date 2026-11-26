@@ -12017,6 +12017,9 @@
     <div class="page" id="page-nieuws-7"></div><!-- /page-nieuws-7 -->
     <div class="page" id="page-nieuws-8"></div><!-- /page-nieuws-8 -->
 
+    <!-- ── Juridisch: de privacyverklaring (tekst in data/siteData.js bij [JURIDISCH]) ── -->
+    <div class="page" id="page-privacy"></div><!-- /page-privacy -->
+
     <script>
         (function () {
             // Alleen op de home. Op een pagina zonder scrollanimatie (gebouwde site) is hier niets te doen.
@@ -12443,7 +12446,13 @@
                     .map(deel => '<span style="white-space: nowrap">' + veilig(deel) + '</span>')
                     .join(' · ');
             }
-            if (titel) titel.textContent = h.introTitel;
+            if (titel) {
+                // een woord met een streepje (OT-security) breekt niet af op het streepje
+                const veilig = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                titel.innerHTML = h.introTitel.split(' ')
+                    .map(w => w.includes('-') ? '<span style="white-space: nowrap">' + veilig(w) + '</span>' : veilig(w))
+                    .join(' ');
+            }
             if (tekst) tekst.textContent = h.introTekst;
             if (cta) cta.innerHTML = h.introCta + ' ' + ARROW_SVG;
             if (foto && h.introFoto) {
@@ -12602,6 +12611,13 @@
             });
         }
 
+        // Een stuk tekst is een alinea ("gewone tekst"), een tussenkop ({ kop }) of een lijst ({ punten })
+        function tekstBlokken(tekst) {
+            return tekst.map(t => typeof t === 'string' ? `<p>${t}</p>`
+                : t.kop ? `<h2>${t.kop}</h2>`
+                : t.punten ? `<ul>${t.punten.map(punt => `<li>${punt}</li>`).join('')}</ul>` : '').join('');
+        }
+
         function renderNieuws() {
             const feed = document.getElementById('nieuws-feed');
             if (!feed) return;
@@ -12624,10 +12640,7 @@
                 if (!item.id || !item.tekst) return;
                 const page = document.getElementById('page-' + item.id);
                 if (!page) return;
-                // Een stuk tekst is een alinea ("gewone tekst"), een tussenkop ({ kop }) of een lijst ({ punten })
-                const body = item.tekst.map(t => typeof t === 'string' ? `<p>${t}</p>`
-                    : t.kop ? `<h2>${t.kop}</h2>`
-                    : t.punten ? `<ul>${t.punten.map(punt => `<li>${punt}</li>`).join('')}</ul>` : '').join('');
+                const body = tekstBlokken(item.tekst);
                 const datum = item.datum + (item.bijgewerkt ? ' · bijgewerkt ' + item.bijgewerkt : '');
                 const foto = item.foto ? `
             <figure class="artikel-foto${item.fotoType === 'logo' ? ' logo' : ''}">
@@ -12648,6 +12661,30 @@
             ${body}
             ${extraBlokken(item)}
             <button class="artikel-cta" data-page="contact">Neem contact op ${ARROW_SVG}</button>
+          </div>
+        </div>
+      </section>`;
+            });
+        }
+
+        // [JURIDISCH] Een blok in siteData.juridisch met "tekst" wordt een eigen pagina (page-privacy).
+        // Een gewone tekst daar ("/voorwaarden.pdf") is alleen een link in de footer (zie renderFooter).
+        function renderJuridisch() {
+            const j = siteData.juridisch || {};
+            Object.entries(j).forEach(([sleutel, d]) => {
+                if (!d || typeof d !== 'object' || !d.tekst) return;
+                const page = document.getElementById('page-' + sleutel);
+                if (!page) return;
+                page.innerHTML = `
+      <section class="detail-page">
+        <div class="detail-topbar">
+          <button class="back-btn" data-page="home">${BACK_SVG} Home</button>
+          ${d.bijgewerkt ? `<span class="detail-topbar-tag">Bijgewerkt ${d.bijgewerkt}</span>` : ''}
+        </div>
+        <div class="artikel-wrap">
+          <div class="detail-main">
+            <h1>${d.kop}</h1>
+            ${tekstBlokken(d.tekst)}
           </div>
         </div>
       </section>`;
@@ -12727,11 +12764,14 @@
 
             const bottom = document.getElementById('footer-bottom');
             if (bottom) {
-                // Links onderaan: alleen als het adres is ingevuld in siteData.juridisch (geen dode links)
+                // Links onderaan: alleen als siteData.juridisch iets heeft (geen dode links).
+                // Een blok met tekst is een eigen pagina op de site; een gewone tekst is een adres.
                 const j = siteData.juridisch || {};
-                const juridisch = [['privacy', 'Privacybeleid'], ['voorwaarden', 'Algemene voorwaarden']]
+                const juridisch = [['privacy', 'Privacyverklaring'], ['voorwaarden', 'Algemene voorwaarden']]
                     .filter(([sleutel]) => j[sleutel])
-                    .map(([sleutel, tekst]) => `<a href="${j[sleutel]}">${tekst}</a>`).join('');
+                    .map(([sleutel, tekst]) => typeof j[sleutel] === 'string'
+                        ? `<a href="${j[sleutel]}">${tekst}</a>`
+                        : `<a href="${paginaUrl(sleutel)}" data-page="${sleutel}">${tekst}</a>`).join('');
                 bottom.innerHTML = `
       <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
       ${juridisch ? `<div class="footer-bottom-links">${juridisch}</div>` : ''}`;
@@ -12789,6 +12829,7 @@
             renderProjecten();
             renderNieuws();
             renderContact();
+            renderJuridisch();
             renderFooter();
             bindEvents();
         }

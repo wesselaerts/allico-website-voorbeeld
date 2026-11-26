@@ -89,6 +89,11 @@ function paginaLijst(d) {
         voeg(n.id, map.nieuws + ((n.seo && n.seo.adres) || slug(n.titel)) + '/', n.seo, 'nieuws', n.titel, n.samenvatting,
             { kop: n.kop || n.titel, gepubliceerd: (n.seo && n.seo.gepubliceerd) || '', foto: n.foto || '' });
     }
+    // [JURIDISCH] De privacyverklaring: een eigen pagina als er een tekst is (een gewone tekst is alleen een link)
+    for (const [sleutel, j] of Object.entries(d.juridisch || {})) {
+        if (!j || typeof j !== 'object' || !j.tekst || !j.tekst.length) continue;
+        voeg(sleutel, '/' + ((j.seo && j.seo.adres) || sleutel) + '/', j.seo, '', j.kop || sleutel, j.tekst.find(t => typeof t === 'string'));
+    }
 
     const gezien = {};
     for (const p of lijst) {

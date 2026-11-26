@@ -14,6 +14,7 @@
 //   [PROJECTEN]        de projectpagina's
 //   [NIEUWS]           de nieuwsberichten en kennisartikelen
 //   [CONTACT]          de tekst over het werkgebied op de contactpagina
+//   [JURIDISCH]        de privacyverklaring (eigen pagina, link in de footer)
 //   [PAGINA]           staat boven elke pagina, met zijn adres en id
 //
 // [VELDEN] Wat een pagina mag hebben. Alles is gewone tekst, zonder HTML. Laat je een veld met
@@ -56,6 +57,7 @@ window.SITE_DATA = {
   // [FORMULIER] Waar de projectcheck en het terugbelverzoek naartoe gaan.
   // Leeg = het mailprogramma van de bezoeker opent met het bericht erin.
   // Invullen met bijvoorbeeld een Formspree-adres ("https://formspree.io/f/xxxxxxx"), dan komt alles direct in je inbox.
+  // Let op: vul je hier iets in, pas dan ook de privacyverklaring aan ([JURIDISCH], stuk "Hoe werken de formulieren?").
   "formulier": {
     "endpoint": ""
   },
@@ -81,7 +83,7 @@ window.SITE_DATA = {
       "projecten": {
         "adres": "projecten",
         "titel": "Projecten: wat we voor klanten bouwen | Allico Systems",
-        "omschrijving": "Projecten van Allico Systems: brandbeveiliging op afstand testen en monitoren voor Kemkens, en een digitale LMRA-app voor de bouwplaats.",
+        "omschrijving": "Projecten van Allico Systems: sprinklerinstallaties op afstand testen en monitoren voor Kemkens, en een digitale LMRA-app voor de bouwplaats.",
         "gewijzigd": "2026-11-26"
       },
       "nieuws": {
@@ -102,7 +104,7 @@ window.SITE_DATA = {
   // [HOME]
   "home": {
     "introLabel": "Industriële automatisering · Noord-Limburg",
-    "introTitel": "Van concept naar bewezen systeem",
+    "introTitel": "Besturing, embedded en OT-security voor industriële installaties",
     "introTekst": "Allico Systems uit Horst ontwikkelt hardware en software voor industriële automatisering: elektronica, embedded software, PLC-besturing met PLCnext en OT-security vanuit IEC 62443. Voor prototyping en digitalisering.",
     "introCta": "Onze specialisaties",
     "introFoto": "",
@@ -214,6 +216,10 @@ window.SITE_DATA = {
           {
             "vraag": "Waar letten jullie op bij een printplaat voor een machine of installatie?",
             "antwoord": "Op storing (EMC), warmte en maakbaarheid. Die eisen bepalen de keuze van componenten en de indeling van de print."
+          },
+          {
+            "vraag": "Wat kost het, en hoe snel kunnen jullie beginnen?",
+            "antwoord": "Vaste prijzen noemen we niet: de kosten hangen af van wat het product moet kunnen. Wel schakelen we snel. We zijn een compact team en ieder heeft een eigen specialisme. Zo ligt er snel een voorstel, en kan een project snel starten en vlot worden afgerond."
           }
         ],
         "verwant": [
@@ -275,7 +281,8 @@ window.SITE_DATA = {
             "kop": "Een PLC-programmeur zoeken of het programmeren uitbesteden?",
             "alineas": [
               "Zoek je een PLC-programmeur in Limburg, of wil je het PLC-programmeren uitbesteden? Bij ons werk je niet met een losse zzp'er, maar met een klein team. Hardware, firmware en software houden we in eigen beheer.",
-              "Zo streven we naar één geheel: besturing, bediening en beveiliging uit één hand."
+              "Zo streven we naar één geheel: besturing, bediening en beveiliging uit één hand.",
+              "Het team is compact en ieder heeft een eigen specialisme. Daardoor schakelen we snel: je hebt snel een voorstel, en een project kan snel starten en vlot worden afgerond."
             ]
           },
           {
@@ -294,13 +301,13 @@ window.SITE_DATA = {
         ],
         "praktijk": {
           "project": "project-1",
-          "kop": "Uit de praktijk: brandbeveiliging op afstand testen",
-          "tekst": "Voor Kemkens Brandbeveiliging ontwikkelen we de integratie en het maatwerk om brandbeveiligingsinstallaties op afstand te testen en te beheren. De beveiliging is opgebouwd vanuit IEC 62443."
+          "kop": "Uit de praktijk: sprinklerinstallaties op afstand testen",
+          "tekst": "Voor Kemkens Brandbeveiliging ontwikkelen we de integratie en het maatwerk om sprinklerinstallaties op afstand te testen en te beheren. De beveiliging is opgebouwd vanuit IEC 62443."
         },
         "vragen": [
           {
             "vraag": "Met welke PLC werken jullie?",
-            "antwoord": "PLCnext van Phoenix Contact passen we inmiddels toe in meerdere projecten. Dat platform combineert klassieke PLC-talen met hogere programmeertalen. Het past daardoor goed bij een besturing die ook data verwerkt, een dashboard toont of beveiligd op afstand bereikbaar moet zijn."
+            "antwoord": "Vooral met PLCnext van Phoenix Contact, dat passen we inmiddels toe in meerdere projecten. Dat platform combineert klassieke PLC-talen met hogere programmeertalen. Het past daardoor goed bij een besturing die ook data verwerkt, een dashboard toont of beveiligd op afstand bereikbaar moet zijn. Een besturing op basis van CODESYS is ook mogelijk. CODESYS is een programmeeromgeving volgens IEC 61131-3 die door veel PLC-merken wordt gebruikt."
           },
           {
             "vraag": "Kunnen jullie aansluiten op een bestaande installatie?",
@@ -363,10 +370,11 @@ window.SITE_DATA = {
         ],
         "secties": [
           {
-            "kop": "Servicemonteurs minder afhankelijk van PLC-kennis",
+            "kop": "Niet elke monteur hoeft PLC-programmeur te zijn",
             "alineas": [
               "Niet elke servicemonteur heeft PLC-kennis. Daarom maken we via het dashboard veel van de besturing toegankelijk en instelbaar.",
-              "Een servicemonteur ziet in het dashboard wat de installatie doet en welke meldingen er zijn. Dat maakt servicemonteurs en de technische dienst minder afhankelijk van PLC-kennis."
+              "Een servicemonteur ziet in het dashboard wat de installatie doet en welke meldingen er zijn. Dat maakt servicemonteurs en de technische dienst minder afhankelijk van PLC-kennis.",
+              "Komt een monteur bij een storing toch niet verder, dan kan iemand met PLC-kennis op afstand meekijken. Dat gaat via een beveiligde verbinding."
             ]
           },
           {
@@ -387,7 +395,7 @@ window.SITE_DATA = {
         "praktijk": {
           "project": "project-1",
           "kop": "Uit de praktijk: een beheerportaal voor installaties op afstand",
-          "tekst": "Voor Kemkens Brandbeveiliging ontwikkelen we de integratie en het maatwerk om installaties op afstand te monitoren en te beheren. Gebruiksgemak is een harde eis: het beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken."
+          "tekst": "Voor Kemkens Brandbeveiliging ontwikkelen we de integratie en het maatwerk om sprinklerinstallaties op afstand te monitoren en te beheren. Gebruiksgemak is een harde eis: het beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken."
         },
         "vragen": [
           {
@@ -497,8 +505,8 @@ window.SITE_DATA = {
         ],
         "praktijk": {
           "project": "project-1",
-          "kop": "Uit de praktijk: brandbeveiliging veilig op afstand testen",
-          "tekst": "Voor Kemkens Brandbeveiliging werken we aan een betrouwbare en beveiligde verbinding met brandbeveiligingsinstallaties op locaties in heel Nederland. Omdat het om kritieke installaties gaat, is de beveiliging opgebouwd vanuit IEC 62443."
+          "kop": "Uit de praktijk: sprinklerinstallaties veilig op afstand testen",
+          "tekst": "Voor Kemkens Brandbeveiliging werken we aan een betrouwbare en beveiligde verbinding met sprinklerinstallaties op locaties in heel Nederland. Omdat het om kritieke installaties gaat, is de beveiliging opgebouwd vanuit IEC 62443."
         },
         "vragen": [
           {
@@ -518,7 +526,7 @@ window.SITE_DATA = {
           { "pagina": "nieuws-3", "tekst": "NIS2 voor leveranciers: wat de Cyberbeveiligingswet van je vraagt" },
           { "pagina": "nieuws-5", "tekst": "NIS2 voor OT en PLC" },
           { "pagina": "nieuws-8", "tekst": "Een PLC veilig op afstand benaderen: VPN, tweestapsverificatie en IEC 62443" },
-          { "pagina": "project-1", "tekst": "Brandbeveiliging op afstand testen voor Kemkens" }
+          { "pagina": "project-1", "tekst": "Sprinklerinstallaties op afstand testen voor Kemkens" }
         ],
         "toepassingen": "Industriële netwerken, kritische infrastructuur en connected producten.",
         "technologieen": ["TLS 1.3", "VPN", "IEC 62443", "NIS2", "HTTPS"],
@@ -643,8 +651,8 @@ window.SITE_DATA = {
       "id": "project-1",
       "seo": {
         "adres": "brandbeveiliging-op-afstand-testen-kemkens",
-        "titel": "Brandbeveiliging op afstand testen voor Kemkens | Allico Systems",
-        "omschrijving": "Voor Kemkens Brandbeveiliging werken we aan veilige toegang op afstand tot brandbeveiligingsinstallaties, voor testen en beheer, vanuit IEC 62443.",
+        "titel": "Sprinklerinstallaties op afstand testen | Allico Systems",
+        "omschrijving": "Voor Kemkens Brandbeveiliging werken we aan veilige toegang op afstand tot sprinklerinstallaties, voor testen en beheer, vanuit IEC 62443.",
         "gewijzigd": "2026-11-26"
       },
       "num": "P-01",
@@ -655,13 +663,13 @@ window.SITE_DATA = {
       "fotoAlt": "Kemkens brandbeveiliging",
       "cta": {
         "titel": "Ook installaties veilig op afstand beheren?",
-        "tekst": "Voor Kemkens werken we aan het op afstand testen van brandbeveiligingsinstallaties, met beveiliging vanuit IEC 62443. We kijken graag wat dat voor jouw installaties kan betekenen."
+        "tekst": "Voor Kemkens werken we aan het op afstand testen van sprinklerinstallaties, met beveiliging vanuit IEC 62443. We kijken graag wat dat voor jouw installaties kan betekenen."
       },
       "detail": {
         "topbarTag": "P-01 · Cybersecurity · Embedded",
         "hero": "kemkens.jpeg",
-        "kop": "Brandbeveiliging op afstand testen: remote toegang voor Kemkens Brandbeveiliging",
-        "lead": "Kemkens Brandbeveiliging zocht een betrouwbare manier om brandbeveiligingsinstallaties op afstand te testen, te monitoren en te beheren. De veiligheid van het systeem mocht daar niet onder lijden.",
+        "kop": "Sprinklerinstallaties op afstand testen: remote toegang voor Kemkens Brandbeveiliging",
+        "lead": "Kemkens Brandbeveiliging zocht een betrouwbare manier om sprinklerinstallaties op afstand te testen, te monitoren en te beheren. De veiligheid van het systeem mocht daar niet onder lijden.",
         "doel": "Om toekomstbestendig te blijven, zocht Kemkens Brandbeveiliging een efficiënte manier om het onderhoud van installaties te garanderen. De oplossing: testen op afstand. Het doel van dit project is een uiterst betrouwbare en beveiligde verbinding met brandbeveiligingsinstallaties op willekeurige locaties in Nederland. Daarmee kunnen systemen op afstand in werking worden gesteld en sensoren worden uitgelezen. Dat geeft direct inzicht in de prestaties en de werking van de installatie.",
         "uitdaging": "Brandbeveiligingssystemen zijn kritieke installaties. De beveiliging van de verbinding moet daarom optimaal en volledig gecertificeerd zijn. Daarnaast is gebruiksgemak een harde eis: het nieuwe beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken.",
         "aanpak": "Voor een certificering op IEC 62443-niveau zijn speciale hardware, software en licenties nodig. Daarvoor werken we nauw samen met gespecialiseerde partners. Zij leveren de robuuste basis voor dit type systemen. Daarop ontwikkelt Allico Systems de integratie en het maatwerk dat aansluit op het doel van het project.",
@@ -676,7 +684,7 @@ window.SITE_DATA = {
         ],
         "vragen": [
           {
-            "vraag": "Hoe is toegang op afstand tot een brandbeveiligingsinstallatie beveiligd?",
+            "vraag": "Hoe is toegang op afstand tot een sprinklerinstallatie beveiligd?",
             "antwoord": "De opzet is opgebouwd vanuit IEC 62443, de normenreeks voor de beveiliging van industriële besturing. Daarbij horen een VPN-verbinding en tweestapsverificatie (2FA)."
           },
           {
@@ -695,7 +703,7 @@ window.SITE_DATA = {
         ],
         "sector": "Brandbeveiliging · Gebouwbeheer",
         "technologieen": ["VPN-verbinding", "IEC 62443", "2FA", "PLC's"],
-        "doorlooptijd": "9 maanden"
+        "doorlooptijd": "Loopt nog"
       }
     },
 
@@ -1131,7 +1139,7 @@ window.SITE_DATA = {
         },
         {
           "pagina": "project-1",
-          "tekst": "Brandbeveiligingsinstallaties op afstand testen voor Kemkens"
+          "tekst": "Sprinklerinstallaties op afstand testen voor Kemkens"
         },
         {
           "pagina": "nieuws-5",
@@ -1562,12 +1570,10 @@ window.SITE_DATA = {
       "datum": "Juni 2026",
       "bijgewerkt": "november 2026",
       "titel": "Allico Systems start certificeringstraject bij Phoenix Contact",
-      "foto": "phoenix-contact-logo.svg",
-      "fotoAlt": "Logo van Phoenix Contact",
-      "fotoType": "logo",
-      "samenvatting": "Wij hebben de Workshop PLCnext Engineer bij Phoenix Contact gevolgd. Dit traject zetten we voort om onze kennis en vaardigheden verder te ontwikkelen.",
+      "samenvatting": "Wij volgen bij Phoenix Contact een certificeringstraject voor PLCnext. Daarin worden personen volgens vaste criteria gecertificeerd. De Workshop PLCnext Engineer hebben we gevolgd; het traject loopt nog.",
       "tekst": [
-        "De afgelopen periode hebben wij de Workshop PLCnext Engineer bij Phoenix Contact gevolgd. Dit traject zetten we het komende jaar voort om onze kennis en vaardigheden verder te ontwikkelen. Het traject loopt dus nog.",
+        "De afgelopen periode hebben wij de Workshop PLCnext Engineer bij Phoenix Contact gevolgd. Die workshop is de start van een certificeringstraject. Daarin worden personen volgens vaste criteria gecertificeerd. Op dit moment volgen we het voor PLCnext.",
+        "Dit traject zetten we het komende jaar voort om onze kennis en vaardigheden verder te ontwikkelen. Het loopt dus nog.",
         "Een belangrijk onderdeel van dit traject is PLCnext Technology. Dit open automatiseringsplatform combineert de klassieke betrouwbaarheid van IEC 61131 met hogere programmeertalen zoals C, C++ en MATLAB Simulink. Dankzij de open Linux-kernel kunnen deze technologieën binnen dezelfde realtime-omgeving worden toegepast.",
         "Daarmee ontstaan mogelijkheden die verder gaan dan een traditionele PLC-besturing. Denk aan HTML5-dashboards direct vanaf de besturing en beveiligde toegang op afstand. Of aan datakoppelingen naar cloud- of MES-systemen, zonder aparte industriële pc in de kast.",
         "De timing is geen toeval. Met de Cyberbeveiligingswet, de Nederlandse uitwerking van NIS2, krijgen meer bedrijven te maken met strengere eisen aan cybersecurity. Ook in de toeleveringsketen. Cybersecurity wordt daarmee iets dat je aantoonbaar op orde moet hebben.",
@@ -1601,6 +1607,82 @@ window.SITE_DATA = {
       "samenvatting": "Kemkens Brandbeveiliging heeft Allico Systems per februari een nieuwe innovatieopdracht gegeven. Samen zetten we de volgende stap naar een gedigitaliseerd en slim brandbeveiligingssysteem. De nadruk ligt op digitaal inzicht en het testen van de installatie. Met toeleveranciers van Allico Systems wordt de installatie ontworpen volgens IEC 62443."
     }
   ],
+
+  // [JURIDISCH] Privacyverklaring (en later eventueel algemene voorwaarden). Een blok met "tekst" wordt een eigen pagina
+  // met een link in de footer; een gewone tekst ("/voorwaarden.pdf") wordt alleen een link. Concept van 26-11-2026,
+  // door Wessel na te lezen. Verandert het formulier (endpoint), pas dan het stuk over de formulieren aan.
+  "juridisch": {
+    "privacy": {
+      "seo": {
+        "adres": "privacyverklaring",
+        "titel": "Privacyverklaring | Allico Systems",
+        "omschrijving": "Hoe Allico Systems in Horst omgaat met je persoonsgegevens: welke gegevens we gebruiken, waarom, hoe lang we ze bewaren en welke rechten je hebt.",
+        "gewijzigd": "2026-11-26"
+      },
+      "kop": "Privacyverklaring",
+      "bijgewerkt": "26 november 2026",
+      "tekst": [
+        "Allico Systems B.V. gaat zorgvuldig om met je persoonsgegevens. In deze verklaring lees je welke gegevens we gebruiken, waarvoor, en welke rechten je hebt.",
+        {
+          "kop": "Wie zijn wij?"
+        },
+        "Allico Systems B.V. is verantwoordelijk voor de verwerking van je gegevens. We zitten aan de Expeditiestraat 11, 5961 PX Horst. Je bereikt ons via info@allico.nl of +31 6 11 67 17 19.",
+        {
+          "kop": "Welke gegevens gebruiken we?"
+        },
+        "We gebruiken alleen gegevens die je zelf aan ons geeft:",
+        {
+          "punten": [
+            "Projectcheck: je naam en e-mailadres, en als je die invult ook je bedrijf, telefoonnummer, toelichting en antwoorden over je project",
+            "Terugbelverzoek: je naam en telefoonnummer",
+            "Mail, telefoon of WhatsApp: wat je daarin met ons deelt"
+          ]
+        },
+        {
+          "kop": "Hoe werken de formulieren?"
+        },
+        "De formulieren op deze site versturen zelf niets. Ze openen je eigen mailprogramma met je bericht erin. Je ziet dus wat je stuurt, en je verstuurt de mail zelf naar info@allico.nl.",
+        {
+          "kop": "Waarvoor gebruiken we je gegevens?"
+        },
+        {
+          "punten": [
+            "Om je vraag te beantwoorden of je terug te bellen",
+            "Om een voorstel voor je project te maken",
+            "Om een opdracht uit te voeren en te factureren"
+          ]
+        },
+        "Dat mag volgens de AVG omdat je ons zelf om contact vraagt, of omdat we een overeenkomst met je willen sluiten of uitvoeren. Voor facturen geldt daarnaast een wettelijke bewaarplicht.",
+        {
+          "kop": "Hoe lang bewaren we je gegevens?"
+        },
+        "We bewaren je gegevens niet langer dan nodig. Leidt je vraag niet tot een opdracht, dan verwijderen we je gegevens uiterlijk twee jaar na het laatste contact. Gegevens die we volgens de belastingwet moeten bewaren, zoals facturen, bewaren we zeven jaar.",
+        {
+          "kop": "Met wie delen we je gegevens?"
+        },
+        "We verkopen je gegevens niet en gebruiken ze niet voor reclame. Ze komen alleen bij ons en bij de bedrijven die onze website en e-mail technisch verzorgen. De website staat bij STRATO, een hostingbedrijf in Duitsland.",
+        "Verder delen we je gegevens alleen als dat nodig is voor je vraag of project, of als de wet ons dat verplicht. Stuur je ons een WhatsApp-bericht, dan loopt dat via WhatsApp van Meta. Daarvoor geldt ook het privacybeleid van WhatsApp.",
+        {
+          "kop": "Cookies en bezoekgegevens"
+        },
+        "Deze site gebruikt geen cookies en geen programma's die je bezoek volgen, zoals Google Analytics. De site laadt ook geen onderdelen van andere websites.",
+        "Bij elk bezoek ontvangt de webserver wel technische gegevens, zoals je IP-adres, je browser en de pagina die je opvraagt. Die zijn nodig om de site te tonen en te beveiligen.",
+        {
+          "kop": "Beveiliging"
+        },
+        "De site gebruikt een versleutelde verbinding (https). Merk je dat er iets mis is met je gegevens, laat het ons dan direct weten.",
+        {
+          "kop": "Jouw rechten"
+        },
+        "Je mag je gegevens inzien, laten verbeteren of laten verwijderen. Je kunt ook bezwaar maken tegen het gebruik, het gebruik laten beperken of je gegevens laten overdragen. Stuur daarvoor een mail naar info@allico.nl. We reageren binnen een maand.",
+        "Ben je het niet eens met hoe we met je gegevens omgaan? Laat het ons eerst weten. Je kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl).",
+        {
+          "kop": "Wijzigingen"
+        },
+        "Deze verklaring kan veranderen, bijvoorbeeld als de site verandert. Bovenaan staat wanneer ze voor het laatst is bijgewerkt."
+      ]
+    }
+  },
 
   // [CONTACT] Tekst over het werkgebied, onder de gegevens op de contactpagina.
   "contact": {

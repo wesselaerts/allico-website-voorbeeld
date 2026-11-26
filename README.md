@@ -97,7 +97,7 @@ Alle teksten staan in `data/siteData.js`, de opbouw en de opmaak in `index.html`
 | Werkgebied op de contactpagina | `data/siteData.js` | `[CONTACT]` |
 | Nieuwsbericht of kennisartikel | `data/siteData.js` | `[NIEUWS]`, of het adres van het artikel |
 | Datum van wijziging voor de sitemap | `data/siteData.js` | `"gewijzigd"` in het blok `seo` van de pagina (JJJJ-MM-DD) |
-| Links "Privacybeleid" en "Algemene voorwaarden" in de footer | `data/siteData.js` | voeg `"juridisch": { "privacy": "...", "voorwaarden": "..." }` toe; zonder adres staat de link er niet |
+| Privacyverklaring (eigen pagina `/privacyverklaring/`, link in de footer) | `data/siteData.js` | `[JURIDISCH]`; opbouw in `index.html` bij `renderJuridisch`. Algemene voorwaarden: zet bij `juridisch` `"voorwaarden": "/voorwaarden.pdf"` (alleen een link) of een blok met `tekst` (eigen pagina, plus een leeg blok `page-voorwaarden` in `index.html`) |
 | De drie kaarten "Ontdek onze andere specialismen" op de home | `index.html` | `home-breed-card` |
 | Gegevensblokken voor zoekmachines | `index.html` (bedrijf) en `bouw.js` (per pagina) | `application/ld+json`, `gegevensblok` |
 
@@ -193,9 +193,11 @@ De site is gemaakt om ook op een trage verbinding snel te laden. Dat gebeurt bij
 
 - De kennisartikelen onder `/nieuws/` (wetgeving, PLCnext) zijn op 25-11-2026 geschreven met bronnen en daarna
   gecontroleerd. Laat iemand met vakkennis ze lezen voordat ze online gaan, en houd de datums bij als de wet verandert.
-- Het woord "sprinkler" staat niet op de site: dat kan pas na akkoord van Kemkens.
-- Privacybeleid en Algemene voorwaarden: de links in de footer verschijnen pas als het adres in `siteData.juridisch`
-  staat. Het contactformulier vraagt om gegevens, dus een privacyverklaring is nodig.
+- Het woord "sprinkler" staat sinds 26-11-2026 weer op de site (Wessel: mag). Resultaten van het Kemkens-project
+  blijven eraf zolang Kemkens daar geen akkoord op gaf.
+- De privacyverklaring (`/privacyverklaring/`) is een concept van 26-11-2026 dat Wessel naleest (onder meer de
+  bewaartermijn van twee jaar). Algemene voorwaarden zijn er nog niet; de footer toont die link pas als
+  `siteData.juridisch.voorwaarden` bestaat.
 - De formulieren sturen niets door zolang `formulier.endpoint` in `siteData.js` leeg is (het mailprogramma van de
   bezoeker opent).
 - Ongebruikte beelden zijn op 11-11-2026 uit de hoofdmap gehaald (onder meer de PNG-originelen van de vier
