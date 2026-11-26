@@ -275,7 +275,7 @@ window.SITE_DATA = {
           {
             "kop": "PLCnext van Phoenix Contact",
             "alineas": [
-              "PLCnext Technology is het open automatiseringsplatform van Phoenix Contact. Het combineert de PLC-talen uit IEC 61131-3 met hogere talen zoals C/C++, C# en MATLAB Simulink.",
+              "PLCnext Technology is het open automatiseringsplatform van Phoenix Contact. Het combineert de PLC-talen uit IEC 61131-3 met hogere talen zoals C, C++ en MATLAB Simulink.",
               "Daarmee kan één besturing meer dan een traditionele PLC. Denk aan een dashboard direct vanaf de besturing, beveiligde toegang op afstand en koppelingen naar cloud- of MES-systemen.",
               "Wij hebben de Workshop PLCnext Engineer bij Phoenix Contact gevolgd en zetten dat traject voort. De techniek passen we inmiddels toe in meerdere projecten."
             ]
@@ -1273,7 +1273,7 @@ window.SITE_DATA = {
       "kop": "PLCnext van Phoenix Contact: wat het is en wanneer je het kiest",
       "samenvatting": "Wat PLCnext van Phoenix Contact is, hoe je het programmeert en wat de IEC 62443-certificering wel en niet betekent. Met een eerlijke afweging wanneer het past.",
       "tekst": [
-        "PLCnext is het open PLC-platform van Phoenix Contact. Volgens de fabrikant draaien de besturingen op realtime Linux. Je programmeert ze volgens IEC 61131-3, aangevuld met talen als C++, C# en Python. Het platform bestaat uit besturingen, programmeersoftware, een appwinkel en een community.",
+        "PLCnext is het open PLC-platform van Phoenix Contact. Volgens de fabrikant draaien de besturingen op realtime Linux. Je programmeert ze volgens IEC 61131-3, aangevuld met talen als C, C++ en Python. Het platform bestaat uit besturingen, programmeersoftware, een appwinkel en een community.",
         {
           "kop": "Wat is PLCnext in het kort?"
         },
@@ -1304,7 +1304,7 @@ window.SITE_DATA = {
         },
         "Je programmeert in PLCnext Engineer, volgens IEC 61131-3. Volgens Phoenix Contact is de basisversie gratis te downloaden. De functies kun je uitbreiden met betaalde add-ins. Als voorbeelden van add-ins noemt de fabrikant een editor voor veiligheidstoepassingen en een HMI-generator.",
         "De productpagina van de AXC F 2152 noemt als talen SFC, LD, FBD en ST, plus C++, C#, Java, Python en Simulink.",
-        "Volgens Phoenix Contact kan de taakafhandeling IEC-code, hogere talen en Simulink-modellen in één taak combineren. Volgens Phoenix Contact lopen programma's in een hogere taal dan net zo deterministisch, mits je de code geschikt voor realtime schrijft. Realtime noemt de fabrikant uitdrukkelijk voor IEC 61131-3, C/C++, C# en MATLAB Simulink.",
+        "Volgens Phoenix Contact kan de taakafhandeling IEC-code, hogere talen en Simulink-modellen in één taak combineren. Volgens Phoenix Contact lopen programma's in een hogere taal dan net zo deterministisch, mits je de code geschikt voor realtime schrijft. Realtime noemt de fabrikant uitdrukkelijk voor IEC 61131-3, C/C++ en MATLAB Simulink.",
         "C++ en C# ontwikkel je met de PLCnext Technology Toolchain, met een add-in voor Eclipse of een extensie voor Visual Studio. Werk je al met CODESYS, dan kun je dat volgens Phoenix Contact koppelen via de Global Data Space van de besturing.",
         {
           "kop": "Kan het bedieningsscherm op de besturing zelf draaien?"
