@@ -1601,7 +1601,7 @@ window.SITE_DATA = {
       "kop": "Privacyverklaring",
       "bijgewerkt": "26 november 2026",
       "tekst": [
-        "Allico Systems B.V. is verantwoordelijk voor je gegevens als je deze site bezoekt of contact met ons opneemt. Je bereikt ons op Expeditiestraat 11, 5961 PX Horst, via info@allico.nl of op +31 6 11 67 17 19.",
+        "Verantwoordelijk voor je gegevens is Allico Systems B.V., Expeditiestraat 11, 5961 PX Horst (info@allico.nl).",
         {
           "kop": "Contact en formulieren"
         },
@@ -1618,8 +1618,7 @@ window.SITE_DATA = {
         {
           "kop": "Wie je gegevens ziet"
         },
-        "Alleen wij en de bedrijven die onze website, e-mail en administratie verzorgen. Is het nodig voor je project, dan ook onze partners daarin.",
-        "Stuur je ons een WhatsApp-bericht, dan verwerkt WhatsApp (Meta) dat ook volgens zijn eigen privacybeleid.",
+        "Alleen wij en de bedrijven die onze website, e-mail, berichtendiensten en administratie verzorgen. Is het nodig voor je project, dan ook onze partners daarin.",
         {
           "kop": "Hoe lang we je gegevens bewaren"
         },
@@ -1627,10 +1626,9 @@ window.SITE_DATA = {
         {
           "kop": "Je rechten"
         },
-        "Je mag je gegevens inzien, laten verbeteren of laten wissen. Je mag ook vragen het gebruik te beperken of je gegevens over te dragen.",
+        "Je mag je gegevens inzien, laten verbeteren, laten wissen, het gebruik laten beperken of je gegevens laten overdragen. Mail daarvoor naar info@allico.nl.",
         "Je mag altijd bezwaar maken tegen het gebruik van je gegevens op grond van ons gerechtvaardigd belang.",
-        "Mail daarvoor naar info@allico.nl. We reageren binnen een maand.",
-        "Ben je het niet eens met hoe we met je gegevens omgaan? Dan kun je een klacht indienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl)."
+        "Een klacht kun je indienen bij de Autoriteit Persoonsgegevens."
       ]
     }
   },
