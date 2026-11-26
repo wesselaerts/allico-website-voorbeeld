@@ -47,7 +47,7 @@
       "url": "https://allicosystems.nl/",
       "logo": "https://allicosystems.nl/allico-logo-512.png",
       "image": "https://allicosystems.nl/deelbeeld.jpg",
-      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.",
+      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand vanuit IEC 62443. Van idee tot werkend systeem.",
       "telephone": "+31611671719",
       "email": "info@allico.nl",
       "address": {
@@ -268,7 +268,7 @@
       <div class="nieuws-meta">Februari 2026</div>
       <div>
         <h3>Allico Systems ontvangt innovatieopdracht bij Kemkens</h3>
-        <p>Kemkens Brandbeveiliging heeft Allico Systems per februari een nieuwe innovatieopdracht gegeven. Samen zetten we de volgende stap naar een gedigitaliseerd en slim brandbeveiligingssysteem. De nadruk ligt op digitaal inzicht en het testen van de installatie. Met toeleveranciers van Allico Systems wordt de installatie ontworpen volgens IEC 62443.</p>
+        <p>Kemkens Brandbeveiliging heeft Allico Systems per februari een nieuwe innovatieopdracht gegeven. Samen zetten we de volgende stap naar een gedigitaliseerd en slim brandbeveiligingssysteem. De nadruk ligt op digitaal inzicht en het testen van de installatie. Met toeleveranciers van Allico Systems wordt de installatie ontworpen vanuit IEC 62443.</p>
         
       </div>
       <div class="nieuws-foto"><img decoding="async" src="../kemkens-pand-oss-800.webp" srcset="../kemkens-pand-oss-800.webp 800w, ../kemkens-pand-oss-1200.webp 1200w" sizes="(max-width: 700px) 92vw, 36vw" data-groot="../kemkens-pand-oss.jpg" alt="Het pand van Kemkens Brandbeveiliging in Oss" loading="lazy"></div>
@@ -624,7 +624,7 @@
         </address>
       </div></div>
         <div class="footer-bottom" id="footer-bottom">
-      <p>&copy; 2026 Allico Systems. Alle rechten voorbehouden.</p>
+      <p>&copy; 2026 Allico Systems B.V. Alle rechten voorbehouden.</p>
       <div class="footer-bottom-links"><a href="../privacyverklaring/" data-page="privacy">Privacyverklaring</a></div></div>
     </footer>
 
@@ -1105,7 +1105,7 @@
                         ? `<a href="${j[sleutel]}">${tekst}</a>`
                         : `<a href="${paginaUrl(sleutel)}" data-page="${sleutel}">${tekst}</a>`).join('');
                 bottom.innerHTML = `
-      <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
+      <p>&copy; ${b.copyright.replace(/\.$/, '')}. Alle rechten voorbehouden.${b.kvk ? ` KvK ${b.kvk}.` : ''}${b.btw ? ` Btw ${b.btw}.` : ''}</p>
       ${juridisch ? `<div class="footer-bottom-links">${juridisch}</div>` : ''}`;
             }
         }

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Allico Systems | PLC-besturing, elektronica en OT-security</title>
-    <meta name="description" content="Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.">
+    <meta name="description" content="Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand vanuit IEC 62443. Van idee tot werkend systeem.">
     <meta name="theme-color" content="#0c1d45">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="icon" href="favicon-96.png" type="image/png" sizes="96x96">
@@ -16,7 +16,7 @@
     <meta property="og:locale" content="nl_NL">
     <meta property="og:site_name" content="Allico Systems">
     <meta property="og:title" content="Allico Systems | PLC-besturing, elektronica en OT-security">
-    <meta property="og:description" content="Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.">
+    <meta property="og:description" content="Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand vanuit IEC 62443. Van idee tot werkend systeem.">
     <meta property="og:url" content="https://allicosystems.nl/">
     <meta property="og:image" content="https://allicosystems.nl/deelbeeld.jpg">
     <meta property="og:image:width" content="1200">
@@ -47,7 +47,7 @@
       "url": "https://allicosystems.nl/",
       "logo": "https://allicosystems.nl/allico-logo-512.png",
       "image": "https://allicosystems.nl/deelbeeld.jpg",
-      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.",
+      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand vanuit IEC 62443. Van idee tot werkend systeem.",
       "telephone": "+31611671719",
       "email": "info@allico.nl",
       "address": {
@@ -285,7 +285,7 @@
         <div>
           <span class="proto-kicker">App-ontwikkeling</span>
           <h2>Ook de app bouwen we zelf</h2>
-          <p>Van sensor en besturing tot de app op je telefoon: alles in één hand. Wil je een dashboard of app laten maken bij je machine, installatie of IoT-sensoren? Ook die bouwen we zelf. Overzichtelijk, veilig en gemaakt voor de mensen die er dagelijks mee werken.</p>
+          <p>Van sensor en besturing tot de app op je telefoon: alles in één hand. Wil je een dashboard of app laten maken bij je machine, installatie of IoT-sensoren? Ook die bouwen we zelf. Overzichtelijk, veilig en gemaakt voor de mensen die er dagelijks mee werken. De gegevens in deze apps zijn voorbeelden.</p>
           <button class="home-intro-cta" data-page="spec-5">Meer over app-ontwikkeling <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         </div>
         <div class="home-apps-beelden">
@@ -732,7 +732,7 @@
         </address>
       </div></div>
         <div class="footer-bottom" id="footer-bottom">
-      <p>&copy; 2026 Allico Systems. Alle rechten voorbehouden.</p>
+      <p>&copy; 2026 Allico Systems B.V. Alle rechten voorbehouden.</p>
       <div class="footer-bottom-links"><a href="privacyverklaring/" data-page="privacy">Privacyverklaring</a></div></div>
     </footer>
 
@@ -1213,7 +1213,7 @@
                         ? `<a href="${j[sleutel]}">${tekst}</a>`
                         : `<a href="${paginaUrl(sleutel)}" data-page="${sleutel}">${tekst}</a>`).join('');
                 bottom.innerHTML = `
-      <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
+      <p>&copy; ${b.copyright.replace(/\.$/, '')}. Alle rechten voorbehouden.${b.kvk ? ` KvK ${b.kvk}.` : ''}${b.btw ? ` Btw ${b.btw}.` : ''}</p>
       ${juridisch ? `<div class="footer-bottom-links">${juridisch}</div>` : ''}`;
             }
         }

@@ -47,7 +47,7 @@
       "url": "https://allicosystems.nl/",
       "logo": "https://allicosystems.nl/allico-logo-512.png",
       "image": "https://allicosystems.nl/deelbeeld.jpg",
-      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand volgens IEC 62443. Van idee tot werkend systeem.",
+      "description": "Allico Systems in Horst ontwikkelt PLC-besturing, embedded software en veilige toegang op afstand vanuit IEC 62443. Van idee tot werkend systeem.",
       "telephone": "+31611671719",
       "email": "info@allico.nl",
       "address": {
@@ -221,7 +221,7 @@
             
             
             <h2>PLCnext van Phoenix Contact</h2>
-            <p>PLCnext Technology is het open automatiseringsplatform van Phoenix Contact. Het combineert de klassieke PLC-talen uit IEC 61131 met hogere programmeertalen zoals C, C++ en MATLAB Simulink.</p><p>Daarmee kan één besturing meer dan een traditionele PLC. Denk aan een dashboard direct vanaf de besturing, beveiligde toegang op afstand en koppelingen naar cloud- of MES-systemen.</p><p>Wij hebben de Workshop PLCnext Engineer bij Phoenix Contact gevolgd en zetten dat traject voort. De techniek passen we inmiddels toe in meerdere projecten.</p>
+            <p>PLCnext Technology is het open automatiseringsplatform van Phoenix Contact. Het combineert de PLC-talen uit IEC 61131-3 met hogere talen zoals C/C++, C# en MATLAB Simulink.</p><p>Daarmee kan één besturing meer dan een traditionele PLC. Denk aan een dashboard direct vanaf de besturing, beveiligde toegang op afstand en koppelingen naar cloud- of MES-systemen.</p><p>Wij hebben de Workshop PLCnext Engineer bij Phoenix Contact gevolgd en zetten dat traject voort. De techniek passen we inmiddels toe in meerdere projecten.</p>
             
             <h2>Een PLC-programmeur zoeken of het programmeren uitbesteden?</h2>
             <p>Zoek je een PLC-programmeur, of wil je het PLC-programmeren uitbesteden? Bij ons werk je met een klein en gespecialiseerd team. Hardware, firmware en software houden we in eigen beheer.</p><p>Zo kunnen we een compleet systeem opleveren: van besturing en bediening tot beveiliging.</p><p>Het team is compact en ieder heeft een eigen specialisme. Daardoor schakelen we snel: je hebt snel een voorstel, en een project kan snel starten en vlot worden afgerond.</p>
@@ -260,7 +260,7 @@
             </div>
             <div class="detail-sidebar-block">
               <h3>Technologieën</h3>
-              <div class="tech-tags"><span class="tech-tag">PLCnext</span><span class="tech-tag">IEC 61131</span><span class="tech-tag">C / C++</span><span class="tech-tag">FreeRTOS</span><span class="tech-tag">Modbus</span><span class="tech-tag">MQTT</span><span class="tech-tag">OPC UA</span><span class="tech-tag">LoRaWAN</span></div>
+              <div class="tech-tags"><span class="tech-tag">PLCnext</span><span class="tech-tag">IEC 61131-3</span><span class="tech-tag">C / C++</span><span class="tech-tag">FreeRTOS</span><span class="tech-tag">Modbus</span><span class="tech-tag">MQTT</span><span class="tech-tag">OPC UA</span><span class="tech-tag">LoRaWAN</span></div>
             </div>
             <div class="detail-sidebar-block">
               <h3>Meer weten?</h3>
@@ -610,7 +610,7 @@
         </address>
       </div></div>
         <div class="footer-bottom" id="footer-bottom">
-      <p>&copy; 2026 Allico Systems. Alle rechten voorbehouden.</p>
+      <p>&copy; 2026 Allico Systems B.V. Alle rechten voorbehouden.</p>
       <div class="footer-bottom-links"><a href="../privacyverklaring/" data-page="privacy">Privacyverklaring</a></div></div>
     </footer>
 
@@ -1091,7 +1091,7 @@
                         ? `<a href="${j[sleutel]}">${tekst}</a>`
                         : `<a href="${paginaUrl(sleutel)}" data-page="${sleutel}">${tekst}</a>`).join('');
                 bottom.innerHTML = `
-      <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
+      <p>&copy; ${b.copyright.replace(/\.$/, '')}. Alle rechten voorbehouden.${b.kvk ? ` KvK ${b.kvk}.` : ''}${b.btw ? ` Btw ${b.btw}.` : ''}</p>
       ${juridisch ? `<div class="footer-bottom-links">${juridisch}</div>` : ''}`;
             }
         }
