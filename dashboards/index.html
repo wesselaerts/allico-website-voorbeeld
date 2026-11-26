@@ -116,7 +116,7 @@
     </script>
     <script>
     window.ALLICO_GEBOUWD = true;
-    window.ALLICO_ROUTES = {"home":"../","specialisatie":"../specialisaties/","projecten":"../projecten/","nieuws":"../nieuws/","contact":"../contact/","spec-1":"../elektronica-ontwikkeling/","spec-2":"../plc-besturing-embedded-software/","spec-3":"../dashboards/","spec-4":"../ot-beveiliging-iec-62443/","spec-5":"../app-ontwikkeling/","project-1":"../projecten/brandbeveiliging-op-afstand-testen-kemkens/","project-2":"../projecten/lmra-app-veiligheidsregistratie/","nieuws-6":"../nieuws/machineverordening-2027-cybersecurity/","nieuws-5":"../nieuws/nis2-ot-plc/","nieuws-8":"../nieuws/plc-veilig-op-afstand-benaderen/","nieuws-7":"../nieuws/cyber-resilience-act-machinebouwers/","nieuws-4":"../nieuws/wat-is-plcnext/","nieuws-3":"../nieuws/cyberbeveiligingswet-nis2/","nieuws-1":"../nieuws/plcnext-certificering-phoenix-contact/"};
+    window.ALLICO_ROUTES = {"home":"../","specialisatie":"../specialisaties/","projecten":"../projecten/","nieuws":"../nieuws/","contact":"../contact/","spec-1":"../elektronica-ontwikkeling/","spec-2":"../plc-besturing-embedded-software/","spec-3":"../dashboards/","spec-4":"../ot-beveiliging-iec-62443/","spec-5":"../app-ontwikkeling/","project-1":"../projecten/brandbeveiliging-op-afstand-testen-kemkens/","project-2":"../projecten/lmra-app-veiligheidsregistratie/","nieuws-6":"../nieuws/machineverordening-2027-cybersecurity/","nieuws-5":"../nieuws/nis2-ot-plc/","nieuws-8":"../nieuws/plc-veilig-op-afstand-benaderen/","nieuws-7":"../nieuws/cyber-resilience-act-machinebouwers/","nieuws-4":"../nieuws/wat-is-plcnext/","nieuws-3":"../nieuws/cyberbeveiligingswet-nis2/","nieuws-1":"../nieuws/plcnext-certificering-phoenix-contact/","privacy":"../privacyverklaring/"};
     (function () {
         if (location.protocol !== 'file:') return;
         var metIndex = function (h) { return h.replace(/^([^#?]*\/)([?#].*)?$/, function (m, pad, rest) { return pad + 'index.html' + (rest || ''); }); };
@@ -222,8 +222,8 @@
             <ul><li>Datavisualisatie-dashboards met vergelijkingstools op maat</li><li>Besturingsplatformen voor offline en online installaties</li><li>Toepassingen voor telefoon, computer en andere apparaten</li></ul>
             
             
-            <h2>Servicemonteurs minder afhankelijk van PLC-kennis</h2>
-            <p>Niet elke servicemonteur heeft PLC-kennis. Daarom maken we via het dashboard veel van de besturing toegankelijk en instelbaar.</p><p>Een servicemonteur ziet in het dashboard wat de installatie doet en welke meldingen er zijn. Dat maakt servicemonteurs en de technische dienst minder afhankelijk van PLC-kennis.</p>
+            <h2>Niet elke monteur hoeft PLC-programmeur te zijn</h2>
+            <p>Niet elke servicemonteur heeft PLC-kennis. Daarom maken we via het dashboard veel van de besturing toegankelijk en instelbaar.</p><p>Een servicemonteur ziet in het dashboard wat de installatie doet en welke meldingen er zijn. Dat maakt servicemonteurs en de technische dienst minder afhankelijk van PLC-kennis.</p><p>Komt een monteur bij een storing toch niet verder, dan kan iemand met PLC-kennis op afstand meekijken. Dat gaat via een beveiligde verbinding.</p>
             
             <h2>Dashboard direct vanaf de besturing</h2>
             <p>Met PLCnext kan een dashboard direct vanaf de besturing draaien, zonder aparte industriële pc in de kast. In andere situaties bouwen we een online omgeving of een app.</p><p>Voor monitoring op afstand komt daar een beveiligde verbinding bij. Die stemmen we af op het beveiligingsprofiel van het systeem.</p>
@@ -233,7 +233,7 @@
             
             <div class="praktijk-blok">
               <h2>Uit de praktijk: een beheerportaal voor installaties op afstand</h2>
-              <p>Voor Kemkens Brandbeveiliging ontwikkelen we de integratie en het maatwerk om installaties op afstand te monitoren en te beheren. Gebruiksgemak is een harde eis: het beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken.</p>
+              <p>Voor Kemkens Brandbeveiliging ontwikkelen we de integratie en het maatwerk om sprinklerinstallaties op afstand te monitoren en te beheren. Gebruiksgemak is een harde eis: het beheerportaal moet praktisch en toegankelijk blijven voor de medewerkers die er dagelijks mee werken.</p>
               <p><a class="tekst-link" href="../projecten/brandbeveiliging-op-afstand-testen-kemkens/" data-page="project-1">Lees het hele project</a></p>
             </div>
             <h2>Veelgestelde vragen</h2>
@@ -288,6 +288,9 @@
     
     
     
+    
+
+    <!-- ── Juridisch: de privacyverklaring (tekst in data/siteData.js bij [JURIDISCH]) ── -->
     
 
     <script>
@@ -605,7 +608,7 @@
       </div></div>
         <div class="footer-bottom" id="footer-bottom">
       <p>&copy; 2026 Allico Systems. Alle rechten voorbehouden.</p>
-      </div>
+      <div class="footer-bottom-links"><a href="../privacyverklaring/" data-page="privacy">Privacyverklaring</a></div></div>
     </footer>
 
     <script>window.SITE_DATA = {"bedrijf":{"naam":"Allico Systems","email":"info@allico.nl","telefoon":"+31 6 11 67 17 19","whatsapp":"31611671719"},"formulier":{"endpoint":""}};</script>
@@ -758,7 +761,13 @@
                     .map(deel => '<span style="white-space: nowrap">' + veilig(deel) + '</span>')
                     .join(' · ');
             }
-            if (titel) titel.textContent = h.introTitel;
+            if (titel) {
+                // een woord met een streepje (OT-security) breekt niet af op het streepje
+                const veilig = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                titel.innerHTML = h.introTitel.split(' ')
+                    .map(w => w.includes('-') ? '<span style="white-space: nowrap">' + veilig(w) + '</span>' : veilig(w))
+                    .join(' ');
+            }
             if (tekst) tekst.textContent = h.introTekst;
             if (cta) cta.innerHTML = h.introCta + ' ' + ARROW_SVG;
             if (foto && h.introFoto) {
@@ -917,6 +926,13 @@
             });
         }
 
+        // Een stuk tekst is een alinea ("gewone tekst"), een tussenkop ({ kop }) of een lijst ({ punten })
+        function tekstBlokken(tekst) {
+            return tekst.map(t => typeof t === 'string' ? `<p>${t}</p>`
+                : t.kop ? `<h2>${t.kop}</h2>`
+                : t.punten ? `<ul>${t.punten.map(punt => `<li>${punt}</li>`).join('')}</ul>` : '').join('');
+        }
+
         function renderNieuws() {
             const feed = document.getElementById('nieuws-feed');
             if (!feed) return;
@@ -939,10 +955,7 @@
                 if (!item.id || !item.tekst) return;
                 const page = document.getElementById('page-' + item.id);
                 if (!page) return;
-                // Een stuk tekst is een alinea ("gewone tekst"), een tussenkop ({ kop }) of een lijst ({ punten })
-                const body = item.tekst.map(t => typeof t === 'string' ? `<p>${t}</p>`
-                    : t.kop ? `<h2>${t.kop}</h2>`
-                    : t.punten ? `<ul>${t.punten.map(punt => `<li>${punt}</li>`).join('')}</ul>` : '').join('');
+                const body = tekstBlokken(item.tekst);
                 const datum = item.datum + (item.bijgewerkt ? ' · bijgewerkt ' + item.bijgewerkt : '');
                 const foto = item.foto ? `
             <figure class="artikel-foto${item.fotoType === 'logo' ? ' logo' : ''}">
@@ -963,6 +976,30 @@
             ${body}
             ${extraBlokken(item)}
             <button class="artikel-cta" data-page="contact">Neem contact op ${ARROW_SVG}</button>
+          </div>
+        </div>
+      </section>`;
+            });
+        }
+
+        // [JURIDISCH] Een blok in siteData.juridisch met "tekst" wordt een eigen pagina (page-privacy).
+        // Een gewone tekst daar ("/voorwaarden.pdf") is alleen een link in de footer (zie renderFooter).
+        function renderJuridisch() {
+            const j = siteData.juridisch || {};
+            Object.entries(j).forEach(([sleutel, d]) => {
+                if (!d || typeof d !== 'object' || !d.tekst) return;
+                const page = document.getElementById('page-' + sleutel);
+                if (!page) return;
+                page.innerHTML = `
+      <section class="detail-page">
+        <div class="detail-topbar">
+          <button class="back-btn" data-page="home">${BACK_SVG} Home</button>
+          ${d.bijgewerkt ? `<span class="detail-topbar-tag">Bijgewerkt ${d.bijgewerkt}</span>` : ''}
+        </div>
+        <div class="artikel-wrap">
+          <div class="detail-main">
+            <h1>${d.kop}</h1>
+            ${tekstBlokken(d.tekst)}
           </div>
         </div>
       </section>`;
@@ -1042,11 +1079,14 @@
 
             const bottom = document.getElementById('footer-bottom');
             if (bottom) {
-                // Links onderaan: alleen als het adres is ingevuld in siteData.juridisch (geen dode links)
+                // Links onderaan: alleen als siteData.juridisch iets heeft (geen dode links).
+                // Een blok met tekst is een eigen pagina op de site; een gewone tekst is een adres.
                 const j = siteData.juridisch || {};
-                const juridisch = [['privacy', 'Privacybeleid'], ['voorwaarden', 'Algemene voorwaarden']]
+                const juridisch = [['privacy', 'Privacyverklaring'], ['voorwaarden', 'Algemene voorwaarden']]
                     .filter(([sleutel]) => j[sleutel])
-                    .map(([sleutel, tekst]) => `<a href="${j[sleutel]}">${tekst}</a>`).join('');
+                    .map(([sleutel, tekst]) => typeof j[sleutel] === 'string'
+                        ? `<a href="${j[sleutel]}">${tekst}</a>`
+                        : `<a href="${paginaUrl(sleutel)}" data-page="${sleutel}">${tekst}</a>`).join('');
                 bottom.innerHTML = `
       <p>&copy; ${b.copyright}. Alle rechten voorbehouden.</p>
       ${juridisch ? `<div class="footer-bottom-links">${juridisch}</div>` : ''}`;
@@ -1104,6 +1144,7 @@
             renderProjecten();
             renderNieuws();
             renderContact();
+            renderJuridisch();
             renderFooter();
             bindEvents();
         }
