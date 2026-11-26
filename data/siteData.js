@@ -1614,7 +1614,7 @@ window.SITE_DATA = {
           "kop": "Bezoek aan de site"
         },
         "Deze site gebruikt geen cookies. De webserver ziet wel je IP-adres, je browser en de pagina die je opvraagt.",
-        "Die gegevens zijn nodig om de site te tonen en te beveiligen. Dat is ons gerechtvaardigd belang. Ze worden niet langer bewaard dan daarvoor nodig is.",
+        "Die gegevens zijn nodig om de site te tonen en te beveiligen. Dat is ons gerechtvaardigd belang. Onze hostingpartij bewaart je IP-adres daarvoor hooguit zeven dagen.",
         {
           "kop": "Wie je gegevens ziet"
         },
